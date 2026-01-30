@@ -60,8 +60,10 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const message = await channel.send({ content: headerMessage, embeds: [createEmbed()] }).catch(() => null);
   if (!message) return;
 
+  // 🔹 Only updating the embed dynamically, no role changes here
   const interval = setInterval(async () => {
-    await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
+    const updatedEmbed = createEmbed();
+    await message.edit({ content: headerMessage, embeds: [updatedEmbed] }).catch(() => {});
   }, 30000);
 
   liveMessages.set(key, { message, interval });

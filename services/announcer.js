@@ -6,15 +6,17 @@ const platformEmoji = {
   kick: '🔥 Kick'
 };
 
-const liveMessages = new Map(); // For live embed updates
+const liveMessages = new Map();
 
 export async function giveRole(guild, userId, roleId) {
+  if (!roleId) return;
   const member = await guild.members.fetch(userId).catch(() => null);
   if (!member) return;
   await member.roles.add(roleId).catch(() => {});
 }
 
 export async function removeRole(guild, userId, roleId) {
+  if (!roleId) return;
   const member = await guild.members.fetch(userId).catch(() => null);
   if (!member) return;
   await member.roles.remove(roleId).catch(() => {});
@@ -34,14 +36,14 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       .setColor(0x9146FF)
       .setTimestamp();
 
-    if (thumbnail && thumbnail.trim().length > 0) {
+    if (thumbnail && thumbnail.trim()) {
       let finalThumbnail = thumbnail.trim();
       if (platformDisplay?.toLowerCase() === 'twitch') {
         finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
       }
       embed.setImage(finalThumbnail);
     } else {
-      embed.setImage('https://i.imgur.com/4G7E9nZ.png'); // fallback
+      embed.setImage('https://i.imgur.com/x7kHaIB.jpeg');
     }
 
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
@@ -51,6 +53,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const key = `${guildId}-${userId}`;
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
+  // Only update embed, never touch roles
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
     await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
@@ -60,7 +63,6 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const message = await channel.send({ content: headerMessage, embeds: [createEmbed()] }).catch(() => null);
   if (!message) return;
 
-  // 🔹 Only updating the embed dynamically, no role changes here
   const interval = setInterval(async () => {
     const updatedEmbed = createEmbed();
     await message.edit({ content: headerMessage, embeds: [updatedEmbed] }).catch(() => {});

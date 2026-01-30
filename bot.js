@@ -1,26 +1,76 @@
 import { Client, GatewayIntentBits, Collection, PermissionsBitField } from 'discord.js';
 import fs from 'fs';
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
+import { pathToFileURL } from 'url';
+import { handleTwitchEvent } from './services/twitchEventSub.js';
+import { checkStreams } from './services/streamManager.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages
+    ]
+});
 client.commands = new Collection();
 
-// Load commands and cogs
-(async () => {
-    // Commands
-    const commandFiles = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
-    for (const file of commandFiles) {
-        const command = await import(`./commands/${file}`);
-        client.commands.set(command.data.name, command);
-    }
 
-    // Cogs
-    const cogFiles = fs.readdirSync('./cogs').filter(f => f.endsWith('.js'));
-    for (const file of cogFiles) {
-        const cog = await import(`./cogs/${file}`);
-        cog.default(client);
+// ==========================
+// Load Commands Recursively
+// ==========================
+async function loadCommands(dir = './commands') {
+    const files = fs.readdirSync(dir);
+
+    for (const file of files) {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+
+        if (stat.isDirectory()) {
+            // Recursively load subfolders
+            await loadCommands(fullPath);
+        } else if (file.endsWith('.js')) {
+            try {
+                const command = await import(pathToFileURL(fullPath).href);
+                if (command.data && command.execute) {
+                    client.commands.set(command.data.name, command);
+                    console.log(`[COMMAND] Loaded: ${command.data.name}`);
+                } else {
+                    console.warn(`[WARN] Missing data or execute: ${fullPath}`);
+                }
+            } catch (err) {
+                console.error(`[ERROR] Failed to load command: ${fullPath}`, err);
+            }
+        }
     }
+}
+
+// ==========================
+// Load Cogs
+// ==========================
+async function loadCogs(dir = './cogs') {
+    const files = fs.readdirSync(dir).filter(f => f.endsWith('.js'));
+
+    for (const file of files) {
+        try {
+            const cog = await import(pathToFileURL(path.join(dir, file)).href);
+            if (cog.default) cog.default(client);
+            console.log(`[COG] Loaded: ${file}`);
+        } catch (err) {
+            console.error(`[ERROR] Failed to load cog: ${file}`, err);
+        }
+    }
+}
+
+// ==========================
+// Initialize Bot
+// ==========================
+(async () => {
+    await loadCommands();
+    await loadCogs();
 
     client.login(process.env.DISCORD_TOKEN);
 })();
@@ -36,7 +86,7 @@ client.on('interactionCreate', async interaction => {
             if (!command) return;
 
             // Permission check for restricted commands
-            const restrictedCommands = ['listallupdates', 'latestupdate', 'set-update-channel', 'allowrole'];
+            const restrictedCommands = ['listallupdates', 'latestupdate', 'set-update-channel', 'allowrole', 'stream-add', 'stream-remove', 'stream-setchannel', 'stream-setrole', 'stream-setgame' ];
             if (restrictedCommands.includes(command.data.name)) {
                 const allowedRoles = fs.existsSync('./data/allowedRoles.json')
                     ? JSON.parse(fs.readFileSync('./data/allowedRoles.json', 'utf-8'))
@@ -76,7 +126,19 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+// Express server
+const app = express();
+app.use(bodyParser.json());
+app.post('/twitch/webhook',(req,res)=>{ handleTwitchEvent(req.body, client); res.status(200).end(); });
+app.listen(3000,()=>console.log('Twitch webhook running on port 3000'));
+
 // Bot ready
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
+    setInterval(async () => {
+        try { await checkStreams(client); } 
+        catch(err) { console.error('Stream check failed:', err); }
+    }, 60_000);
+
 });
+

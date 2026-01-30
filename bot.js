@@ -130,32 +130,40 @@ client.on('interactionCreate', async interaction => {
 });
 
 // ==========================
-// Express server for Twitch
+// Express server for Twitch (EventSub CORRECT)
 // ==========================
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-app.all('/twitch/webhook', async (req, res) => {
-    if (req.method === 'GET') {
-    const challenge = req.query['hub.challenge'];
-    if (challenge) {
-        console.log('✅ Twitch verification challenge received:', challenge);
-        // Make sure response is plain text
-        res.set('Content-Type', 'text/plain');
-        return res.status(200).send(challenge);
+// IMPORTANT: raw body needed for Twitch
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf;
+  }
+}));
+
+app.post('/twitch/webhook', (req, res) => {
+    if (req.body?.challenge) {
+        console.log('✅ Twitch EventSub verification challenge received');
+        return res.status(200).type('text/plain').send(req.body.challenge);
     }
-    return res.status(400).send('Missing hub.challenge');
-    } else if (req.method === 'POST') {
-        // Normal webhook payloads
+
+    console.log('📩 Twitch EventSub POST received:', JSON.stringify(req.body, null, 2));
+
+    try {
         handleTwitchEvent(req.body, client);
-        return res.status(200).end();
-    } else {
-        return res.status(405).send('Method Not Allowed');
+    } catch (err) {
+        console.error('❌ handleTwitchEvent error:', err);
     }
+
+    return res.sendStatus(200);
 });
 
-app.listen(3000, () => console.log('🌐 Twitch webhook running on port 3000'));
+
+app.listen(3000, () =>
+    console.log('🌐 Twitch EventSub webhook running on port 3000')
+);
+
+
 
 // ==========================
 // Bot ready

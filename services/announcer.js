@@ -28,19 +28,21 @@ export async function announce(client, streamer, url, game, thumbnail, platformD
   const embed = new EmbedBuilder()
     .setTitle(`${displayName} is live! ${platformLabel}`)
     .setURL(url)
-    .setColor(0x9146FF);
+    .setColor(0x9146FF)
+    .setTimestamp();
 
   if (typeof game === 'string' && game.trim().length > 0) {
     embed.setDescription(`🎲 Playing: ${game.trim()}`);
   }
 
+  // 🔹 Use thumbnail as main image instead of corner thumbnail
   if (typeof thumbnail === 'string' && thumbnail.trim().length > 0) {
-    embed.setThumbnail(thumbnail.trim());
+    // Replace width & height for bigger image if Twitch
+    const bigThumbnail = thumbnail.replace('{width}', '1280').replace('{height}', '720');
+    embed.setImage(bigThumbnail);
   }
 
   embed.addFields([{ name: '▶️ Watch Now', value: url }]);
-  embed.setTimestamp();
 
-  // 🚀 This is the key: put the raw URL in content for Discord to embed the player
-  await channel.send({ content: url, embeds: [embed] }).catch(() => {});
+  await channel.send({ embeds: [embed] }).catch(() => {});
 }

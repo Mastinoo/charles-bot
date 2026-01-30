@@ -138,13 +138,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.all('/twitch/webhook', async (req, res) => {
     if (req.method === 'GET') {
-        // Twitch EventSub verification challenge
-        const challenge = req.query['hub.challenge'];
-        if (challenge) {
-            console.log('✅ Twitch verification challenge received:', challenge);
-            return res.status(200).send(challenge);
-        }
-        return res.status(400).send('Missing hub.challenge');
+    const challenge = req.query['hub.challenge'];
+    if (challenge) {
+        console.log('✅ Twitch verification challenge received:', challenge);
+        // Make sure response is plain text
+        res.set('Content-Type', 'text/plain');
+        return res.status(200).send(challenge);
+    }
+    return res.status(400).send('Missing hub.challenge');
     } else if (req.method === 'POST') {
         // Normal webhook payloads
         handleTwitchEvent(req.body, client);
@@ -178,4 +179,5 @@ client.once('clientReady', async () => {
         await subscribeTwitchStreamer(s.platformUserId);
     }
 });
+
 

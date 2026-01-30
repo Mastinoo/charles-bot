@@ -9,7 +9,7 @@ export async function handleTwitchEvent(payload, client) {
   const displayName = event.broadcaster_user_name || '';
   const categoryName = event.category_name || '';
   const thumbnailUrl = event.thumbnail_url || '';
-  const streamTitle = event.title || 'Live now!'; // 🔹 Try to use real stream title
+  const streamTitle = event.title || categoryName || 'Live now!'; // 🔹 fallback
 
   const streamers = db.prepare(
     "SELECT * FROM streamers WHERE platform='twitch' AND platformUserId=?"
@@ -19,8 +19,8 @@ export async function handleTwitchEvent(payload, client) {
     const guild = await client.guilds.fetch(s.guildId).catch(() => null);
     if (!guild) continue;
 
-    // Fill defaults if missing
-    let { announceChannelId, liveRoleId } = s;
+    let { announceChannelId, liveRoleId, isLive } = s;
+
     if (!announceChannelId || !liveRoleId) {
       const defaults = db.prepare(
         "SELECT announceChannelId, liveRoleId FROM guild_settings WHERE guildId=?"
@@ -32,23 +32,18 @@ export async function handleTwitchEvent(payload, client) {
       db.prepare(
         "UPDATE streamers SET announceChannelId=?, liveRoleId=? WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(announceChannelId, liveRoleId, s.guildId, s.discordUserId, s.platform);
-
-      console.log(`ℹ️ Updated defaults for ${displayName} in guild ${s.guildId}`);
     }
 
-    // Skip if game filter doesn't match
     if (s.gameFilter && s.gameFilter !== categoryName) continue;
 
-    const currentLive = s.isLive || 0;
-
-    // 🔹 Only handle roles on actual online/offline events
-    if (subscriptionType === 'stream.online' && currentLive !== 1) {
+    // 🔹 GOING LIVE
+    if (subscriptionType === 'stream.online' && isLive !== 1) {
       db.prepare(
         "UPDATE streamers SET isLive=1 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
       if (liveRoleId) await giveRole(guild, s.discordUserId, liveRoleId);
-      if (announceChannelId)
+      if (announceChannelId) {
         await announce(
           client,
           { ...s, displayName },
@@ -59,11 +54,13 @@ export async function handleTwitchEvent(payload, client) {
           s.guildId,
           s.discordUserId
         );
+      }
 
       console.log(`✅ Marked ${displayName} as live in guild ${s.guildId}`);
     }
 
-    if (subscriptionType === 'stream.offline' && currentLive === 1) {
+    // 🔹 GOING OFFLINE
+    if (subscriptionType === 'stream.offline' && isLive === 1) {
       db.prepare(
         "UPDATE streamers SET isLive=0 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);

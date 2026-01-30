@@ -6,7 +6,7 @@ const platformEmoji = {
   kick: '🔥 Kick'
 };
 
-// Stores live embed messages for updating only
+// Live message cache (embed updates only)
 const liveMessages = new Map();
 
 export async function giveRole(guild, userId, roleId) {
@@ -23,51 +23,74 @@ export async function removeRole(guild, userId, roleId) {
   await member.roles.remove(roleId).catch(() => {});
 }
 
-export async function announce(client, streamer, url, title, thumbnail, platformDisplay, guildId, userId) {
+export async function announce(
+  client,
+  streamer,
+  url,
+  title,
+  thumbnail,
+  platformDisplay,
+  guildId,
+  userId
+) {
   const channel = await client.channels.fetch(streamer.announceChannelId).catch(() => null);
   if (!channel || !channel.isTextBased()) return;
 
-  const platformLabel = platformEmoji[platformDisplay?.toLowerCase()] || platformDisplay || 'Live';
-  const displayName = streamer.displayName || streamer.platformUsername;
+  const platformLabel =
+    platformEmoji[platformDisplay?.toLowerCase()] || 'Live';
+
+  const displayName =
+    streamer.displayName || streamer.platformUsername;
 
   const createEmbed = () => {
     const embed = new EmbedBuilder()
-      .setTitle(title || 'Live now!') // 🔹 Use actual stream title
+      .setTitle(title) // ✅ ACTUAL Twitch title
       .setURL(url)
       .setColor(0x9146FF)
       .setTimestamp();
 
-    // Big image
-    let finalThumbnail = thumbnail?.trim();
-    if (!finalThumbnail || finalThumbnail === '') {
-      finalThumbnail = 'https://i.imgur.com/x7kHaIB.jpeg'; // fallback
+    let finalImage = thumbnail?.trim();
+    if (!finalImage) {
+      finalImage = 'https://i.imgur.com/x7kHaIB.jpeg';
     } else if (platformDisplay?.toLowerCase() === 'twitch') {
-      finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
+      finalImage = finalImage
+        .replace('{width}', '1280')
+        .replace('{height}', '720');
     }
-    embed.setImage(finalThumbnail);
 
+    embed.setImage(finalImage);
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
+
     return embed;
   };
 
   const key = `${guildId}-${userId}`;
-  const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
+  const header = `## ${displayName} is now live on ${platformLabel}!`;
 
-  // Only update embed, never touch roles
+  // 🔁 Update existing message ONLY
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
-    await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
+    await message.edit({
+      content: header,
+      embeds: [createEmbed()]
+    }).catch(() => {});
     return;
   }
 
-  // Send new embed
-  const message = await channel.send({ content: headerMessage, embeds: [createEmbed()] }).catch(() => null);
+  // 🆕 Send new live message
+  const message = await channel.send({
+    content: header,
+    embeds: [createEmbed()]
+  }).catch(() => null);
+
   if (!message) return;
 
   const interval = setInterval(async () => {
-    const updatedEmbed = createEmbed();
-    await message.edit({ content: headerMessage, embeds: [updatedEmbed] }).catch(() => {});
-  }, 30000); // only updates embed
+    await message.edit({
+      content: header,
+      embeds: [createEmbed()]
+    }).catch(() => {});
+  }, 30_000);
 
   liveMessages.set(key, { message, interval });
 }
@@ -75,6 +98,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
 export async function clearLiveMessage(guildId, userId) {
   const key = `${guildId}-${userId}`;
   if (!liveMessages.has(key)) return;
+
   const { interval } = liveMessages.get(key);
   clearInterval(interval);
   liveMessages.delete(key);

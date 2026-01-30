@@ -1,5 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import fetch from 'node-fetch';
+import puppeteer from 'puppeteer';
 
 const platformEmoji = {
   twitch: '🎮 Twitch',
@@ -10,20 +11,54 @@ const platformEmoji = {
 // Stores live embed messages for updating only
 const liveMessages = new Map();
 
-// ⚠️ Twitch fetch helper
+// ------------------------------
+// Puppeteer screenshot for Twitch
+// ------------------------------
+async function captureTwitchScreenshot(username) {
+  try {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: { width: 1280, height: 720 }
+    });
+    const page = await browser.newPage();
+
+    await page.goto(`https://www.twitch.tv/${username}`, { waitUntil: 'networkidle2' });
+    // Wait for the video player
+    await page.waitForSelector('video', { timeout: 10_000 }).catch(() => null);
+
+    const screenshot = await page.screenshot({ encoding: 'base64' });
+    await browser.close();
+    return `data:image/png;base64,${screenshot}`;
+  } catch (err) {
+    console.error('❌ captureTwitchScreenshot error:', err, username);
+    return null;
+  }
+}
+
+// ------------------------------
+// Twitch API fetch for title
+// ------------------------------
 async function fetchTwitchStream(userId) {
   if (!process.env.TWITCH_APP_TOKEN) return null;
 
-  const res = await fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {
-    headers: {
-      'Client-ID': process.env.TWITCH_CLIENT_ID,
-      'Authorization': `Bearer ${process.env.TWITCH_APP_TOKEN}`
-    }
-  });
-  const data = await res.json();
-  return data?.data?.[0] || null;
+  try {
+    const res = await fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {
+      headers: {
+        'Client-ID': process.env.TWITCH_CLIENT_ID,
+        'Authorization': `Bearer ${process.env.TWITCH_APP_TOKEN}`
+      }
+    });
+    const data = await res.json();
+    return data?.data?.[0] || null;
+  } catch (err) {
+    console.error('❌ fetchTwitchStream error:', err, userId);
+    return null;
+  }
 }
 
+// ------------------------------
+// Roles
+// ------------------------------
 export async function giveRole(guild, userId, roleId) {
   if (!roleId) return;
   const member = await guild.members.fetch(userId).catch(() => null);
@@ -39,6 +74,9 @@ export async function removeRole(guild, userId, roleId) {
   await member.roles.remove(roleId).catch(() => {});
 }
 
+// ------------------------------
+// Announce
+// ------------------------------
 export async function announce(client, streamer, url, title, thumbnail, platformDisplay, guildId, userId) {
   const channel = await client.channels.fetch(streamer.announceChannelId).catch(() => null);
   if (!channel || !channel.isTextBased()) return;
@@ -58,7 +96,6 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
     }
     embed.setImage(finalThumbnail);
-
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
     return embed;
   };
@@ -83,8 +120,11 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       const streamData = await fetchTwitchStream(streamer.platformUserId).catch(() => null);
       if (streamData) {
         currentTitle = streamData.title || title;
-        currentThumbnail = streamData.thumbnail_url || thumbnail;
       }
+
+      // Get live screenshot (if possible)
+      const screenshot = await captureTwitchScreenshot(streamer.platformUsername).catch(() => null);
+      if (screenshot) currentThumbnail = screenshot;
     }
 
     await message.edit({ content: headerMessage, embeds: [createEmbed(currentTitle, currentThumbnail)] }).catch(() => {});

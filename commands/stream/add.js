@@ -6,9 +6,18 @@ import { subscribeTwitchStreamer } from '../../services/twitchSubscribe.js';
 export const data = new SlashCommandBuilder()
   .setName('stream-add')
   .setDescription('Add a streamer to track')
-  .addStringOption(opt => opt.setName('platform').setDescription('twitch, youtube, kick').setRequired(true))
-  .addStringOption(opt => opt.setName('username').setDescription('Streamer username or channel ID').setRequired(true))
-  .addUserOption(opt => opt.setName('discord').setDescription('Discord user to assign role').setRequired(true));
+  .addStringOption(opt => opt
+    .setName('platform')
+    .setDescription('twitch, youtube, kick')
+    .setRequired(true))
+  .addStringOption(opt => opt
+    .setName('username')
+    .setDescription('Streamer username or channel ID')
+    .setRequired(true))
+  .addUserOption(opt => opt
+    .setName('discord')
+    .setDescription('Discord user to assign role')
+    .setRequired(true));
 
 export async function execute(interaction) {
   const platform = interaction.options.getString('platform').toLowerCase();
@@ -19,6 +28,8 @@ export async function execute(interaction) {
     return interaction.reply({ content: '❌ Invalid platform.', ephemeral: true });
 
   let platformUserId = username;
+
+  // Twitch-specific: resolve user ID and subscribe
   if (platform === 'twitch') {
     const userId = await getTwitchUserId(username);
     if (!userId) return interaction.reply({ content: '❌ Twitch user not found', ephemeral: true });
@@ -26,11 +37,28 @@ export async function execute(interaction) {
     await subscribeTwitchStreamer(userId);
   }
 
+  // 🔹 Get guild defaults for role/channel for all platforms
+  const defaults = db.prepare('SELECT announceChannelId, liveRoleId FROM guild_settings WHERE guildId=?').get(interaction.guild.id);
+  const announceChannelId = defaults?.announceChannelId || null;
+  const liveRoleId = defaults?.liveRoleId || null;
+
+  // 🔹 Insert new streamer with automatic defaults
   db.prepare(`
-    INSERT OR IGNORE INTO streamers (guildId, discordUserId, platform, platformUserId, platformUsername)
-    VALUES (?, ?, ?, ?, ?)
-  `).run(interaction.guild.id, discordUser.id, platform, platformUserId, username);
+    INSERT OR IGNORE INTO streamers 
+      (guildId, discordUserId, platform, platformUserId, platformUsername, announceChannelId, liveRoleId)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    interaction.guild.id,
+    discordUser.id,
+    platform,
+    platformUserId,
+    username,
+    announceChannelId,
+    liveRoleId
+  );
 
-  interaction.reply({ content: `✅ Streamer added: ${username} (${platform})`, ephemeral: true });
+  interaction.reply({
+    content: `✅ Streamer added: ${username} (${platform})`,
+    ephemeral: true
+  });
 }
-

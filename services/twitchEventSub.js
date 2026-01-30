@@ -1,22 +1,15 @@
 import db from '../database.js';
-import { announce, giveRole, removeRole } from './announcer.js';
-
-const platformEmoji = {
-  twitch: '🎮 Twitch',
-  youtube: '📺 YouTube',
-  kick: '🔥 Kick'
-};
+import { announce, giveRole, removeRole, clearLiveMessage } from './announcer.js';
 
 export async function handleTwitchEvent(payload, client) {
-  const subscriptionType = payload.subscription?.type; // 'stream.online' | 'stream.offline'
+  const subscriptionType = payload.subscription?.type;
   const event = payload.event || {};
 
   const userId = event.broadcaster_user_id;
-  const displayName = event.broadcaster_user_name || ''; // Twitch display name
+  const displayName = event.broadcaster_user_name || '';
   const categoryName = event.category_name || '';
   const thumbnailUrl = event.thumbnail_url || '';
 
-  // Fetch all streamer entries for this user across all guilds
   const streamers = db.prepare(
     "SELECT * FROM streamers WHERE platform='twitch' AND platformUserId=?"
   ).all(userId);
@@ -25,7 +18,7 @@ export async function handleTwitchEvent(payload, client) {
     const guild = await client.guilds.fetch(s.guildId).catch(() => null);
     if (!guild) continue;
 
-    // 🔹 Fill in defaults if missing
+    // Fill defaults if missing
     let { announceChannelId, liveRoleId } = s;
     if (!announceChannelId || !liveRoleId) {
       const defaults = db.prepare(
@@ -45,7 +38,7 @@ export async function handleTwitchEvent(payload, client) {
     // Skip if game filter doesn't match
     if (s.gameFilter && s.gameFilter !== categoryName) continue;
 
-    // 🔹 Going live
+    // Going live
     if (subscriptionType === 'stream.online' && s.isLive !== 1) {
       db.prepare(
         "UPDATE streamers SET isLive=1 WHERE guildId=? AND discordUserId=? AND platform=?"
@@ -55,23 +48,28 @@ export async function handleTwitchEvent(payload, client) {
       if (announceChannelId)
         await announce(
           client,
-          { ...s, displayName }, // pass displayName to embed
+          { ...s, displayName },
           `https://twitch.tv/${s.platformUsername}`,
           categoryName,
           thumbnailUrl,
-          s.platform // pass platform for emoji
+          s.platform,
+          s.guildId,
+          s.discordUserId
         );
 
       console.log(`✅ Marked ${displayName} as live in guild ${s.guildId}`);
     }
 
-    // 🔹 Going offline
+    // Going offline
     if (subscriptionType === 'stream.offline' && s.isLive === 1) {
       db.prepare(
         "UPDATE streamers SET isLive=0 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
       if (liveRoleId) await removeRole(guild, s.discordUserId, liveRoleId);
+
+      // Clear live embed update interval
+      await clearLiveMessage(s.guildId, s.discordUserId);
 
       console.log(`✅ Marked ${displayName} as offline in guild ${s.guildId}`);
     }

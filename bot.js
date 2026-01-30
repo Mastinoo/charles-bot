@@ -1,16 +1,20 @@
 import { Client, GatewayIntentBits, Collection, PermissionsBitField } from 'discord.js';
 import fs from 'fs';
-import express from 'express';
-import bodyParser from 'body-parser';
 import path from 'path';
 import { pathToFileURL } from 'url';
+import express from 'express';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { handleTwitchEvent } from './services/twitchEventSub.js';
 import { subscribeTwitchStreamer } from './services/twitchSubscribe.js';
 import { checkStreams } from './services/streamManager.js';
 import db from './database.js';
-import dotenv from 'dotenv';
-dotenv.config();
 
+// ==========================
+// Create Discord client
+// ==========================
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -20,9 +24,8 @@ const client = new Client({
 });
 client.commands = new Collection();
 
-
 // ==========================
-// Load Commands Recursively
+// Load commands recursively
 // ==========================
 async function loadCommands(dir = './commands') {
     const files = fs.readdirSync(dir);
@@ -32,7 +35,6 @@ async function loadCommands(dir = './commands') {
         const stat = fs.statSync(fullPath);
 
         if (stat.isDirectory()) {
-            // Recursively load subfolders
             await loadCommands(fullPath);
         } else if (file.endsWith('.js')) {
             try {
@@ -51,7 +53,7 @@ async function loadCommands(dir = './commands') {
 }
 
 // ==========================
-// Load Cogs
+// Load cogs
 // ==========================
 async function loadCogs(dir = './cogs') {
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.js'));
@@ -68,27 +70,30 @@ async function loadCogs(dir = './cogs') {
 }
 
 // ==========================
-// Initialize Bot
+// Initialize bot
 // ==========================
 (async () => {
     await loadCommands();
     await loadCogs();
-
     client.login(process.env.DISCORD_TOKEN);
 })();
 
-// Unified interaction listener
+// ==========================
+// Interaction listener
+// ==========================
 client.on('interactionCreate', async interaction => {
     try {
         const ownerId = process.env.OWNER_ID;
 
-        // Slash commands
         if (interaction.isChatInputCommand()) {
             const command = client.commands.get(interaction.commandName);
             if (!command) return;
 
-            // Permission check for restricted commands
-            const restrictedCommands = ['listallupdates', 'latestupdate', 'set-update-channel', 'allowrole', 'stream-add', 'stream-remove', 'stream-setchannel', 'stream-setrole', 'stream-setgame' ];
+            const restrictedCommands = [
+                'listallupdates', 'latestupdate', 'set-update-channel', 'allowrole',
+                'stream-add', 'stream-remove', 'stream-setchannel', 'stream-setrole', 'stream-setgame'
+            ];
+
             if (restrictedCommands.includes(command.data.name)) {
                 const allowedRoles = fs.existsSync('./data/allowedRoles.json')
                     ? JSON.parse(fs.readFileSync('./data/allowedRoles.json', 'utf-8'))
@@ -97,6 +102,7 @@ client.on('interactionCreate', async interaction => {
 
                 const isAdmin = interaction.member.permissions.has(PermissionsBitField.Flags.Administrator);
                 const hasRole = interaction.member.roles.cache.some(r => guildRoles.includes(r.id));
+
                 if (interaction.user.id !== ownerId && !isAdmin && !hasRole) {
                     return await interaction.reply({ content: '❌ You do not have permission to use this command.', ephemeral: true });
                 }
@@ -104,16 +110,11 @@ client.on('interactionCreate', async interaction => {
 
             await command.execute(interaction, client);
         }
-
-        // Autocomplete for channels/roles
         else if (interaction.isAutocomplete()) {
             const command = client.commands.get(interaction.commandName);
             if (!command || !command.autocomplete) return;
-
             await command.autocomplete(interaction);
         }
-
-        // Buttons / select menus (if any future feature)
         else if (interaction.isButton() || interaction.isStringSelectMenu()) {
             const command = client.commands.get('set-update-channel'); // example handler
             if (command?.handleSelect) await command.handleSelect(interaction);
@@ -128,21 +129,30 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-// Express server
+// ==========================
+// Express server for Twitch
+// ==========================
 const app = express();
 app.use(bodyParser.json());
-app.post('/twitch/webhook',(req,res)=>{ handleTwitchEvent(req.body, client); res.status(200).end(); });
-app.listen(3000,()=>console.log('Twitch webhook running on port 3000'));
+app.post('/twitch/webhook', (req, res) => {
+    handleTwitchEvent(req.body, client);
+    res.status(200).end();
+});
+app.listen(3000, () => console.log('🌐 Twitch webhook running on port 3000'));
 
+// ==========================
 // Bot ready
-client.once('clientReady', () => {
+// ==========================
+client.once('clientReady', async () => {
     console.log(`🤖 Logged in as ${client.user.tag}`);
+
+    // Poll YouTube/Kick every 60s
     setInterval(async () => {
         try { await checkStreams(client); } 
         catch(err) { console.error('Stream check failed:', err); }
     }, 60_000);
 
-        // 🔁 AUTO-RESUBSCRIBE TWITCH STREAMERS
+    // 🔁 Auto-resubscribe Twitch streamers
     const twitchStreamers = db.prepare(
         "SELECT platformUserId FROM streamers WHERE platform='twitch'"
     ).all();
@@ -151,7 +161,4 @@ client.once('clientReady', () => {
     for (const s of twitchStreamers) {
         await subscribeTwitchStreamer(s.platformUserId);
     }
-
 });
-
-

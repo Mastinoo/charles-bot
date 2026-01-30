@@ -35,13 +35,19 @@ export async function announce(client, streamer, url, game, thumbnail, platformD
     embed.setDescription(`🎲 Playing: ${game.trim()}`);
   }
 
-  // 🔹 Use thumbnail as main image instead of corner thumbnail
-  if (typeof thumbnail === 'string' && thumbnail.trim().length > 0) {
-    // Replace width & height for bigger image if Twitch
-    const bigThumbnail = thumbnail.replace('{width}', '1280').replace('{height}', '720');
-    embed.setImage(bigThumbnail);
+  // 🔹 Handle platform-specific big preview images
+  if (thumbnail && thumbnail.trim().length > 0) {
+    let finalThumbnail = thumbnail.trim();
+
+    // Twitch: replace {width}x{height} in the template URL for full preview
+    if (platformDisplay?.toLowerCase() === 'twitch') {
+      finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
+    }
+
+    embed.setImage(finalThumbnail);
   }
 
+  // Always include a "Watch Now" field
   embed.addFields([{ name: '▶️ Watch Now', value: url }]);
 
   await channel.send({ embeds: [embed] }).catch(() => {});

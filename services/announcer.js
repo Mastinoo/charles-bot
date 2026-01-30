@@ -44,7 +44,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
           finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
       }
     embed.setImage(finalThumbnail);
-
+    }
 
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
     return embed;

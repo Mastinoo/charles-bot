@@ -19,7 +19,7 @@ export async function handleTwitchEvent(payload, client) {
     const guild = await client.guilds.fetch(s.guildId).catch(() => null);
     if (!guild) continue;
 
-    // 🔹 Fill in guild defaults if missing
+    // Fill defaults if missing
     let { announceChannelId, liveRoleId } = s;
     if (!announceChannelId || !liveRoleId) {
       const defaults = db.prepare(
@@ -39,58 +39,36 @@ export async function handleTwitchEvent(payload, client) {
     // Skip if game filter doesn't match
     if (s.gameFilter && s.gameFilter !== categoryName) continue;
 
-    // 🔹 Read latest live status
     const currentLive = s.isLive || 0;
 
-    // --------------------------
     // Going live
-    // --------------------------
     if (subscriptionType === 'stream.online' && currentLive !== 1) {
       db.prepare(
         "UPDATE streamers SET isLive=1 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
-      // Assign role only if we haven’t already
-      if (liveRoleId) {
-        const member = await guild.members.fetch(s.discordUserId).catch(() => null);
-        if (member && !member.roles.cache.has(liveRoleId)) {
-          await giveRole(guild, s.discordUserId, liveRoleId);
-        }
-      }
-
-      // Send or update embed announcement
-      if (announceChannelId) {
+      if (liveRoleId) await giveRole(guild, s.discordUserId, liveRoleId);
+      if (announceChannelId)
         await announce(
           client,
           { ...s, displayName },
-          `https://twitch.tv/${s.platformUsername}`,
-          event.title || categoryName || 'Live now!',
+          event.title || 'Live now!',
           thumbnailUrl,
           s.platform,
           s.guildId,
           s.discordUserId
         );
-      }
 
       console.log(`✅ Marked ${displayName} as live in guild ${s.guildId}`);
     }
 
-    // --------------------------
     // Going offline
-    // --------------------------
     if (subscriptionType === 'stream.offline' && currentLive === 1) {
       db.prepare(
         "UPDATE streamers SET isLive=0 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
-      if (liveRoleId) {
-        const member = await guild.members.fetch(s.discordUserId).catch(() => null);
-        if (member && member.roles.cache.has(liveRoleId)) {
-          await removeRole(guild, s.discordUserId, liveRoleId);
-        }
-      }
-
-      // Clear live embed update interval
+      if (liveRoleId) await removeRole(guild, s.discordUserId, liveRoleId);
       await clearLiveMessage(s.guildId, s.discordUserId);
 
       console.log(`✅ Marked ${displayName} as offline in guild ${s.guildId}`);

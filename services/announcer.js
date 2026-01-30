@@ -6,7 +6,8 @@ const platformEmoji = {
   kick: '🔥 Kick'
 };
 
-const liveMessages = new Map(); // For live embed updates
+// Stores live embed messages for updating only
+const liveMessages = new Map();
 
 export async function giveRole(guild, userId, roleId) {
   if (!roleId) return;
@@ -28,25 +29,22 @@ export async function announce(client, streamer, url, title, thumbnail, platform
 
   const platformLabel = platformEmoji[platformDisplay?.toLowerCase()] || platformDisplay || 'Live';
   const displayName = streamer.displayName || streamer.platformUsername;
-  const streamTitle = title || 'Live now!';
 
   const createEmbed = () => {
     const embed = new EmbedBuilder()
-      .setTitle(streamTitle) // clickable stream title
-      .setURL(url) // actual stream link
+      .setTitle(title || 'Live now!') // 🔹 Use actual stream title
+      .setURL(url)
       .setColor(0x9146FF)
       .setTimestamp();
 
-    // Big preview image
-    if (thumbnail && thumbnail.trim()) {
-      let finalThumbnail = thumbnail.trim();
-      if (platformDisplay?.toLowerCase() === 'twitch') {
-        finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
-      }
-      embed.setImage(finalThumbnail);
-    } else {
-      embed.setImage('https://i.imgur.com/x7kHaIB.jpeg'); // fallback
+    // Big image
+    let finalThumbnail = thumbnail?.trim();
+    if (!finalThumbnail || finalThumbnail === '') {
+      finalThumbnail = 'https://i.imgur.com/x7kHaIB.jpeg'; // fallback
+    } else if (platformDisplay?.toLowerCase() === 'twitch') {
+      finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
     }
+    embed.setImage(finalThumbnail);
 
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
     return embed;
@@ -55,19 +53,21 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const key = `${guildId}-${userId}`;
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
+  // Only update embed, never touch roles
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
     await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
     return;
   }
 
+  // Send new embed
   const message = await channel.send({ content: headerMessage, embeds: [createEmbed()] }).catch(() => null);
   if (!message) return;
 
   const interval = setInterval(async () => {
     const updatedEmbed = createEmbed();
     await message.edit({ content: headerMessage, embeds: [updatedEmbed] }).catch(() => {});
-  }, 30000);
+  }, 30000); // only updates embed
 
   liveMessages.set(key, { message, interval });
 }

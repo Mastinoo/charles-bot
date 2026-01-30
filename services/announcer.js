@@ -1,5 +1,11 @@
 import { EmbedBuilder } from 'discord.js';
 
+const platformEmoji = {
+  twitch: '🎮 Twitch',
+  youtube: '📺 YouTube',
+  kick: '🔥 Kick'
+};
+
 export async function giveRole(guild, userId, roleId) {
   const member = await guild.members.fetch(userId).catch(() => null);
   if (!member) return;
@@ -12,24 +18,27 @@ export async function removeRole(guild, userId, roleId) {
   await member.roles.remove(roleId).catch(() => {});
 }
 
-export async function announce(client, streamer, url, game, thumbnail) {
+export async function announce(client, streamer, url, game, thumbnail, platformDisplay) {
   const channel = await client.channels.fetch(streamer.announceChannelId).catch(() => null);
   if (!channel || !channel.isTextBased()) return;
 
+  const platformLabel = platformEmoji[platformDisplay?.toLowerCase()] || platformDisplay || 'Live';
+
   const embed = new EmbedBuilder()
-    .setTitle(`${streamer.platformUsername} is live!`)
+    .setTitle(`${streamer.displayName || streamer.platformUsername} is live! ${platformLabel}`)
     .setURL(url)
     .setColor(0x9146FF);
 
-  // ✅ Only set description if it's a non-empty string
   if (typeof game === 'string' && game.trim().length > 0) {
-    embed.setDescription(game.trim());
+    embed.setDescription(`🎲 Playing: ${game.trim()}`);
   }
 
-  // ✅ Only set thumbnail if it's a non-empty string
   if (typeof thumbnail === 'string' && thumbnail.trim().length > 0) {
     embed.setThumbnail(thumbnail.trim());
   }
+
+  // Add field with video player link (just the URL)
+  embed.addFields([{ name: 'Watch Now', value: url }]);
 
   await channel.send({ embeds: [embed] }).catch(() => {});
 }

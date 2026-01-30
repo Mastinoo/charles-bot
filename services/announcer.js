@@ -34,7 +34,6 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       .setColor(0x9146FF)
       .setTimestamp();
 
-    // Large image for Twitch / fallback
     if (thumbnail && thumbnail.trim().length > 0) {
       let finalThumbnail = thumbnail.trim();
       if (platformDisplay?.toLowerCase() === 'twitch') {

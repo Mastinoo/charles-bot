@@ -37,12 +37,17 @@ export async function execute(interaction) {
     await subscribeTwitchStreamer(userId);
   }
 
-  // 🔹 Get guild defaults for role/channel for all platforms
-  const defaults = db.prepare('SELECT announceChannelId, liveRoleId FROM guild_settings WHERE guildId=?').get(interaction.guild.id);
+  // 🔹 Fetch guild defaults from guild_settings table
+  const defaults = db.prepare(`
+    SELECT announceChannelId, liveRoleId 
+    FROM guild_settings 
+    WHERE guildId=?
+  `).get(interaction.guild.id);
+
   const announceChannelId = defaults?.announceChannelId || null;
   const liveRoleId = defaults?.liveRoleId || null;
 
-  // 🔹 Insert new streamer with automatic defaults
+  // 🔹 Insert new streamer with automatic guild defaults
   db.prepare(`
     INSERT OR IGNORE INTO streamers 
       (guildId, discordUserId, platform, platformUserId, platformUsername, announceChannelId, liveRoleId)

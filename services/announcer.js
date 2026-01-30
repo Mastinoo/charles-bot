@@ -6,7 +6,19 @@ const platformEmoji = {
   kick: '🔥 Kick'
 };
 
-const liveMessages = new Map(); // key: `${guildId}-${userId}`, value: { message, interval }
+const liveMessages = new Map(); // For live embed updates
+
+export async function giveRole(guild, userId, roleId) {
+  const member = await guild.members.fetch(userId).catch(() => null);
+  if (!member) return;
+  await member.roles.add(roleId).catch(() => {});
+}
+
+export async function removeRole(guild, userId, roleId) {
+  const member = await guild.members.fetch(userId).catch(() => null);
+  if (!member) return;
+  await member.roles.remove(roleId).catch(() => {});
+}
 
 export async function announce(client, streamer, url, title, thumbnail, platformDisplay, guildId, userId) {
   const channel = await client.channels.fetch(streamer.announceChannelId).catch(() => null);
@@ -22,6 +34,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       .setColor(0x9146FF)
       .setTimestamp();
 
+    // Large image for Twitch / fallback
     if (thumbnail && thumbnail.trim().length > 0) {
       let finalThumbnail = thumbnail.trim();
       if (platformDisplay?.toLowerCase() === 'twitch') {
@@ -40,19 +53,16 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
   if (liveMessages.has(key)) {
-    // Only edit the embed; do NOT touch roles
     const { message } = liveMessages.get(key);
     await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
     return;
   }
 
-  // Send new live announcement
   const message = await channel.send({ content: headerMessage, embeds: [createEmbed()] }).catch(() => null);
   if (!message) return;
 
   const interval = setInterval(async () => {
-    const updatedEmbed = createEmbed();
-    await message.edit({ content: headerMessage, embeds: [updatedEmbed] }).catch(() => {});
+    await message.edit({ content: headerMessage, embeds: [createEmbed()] }).catch(() => {});
   }, 30000);
 
   liveMessages.set(key, { message, interval });

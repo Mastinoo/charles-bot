@@ -134,10 +134,26 @@ client.on('interactionCreate', async interaction => {
 // ==========================
 const app = express();
 app.use(bodyParser.json());
-app.post('/twitch/webhook', (req, res) => {
-    handleTwitchEvent(req.body, client);
-    res.status(200).end();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.all('/twitch/webhook', async (req, res) => {
+    if (req.method === 'GET') {
+        // Twitch EventSub verification challenge
+        const challenge = req.query['hub.challenge'];
+        if (challenge) {
+            console.log('✅ Twitch verification challenge received:', challenge);
+            return res.status(200).send(challenge);
+        }
+        return res.status(400).send('Missing hub.challenge');
+    } else if (req.method === 'POST') {
+        // Normal webhook payloads
+        handleTwitchEvent(req.body, client);
+        return res.status(200).end();
+    } else {
+        return res.status(405).send('Method Not Allowed');
+    }
 });
+
 app.listen(3000, () => console.log('🌐 Twitch webhook running on port 3000'));
 
 // ==========================
@@ -162,3 +178,4 @@ client.once('clientReady', async () => {
         await subscribeTwitchStreamer(s.platformUserId);
     }
 });
+

@@ -36,17 +36,15 @@ export async function announce(client, streamer, url, title, thumbnail, platform
 
     // Set thumbnail / large image
     if (thumbnail && thumbnail.trim().length > 0) {
-      let finalThumbnail = thumbnail.trim();
-      if (platformDisplay?.toLowerCase() === 'twitch') {
-        // If mobile thumbnail, fallback to small size
-        if (!finalThumbnail.includes('{width}') || !finalThumbnail.includes('{height}')) {
-          finalThumbnail = finalThumbnail; // use as is
-        } else {
+      let finalThumbnail = thumbnail?.trim();
+        if (!finalThumbnail || finalThumbnail === '') {
+        // Fallback if missing
+        finalThumbnail = 'https://i.imgur.com/4G7E9nZ.png'; // generic Twitch live placeholder
+        } else if (platformDisplay?.toLowerCase() === 'twitch') {
           finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
-        }
       }
-      embed.setImage(finalThumbnail);
-    }
+    embed.setImage(finalThumbnail);
+
 
     embed.addFields([{ name: '▶️ Watch Now', value: url }]);
     return embed;

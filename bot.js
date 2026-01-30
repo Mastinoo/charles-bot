@@ -5,7 +5,9 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import { pathToFileURL } from 'url';
 import { handleTwitchEvent } from './services/twitchEventSub.js';
+import { subscribeTwitchStreamer } from './services/twitchSubscribe.js';
 import { checkStreams } from './services/streamManager.js';
+import db from './database.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -133,12 +135,23 @@ app.post('/twitch/webhook',(req,res)=>{ handleTwitchEvent(req.body, client); res
 app.listen(3000,()=>console.log('Twitch webhook running on port 3000'));
 
 // Bot ready
-client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
+client.once('clientReady', () => {
+    console.log(`🤖 Logged in as ${client.user.tag}`);
     setInterval(async () => {
         try { await checkStreams(client); } 
         catch(err) { console.error('Stream check failed:', err); }
     }, 60_000);
 
+        // 🔁 AUTO-RESUBSCRIBE TWITCH STREAMERS
+    const twitchStreamers = db.prepare(
+        "SELECT platformUserId FROM streamers WHERE platform='twitch'"
+    ).all();
+
+    console.log(`🔁 Resubscribing ${twitchStreamers.length} Twitch streamers...`);
+    for (const s of twitchStreamers) {
+        await subscribeTwitchStreamer(s.platformUserId);
+    }
+
 });
+
 

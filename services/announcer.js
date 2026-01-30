@@ -25,4 +25,3 @@ export async function announce(client, streamer, url, game, thumbnail) {
 
   channel.send({ embeds: [embed] }).catch(() => {});
 }
-

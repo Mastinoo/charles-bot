@@ -1,4 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
+import fetch from 'node-fetch';
 
 const platformEmoji = {
   twitch: '🎮 Twitch',
@@ -6,11 +7,22 @@ const platformEmoji = {
   kick: '🔥 Kick'
 };
 
+// Stores live embed messages for updating only
 const liveMessages = new Map();
 
-/* =========================
-   ROLE HANDLING
-========================= */
+// ⚠️ Twitch fetch helper
+async function fetchTwitchStream(userId) {
+  if (!process.env.TWITCH_APP_TOKEN) return null;
+
+  const res = await fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {
+    headers: {
+      'Client-ID': process.env.TWITCH_CLIENT_ID,
+      'Authorization': `Bearer ${process.env.TWITCH_APP_TOKEN}`
+    }
+  });
+  const data = await res.json();
+  return data?.data?.[0] || null;
+}
 
 export async function giveRole(guild, userId, roleId) {
   if (!roleId) return;
@@ -20,93 +32,63 @@ export async function giveRole(guild, userId, roleId) {
 }
 
 export async function removeRole(guild, userId, roleId) {
-  console.error('🚨 ROLE REMOVAL TRIGGERED', {
-    guildId: guild?.id,
-    userId,
-    roleId,
-    stack: new Error().stack
-  });
-
+  console.error('🚨 ROLE REMOVAL TRIGGERED', { guild: guild.id, userId, roleId, stack: new Error().stack });
   if (!roleId) return;
   const member = await guild.members.fetch(userId).catch(() => null);
   if (!member) return;
   await member.roles.remove(roleId).catch(() => {});
 }
 
-/* =========================
-   ANNOUNCEMENT
-========================= */
-
-export async function announce(
-  client,
-  streamer,
-  streamUrl,
-  streamTitle,
-  thumbnail,
-  platformDisplay,
-  guildId,
-  userId
-) {
-  const channel = await client.channels
-    .fetch(streamer.announceChannelId)
-    .catch(() => null);
-
+export async function announce(client, streamer, url, title, thumbnail, platformDisplay, guildId, userId) {
+  const channel = await client.channels.fetch(streamer.announceChannelId).catch(() => null);
   if (!channel || !channel.isTextBased()) return;
 
-  const platformLabel =
-    platformEmoji[platformDisplay?.toLowerCase()] ||
-    platformDisplay ||
-    'Live';
+  const platformLabel = platformEmoji[platformDisplay?.toLowerCase()] || platformDisplay || 'Live';
+  const displayName = streamer.displayName || streamer.platformUsername;
 
-  const displayName =
-    streamer.displayName || streamer.platformUsername || 'Streamer';
-
-  const createEmbed = () => {
+  const createEmbed = (currentTitle, currentThumbnail) => {
     const embed = new EmbedBuilder()
-      .setTitle(streamTitle || 'Live now!')
-      .setURL(streamUrl)
-      .setColor(0x9146ff)
+      .setTitle(currentTitle || 'Live now!')
+      .setURL(url)
+      .setColor(0x9146FF)
       .setTimestamp();
 
-    if (thumbnail && thumbnail.trim()) {
-      let finalThumbnail = thumbnail.trim();
-      if (platformDisplay?.toLowerCase() === 'twitch') {
-        finalThumbnail = finalThumbnail
-          .replace('{width}', '1280')
-          .replace('{height}', '720');
-      }
-      embed.setImage(finalThumbnail);
-    } else {
-      embed.setImage('https://i.imgur.com/x7kHaIB.jpeg');
+    let finalThumbnail = currentThumbnail?.trim() || 'https://i.imgur.com/x7kHaIB.jpeg';
+    if (platformDisplay?.toLowerCase() === 'twitch' && finalThumbnail.includes('{width}')) {
+      finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
     }
+    embed.setImage(finalThumbnail);
 
-    embed.addFields([{ name: '▶️ Watch Now', value: streamUrl }]);
+    embed.addFields([{ name: '▶️ Watch Now', value: url }]);
     return embed;
   };
 
   const key = `${guildId}-${userId}`;
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
-  // Update existing message only
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
-    await message
-      .edit({ content: headerMessage, embeds: [createEmbed()] })
-      .catch(() => {});
+    await message.edit({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => {});
     return;
   }
 
-  const message = await channel
-    .send({ content: headerMessage, embeds: [createEmbed()] })
-    .catch(() => null);
-
+  const message = await channel.send({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => null);
   if (!message) return;
 
   const interval = setInterval(async () => {
-    await message
-      .edit({ content: headerMessage, embeds: [createEmbed()] })
-      .catch(() => {});
-  }, 30000);
+    let currentTitle = title;
+    let currentThumbnail = thumbnail;
+
+    if (platformDisplay?.toLowerCase() === 'twitch') {
+      const streamData = await fetchTwitchStream(streamer.platformUserId).catch(() => null);
+      if (streamData) {
+        currentTitle = streamData.title || title;
+        currentThumbnail = streamData.thumbnail_url || thumbnail;
+      }
+    }
+
+    await message.edit({ content: headerMessage, embeds: [createEmbed(currentTitle, currentThumbnail)] }).catch(() => {});
+  }, 30_000);
 
   liveMessages.set(key, { message, interval });
 }

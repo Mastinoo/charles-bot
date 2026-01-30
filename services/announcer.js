@@ -17,13 +17,13 @@ const liveMessages = new Map();
 async function captureTwitchScreenshot(username) {
   try {
     const browser = await puppeteer.launch({
+      headless: 'new', // required for servers
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       defaultViewport: { width: 1280, height: 720 }
     });
     const page = await browser.newPage();
 
     await page.goto(`https://www.twitch.tv/${username}`, { waitUntil: 'networkidle2' });
-    // Wait for the video player
     await page.waitForSelector('video', { timeout: 10_000 }).catch(() => null);
 
     const screenshot = await page.screenshot({ encoding: 'base64' });
@@ -103,26 +103,28 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   const key = `${guildId}-${userId}`;
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
+  // If already announced, just edit existing message first
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
     await message.edit({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => {});
     return;
   }
 
+  // Send initial message
   const message = await channel.send({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => null);
   if (!message) return;
 
+  // Update every 30 seconds
   const interval = setInterval(async () => {
     let currentTitle = title;
     let currentThumbnail = thumbnail;
 
     if (platformDisplay?.toLowerCase() === 'twitch') {
+      // Fetch latest title from Twitch
       const streamData = await fetchTwitchStream(streamer.platformUserId).catch(() => null);
-      if (streamData) {
-        currentTitle = streamData.title || title;
-      }
+      if (streamData) currentTitle = streamData.title || title;
 
-      // Get live screenshot (if possible)
+      // Capture fresh screenshot
       const screenshot = await captureTwitchScreenshot(streamer.platformUsername).catch(() => null);
       if (screenshot) currentThumbnail = screenshot;
     }
@@ -133,6 +135,9 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   liveMessages.set(key, { message, interval });
 }
 
+// ------------------------------
+// Clear live messages
+// ------------------------------
 export async function clearLiveMessage(guildId, userId) {
   const key = `${guildId}-${userId}`;
   if (!liveMessages.has(key)) return;

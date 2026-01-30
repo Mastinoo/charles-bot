@@ -9,7 +9,7 @@ export async function handleTwitchEvent(payload, client) {
   const displayName = event.broadcaster_user_name || '';
   const categoryName = event.category_name || '';
   const thumbnailUrl = event.thumbnail_url || '';
-  const streamTitle = event.title || 'Live now!';
+  const streamTitle = event.title || 'Live now!'; // 🔹 Try to use real stream title
 
   const streamers = db.prepare(
     "SELECT * FROM streamers WHERE platform='twitch' AND platformUserId=?"
@@ -41,13 +41,13 @@ export async function handleTwitchEvent(payload, client) {
 
     const currentLive = s.isLive || 0;
 
-    // Going live
+    // 🔹 Only handle roles on actual online/offline events
     if (subscriptionType === 'stream.online' && currentLive !== 1) {
       db.prepare(
         "UPDATE streamers SET isLive=1 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
-      if (liveRoleId) await giveRole(guild, s.discordUserId, liveRoleId); // ONLY add role here
+      if (liveRoleId) await giveRole(guild, s.discordUserId, liveRoleId);
       if (announceChannelId)
         await announce(
           client,
@@ -63,13 +63,12 @@ export async function handleTwitchEvent(payload, client) {
       console.log(`✅ Marked ${displayName} as live in guild ${s.guildId}`);
     }
 
-    // Going offline
     if (subscriptionType === 'stream.offline' && currentLive === 1) {
       db.prepare(
         "UPDATE streamers SET isLive=0 WHERE guildId=? AND discordUserId=? AND platform=?"
       ).run(s.guildId, s.discordUserId, s.platform);
 
-      if (liveRoleId) await removeRole(guild, s.discordUserId, liveRoleId); // ONLY remove role here
+      if (liveRoleId) await removeRole(guild, s.discordUserId, liveRoleId);
       await clearLiveMessage(s.guildId, s.discordUserId);
 
       console.log(`✅ Marked ${displayName} as offline in guild ${s.guildId}`);

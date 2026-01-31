@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, AttachmentBuilder } from 'discord.js';
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer';
 
@@ -17,7 +17,7 @@ const liveMessages = new Map();
 async function captureTwitchScreenshot(username) {
   try {
     const browser = await puppeteer.launch({
-      headless: 'new', // required for servers
+      headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       defaultViewport: { width: 1280, height: 720 }
     });
@@ -26,9 +26,9 @@ async function captureTwitchScreenshot(username) {
     await page.goto(`https://www.twitch.tv/${username}`, { waitUntil: 'networkidle2' });
     await page.waitForSelector('video', { timeout: 10_000 }).catch(() => null);
 
-    const screenshot = await page.screenshot({ encoding: 'base64' });
+    const screenshotBuffer = await page.screenshot();
     await browser.close();
-    return `data:image/png;base64,${screenshot}`;
+    return screenshotBuffer; // Return Buffer instead of base64
   } catch (err) {
     console.error('❌ captureTwitchScreenshot error:', err, username);
     return null;
@@ -89,21 +89,17 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       .setTitle(currentTitle || 'Live now!')
       .setURL(url)
       .setColor(0x9146FF)
-      .setTimestamp();
+      .setTimestamp()
+      .addFields([{ name: '▶️ Watch Now', value: url }]);
 
-    let finalThumbnail = currentThumbnail?.trim() || 'https://i.imgur.com/x7kHaIB.jpeg';
-    if (platformDisplay?.toLowerCase() === 'twitch' && finalThumbnail.includes('{width}')) {
-      finalThumbnail = finalThumbnail.replace('{width}', '1280').replace('{height}', '720');
-    }
-    embed.setImage(finalThumbnail);
-    embed.addFields([{ name: '▶️ Watch Now', value: url }]);
+    if (currentThumbnail) embed.setImage(currentThumbnail);
     return embed;
   };
 
   const key = `${guildId}-${userId}`;
   const headerMessage = `## ${displayName} is now live on ${platformLabel}!`;
 
-  // If already announced, just edit existing message first
+  // If already announced, edit existing message
   if (liveMessages.has(key)) {
     const { message } = liveMessages.get(key);
     await message.edit({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => {});
@@ -111,13 +107,29 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   }
 
   // Send initial message
-  const message = await channel.send({ content: headerMessage, embeds: [createEmbed(title, thumbnail)] }).catch(() => null);
+  let attachment;
+  let embedThumbnail = thumbnail;
+
+  if (platformDisplay?.toLowerCase() === 'twitch') {
+    const screenshot = await captureTwitchScreenshot(streamer.platformUsername).catch(() => null);
+    if (screenshot) {
+      attachment = new AttachmentBuilder(screenshot, { name: 'screenshot.png' });
+      embedThumbnail = 'attachment://screenshot.png';
+    }
+  }
+
+  const message = await channel.send({ 
+    content: headerMessage, 
+    embeds: [createEmbed(title, embedThumbnail)], 
+    files: attachment ? [attachment] : [] 
+  }).catch(() => null);
   if (!message) return;
 
   // Update every 30 seconds
   const interval = setInterval(async () => {
     let currentTitle = title;
-    let currentThumbnail = thumbnail;
+    let currentThumbnail = embedThumbnail;
+    let currentAttachment = attachment;
 
     if (platformDisplay?.toLowerCase() === 'twitch') {
       // Fetch latest title from Twitch
@@ -126,10 +138,17 @@ export async function announce(client, streamer, url, title, thumbnail, platform
 
       // Capture fresh screenshot
       const screenshot = await captureTwitchScreenshot(streamer.platformUsername).catch(() => null);
-      if (screenshot) currentThumbnail = screenshot;
+      if (screenshot) {
+        currentAttachment = new AttachmentBuilder(screenshot, { name: 'screenshot.png' });
+        currentThumbnail = 'attachment://screenshot.png';
+      }
     }
 
-    await message.edit({ content: headerMessage, embeds: [createEmbed(currentTitle, currentThumbnail)] }).catch(() => {});
+    await message.edit({ 
+      content: headerMessage, 
+      embeds: [createEmbed(currentTitle, currentThumbnail)], 
+      files: currentAttachment ? [currentAttachment] : [] 
+    }).catch(() => {});
   }, 30_000);
 
   liveMessages.set(key, { message, interval });

@@ -12,7 +12,7 @@ const platformEmoji = {
 const liveMessages = new Map();
 
 // ------------------------------
-// Puppeteer screenshot for Twitch
+// Puppeteer screenshot for Twitch (only the video player)
 // ------------------------------
 async function captureTwitchScreenshot(username) {
   try {
@@ -24,11 +24,18 @@ async function captureTwitchScreenshot(username) {
     const page = await browser.newPage();
 
     await page.goto(`https://www.twitch.tv/${username}`, { waitUntil: 'networkidle2' });
-    await page.waitForSelector('video', { timeout: 10_000 }).catch(() => null);
 
-    const screenshotBuffer = await page.screenshot();
+    // Wait for the video element
+    const videoElement = await page.waitForSelector('video', { timeout: 10_000 }).catch(() => null);
+    if (!videoElement) {
+      console.warn(`⚠️ Twitch video player not found for ${username}`);
+      await browser.close();
+      return null;
+    }
+
+    const screenshotBuffer = await videoElement.screenshot();
     await browser.close();
-    return screenshotBuffer; // Return Buffer instead of base64
+    return screenshotBuffer; // Return Buffer for Discord attachment
   } catch (err) {
     console.error('❌ captureTwitchScreenshot error:', err, username);
     return null;
@@ -40,7 +47,6 @@ async function captureTwitchScreenshot(username) {
 // ------------------------------
 async function fetchTwitchStream(userId) {
   if (!process.env.TWITCH_APP_TOKEN) return null;
-
   try {
     const res = await fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {
       headers: {
@@ -67,7 +73,6 @@ export async function giveRole(guild, userId, roleId) {
 }
 
 export async function removeRole(guild, userId, roleId) {
-  console.error('🚨 ROLE REMOVAL TRIGGERED', { guild: guild.id, userId, roleId, stack: new Error().stack });
   if (!roleId) return;
   const member = await guild.members.fetch(userId).catch(() => null);
   if (!member) return;
@@ -125,18 +130,16 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   }).catch(() => null);
   if (!message) return;
 
-  // Update every 30 seconds
+  // Update every 10 minutes (600_000 ms)
   const interval = setInterval(async () => {
     let currentTitle = title;
     let currentThumbnail = embedThumbnail;
     let currentAttachment = attachment;
 
     if (platformDisplay?.toLowerCase() === 'twitch') {
-      // Fetch latest title from Twitch
       const streamData = await fetchTwitchStream(streamer.platformUserId).catch(() => null);
       if (streamData) currentTitle = streamData.title || title;
 
-      // Capture fresh screenshot
       const screenshot = await captureTwitchScreenshot(streamer.platformUsername).catch(() => null);
       if (screenshot) {
         currentAttachment = new AttachmentBuilder(screenshot, { name: 'screenshot.png' });
@@ -149,7 +152,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       embeds: [createEmbed(currentTitle, currentThumbnail)], 
       files: currentAttachment ? [currentAttachment] : [] 
     }).catch(() => {});
-  }, 30_000);
+  }, 600_000); // 10 minutes
 
   liveMessages.set(key, { message, interval });
 }

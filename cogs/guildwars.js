@@ -49,31 +49,33 @@ export default function guildWarsCog(client) {
         lastPostedLink = data.link ?? null;
     }
 
-    async function fetchUpdates() {
-        console.log('[GuildWars Cog] Fetching updates from wiki...');
-        const res = await fetch(WIKI_URL);
-        const html = await res.text();
-        const $ = cheerio.load(html);
+async function fetchUpdates() {
+    console.log('[GuildWars Cog] Fetching updates from wiki...');
+    const res = await fetch('https://wiki.guildwars.com/wiki/Feedback:Game_updates');
+    const html = await res.text();
+    const $ = cheerio.load(html);
 
-        const updates = [];
-        $('.mw-parser-output > div[style*="float: right"] ul')
-            .first()
-            .find('li')
-            .each((_, el) => {
-                const linkEl = $(el).find('a').first();
-                if (!linkEl.length) return;
+    const updates = [];
 
-                const title = linkEl.text().trim();
-                const link = 'https://wiki.guildwars.com' + linkEl.attr('href');
+    // Grab update links from the page
+    $('.mw-parser-output ul li').each((i, el) => {
+        const linkEl = $(el).find('a').first();
+        if (!linkEl.length) return;
 
-                if (title && link) {
-                    updates.push({ title, link });
-                }
-            });
+        const title = linkEl.text().trim();
+        const href = linkEl.attr('href');
+        if (!title || !href) return;
 
-        console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
-        return updates;
-    }
+        const link = href.startsWith('http')
+            ? href
+            : 'https://wiki.guildwars.com' + href;
+
+        updates.push({ title, link });
+    });
+
+    console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
+    return updates;
+}
 
     async function fetchUpdateDetails(url) {
         const res = await fetch(url);
@@ -90,7 +92,7 @@ export default function guildWarsCog(client) {
                 if (text) content.push(text);
             } else if (el.is('ul')) {
                 el.find('li').each((_, li) => {
-                    content.push(`• ${$(li).text().trim()}`);
+                    content.push(`â€¢ ${$(li).text().trim()}`);
                 });
             } else if (el.is('h3, h4')) {
                 content.push(`\n**${el.text().replace('[edit]', '').trim()}**\n`);
@@ -143,7 +145,7 @@ export default function guildWarsCog(client) {
 
             const newest = updates[0];
 
-            // First run → store only, do NOT spam history
+            // First run â†’ store only, do NOT spam history
             if (!lastPostedLink) {
                 console.log('[GuildWars Cog] Initial run detected, storing latest update only.');
                 lastPostedLink = newest.link;

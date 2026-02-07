@@ -141,22 +141,30 @@ export default (client = new Client()) => {
           return interaction.reply({ content: '❌ You do not have permission to handle this application.', ephemeral: true });
         }
 
-        // Show select menu with available guild roles
+        // Show select menus with available guild roles (split if >25)
         const guildRolesData = getJSON(ROLES_FILE)[interaction.guildId] || [];
         if (guildRolesData.length === 0) return interaction.reply({ content: '❌ No guild roles available to assign.', ephemeral: true });
 
-        const selectMenu = new StringSelectMenuBuilder()
-          .setCustomId(`select_guild_${applicantId}`)
-          .setPlaceholder('Select guild to invite')
-          .addOptions(guildRolesData.map(r => ({ label: r.name, value: r.id })));
+        // Split into chunks of 25
+        const chunks = [];
+        for (let i = 0; i < guildRolesData.length; i += 25) {
+          chunks.push(guildRolesData.slice(i, i + 25));
+        }
 
-        const row = new ActionRowBuilder().addComponents(selectMenu);
+        const actionRows = chunks.map((chunk, idx) => {
+          const selectMenu = new StringSelectMenuBuilder()
+            .setCustomId(`select_guild_${applicantId}_${idx}`)
+            .setPlaceholder(`Select guild to invite (part ${idx + 1})`)
+            .addOptions(chunk.map(r => ({ label: r.name, value: r.id })));
+          return new ActionRowBuilder().addComponents(selectMenu);
+        });
 
-        await interaction.reply({ content: 'Select a guild role to assign:', components: [row], ephemeral: true });
+        await interaction.reply({ content: 'Select a guild role to assign:', components: actionRows, ephemeral: true });
       }
 
       // 5️⃣ Guild selection
       else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('select_guild_')) {
+        // Extract applicantId from customId (handles _idx suffix)
         const applicantId = interaction.customId.split('_')[2];
         const selectedRoleId = interaction.values[0];
 

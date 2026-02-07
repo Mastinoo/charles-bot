@@ -20,8 +20,8 @@ export async function execute(interaction) {
   const reviewChannelMention = reviewChannelId ? `<#${reviewChannelId}>` : '**Not set!**';
 
   const embed = new EmbedBuilder()
-    .setTitle('# 🏯 Request to Join a Guild!')
-    .setThumbnail('https://imgur.com/a/Bs7mlkh') // Replace with your logo URL
+    .setTitle('**🏯 Request to Join a Guild!**')
+    .setThumbnail('https://imgur.com/3IwUZFA') // Replace with your logo URL
     .setColor('Gold')
     .setDescription(
       '**How to Request:**\n\n' +

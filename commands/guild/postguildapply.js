@@ -21,7 +21,7 @@ export async function execute(interaction) {
 
   const embed = new EmbedBuilder()
     .setTitle('**🏯 Request to Join a Guild!**')
-    .setThumbnail('https://imgur.com/3IwUZFA') // Replace with your logo URL
+    .setThumbnail('https://i.imgur.com/3IwUZFA.png') // Replace with your logo URL
     .setColor('Gold')
     .setDescription(
       '**How to Request:**\n\n' +

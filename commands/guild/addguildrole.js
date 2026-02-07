@@ -11,7 +11,7 @@ export const data = new SlashCommandBuilder()
       .setDescription('Role to add as a guild')
       .setRequired(true)
   )
-  .setStringOption(opt =>
+  .addStringOption(opt =>
     opt.setName('name')
       .setDescription('Optional display name for the guild')
       .setRequired(false)

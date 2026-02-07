@@ -10,7 +10,7 @@ export const data = new SlashCommandBuilder()
   .addChannelOption(opt =>
     opt.setName('channel').setDescription('Apply channel').setRequired(true)
   )
-  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
+  .setDefaultMemberPermissions(null);
 
 export async function execute(interaction) {
   if (interaction.user.id !== OWNER_ID && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {

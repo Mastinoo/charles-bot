@@ -7,7 +7,7 @@ const OWNER_ID = process.env.OWNER_ID;
 export const data = new SlashCommandBuilder()
   .setName('listguildroles')
   .setDescription('List all selectable guild roles for this server')
-  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
+  .setDefaultMemberPermissions(null);
 
 export async function execute(interaction) {
   if (interaction.user.id !== OWNER_ID && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {

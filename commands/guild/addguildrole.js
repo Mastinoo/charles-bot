@@ -2,6 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import fs from 'fs';
 
 const FILE = './data/guildRoles.json';
+const OWNER_ID = process.env.OWNER_ID;
 
 export const data = new SlashCommandBuilder()
   .setName('addguildrole')
@@ -19,13 +20,16 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
 export async function execute(interaction) {
+  if (interaction.user.id !== OWNER_ID && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+    return interaction.reply({ content: '❌ You do not have permission to use this command.', ephemeral: true });
+  }
+
   const role = interaction.options.getRole('role');
   const name = interaction.options.getString('name') || role.name;
 
   const rolesData = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE)) : {};
   if (!rolesData[interaction.guildId]) rolesData[interaction.guildId] = [];
 
-  // Check if already exists
   if (rolesData[interaction.guildId].some(r => r.id === role.id)) {
     return interaction.reply({ content: '❌ This role is already in the guild list.', ephemeral: true });
   }

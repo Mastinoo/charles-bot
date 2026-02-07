@@ -22,7 +22,7 @@ export const data = new SlashCommandBuilder()
       .setDescription('Guild leader role')
       .setRequired(true)
   )
-  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
+  .setDefaultMemberPermissions(null);
 
 export async function execute(interaction) {
   if (interaction.user.id !== OWNER_ID && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {

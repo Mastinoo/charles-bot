@@ -1,9 +1,21 @@
-import { Client, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle, StringSelectMenuBuilder, EmbedBuilder, InteractionType } from 'discord.js';
+import {
+  Client,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  StringSelectMenuBuilder,
+  EmbedBuilder,
+  InteractionType
+} from 'discord.js';
 import fs from 'fs';
 
 const CONFIG_FILE = './data/guildApplyConfig.json';
 const ROLES_FILE = './data/guildRoles.json';
 const APPS_FILE = './data/guildApplications.json';
+const OWNER_ID = process.env.OWNER_ID;
 
 export default (client = new Client()) => {
 
@@ -11,10 +23,41 @@ export default (client = new Client()) => {
   const getJSON = (file) => fs.existsSync(file) ? JSON.parse(fs.readFileSync(file)) : {};
   const saveJSON = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
+  // Temporary map to store faction before modal submission
+  const tempFactionMap = new Map(); // userId => faction
+
   client.on('interactionCreate', async interaction => {
     try {
       // 1️⃣ Button: Start application
       if (interaction.isButton() && interaction.customId === 'guild_apply_start') {
+
+        // Send ephemeral select menu for faction
+        const selectRow = new ActionRowBuilder().addComponents(
+          new StringSelectMenuBuilder()
+            .setCustomId(`apply_faction_select_${interaction.user.id}`)
+            .setPlaceholder('Select your faction')
+            .addOptions([
+              { label: 'Kurzick', value: 'kurzick' },
+              { label: 'Luxon', value: 'luxon' },
+              { label: 'No Preference', value: 'neutral' }
+            ])
+        );
+
+        await interaction.reply({
+          content: 'Choose your faction:',
+          components: [selectRow],
+          ephemeral: true
+        });
+      }
+
+      // 2️⃣ Faction selection
+      else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('apply_faction_select_')) {
+        const userId = interaction.user.id;
+        const faction = interaction.values[0];
+
+        tempFactionMap.set(userId, faction);
+
+        // Show modal for in-game name
         const modal = new ModalBuilder()
           .setCustomId('guild_apply_modal')
           .setTitle('Guild Application');
@@ -25,27 +68,17 @@ export default (client = new Client()) => {
           .setStyle(TextInputStyle.Short)
           .setRequired(true);
 
-        const factionSelect = new StringSelectMenuBuilder()
-          .setCustomId('apply_faction')
-          .setPlaceholder('Select your faction')
-          .addOptions([
-            { label: 'Kurzick', value: 'kurzick' },
-            { label: 'Luxon', value: 'luxon' },
-            { label: 'No Preference', value: 'neutral' }
-          ]);
-
-        const row1 = new ActionRowBuilder().addComponents(ignInput);
-        const row2 = new ActionRowBuilder().addComponents(factionSelect);
-
-        modal.addComponents(row1, row2);
-
+        modal.addComponents(new ActionRowBuilder().addComponents(ignInput));
         await interaction.showModal(modal);
       }
 
-      // 2️⃣ Modal submission: User application
+      // 3️⃣ Modal submission: User application
       else if (interaction.type === InteractionType.ModalSubmit && interaction.customId === 'guild_apply_modal') {
+        const userId = interaction.user.id;
+        const faction = tempFactionMap.get(userId) || 'neutral'; // fallback to neutral
+        tempFactionMap.delete(userId);
+
         const ign = interaction.fields.getTextInputValue('apply_ign');
-        const faction = interaction.fields.getTextInputValue('apply_faction');
 
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         if (!cfg || !cfg.reviewChannel || !cfg.factions) {
@@ -62,7 +95,7 @@ export default (client = new Client()) => {
         const embed = new EmbedBuilder()
           .setTitle('New Guild Application')
           .addFields(
-            { name: 'Applicant', value: `<@${interaction.user.id}>`, inline: true },
+            { name: 'Applicant', value: `<@${userId}>`, inline: true },
             { name: 'IGN', value: ign, inline: true },
             { name: 'Faction', value: faction.charAt(0).toUpperCase() + faction.slice(1), inline: true }
           )
@@ -72,7 +105,7 @@ export default (client = new Client()) => {
         // Button for leaders
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
-            .setCustomId(`handle_app_${interaction.user.id}`)
+            .setCustomId(`handle_app_${userId}`)
             .setLabel('Handle Request')
             .setStyle(ButtonStyle.Success)
         );
@@ -82,15 +115,15 @@ export default (client = new Client()) => {
         await reviewChannel.send({ content: `<@&${leaderRoleId}> New application!`, embeds: [embed], components: [row] });
 
         // Save application for locking
-        apps[interaction.guildId][interaction.user.id] = {
-          ign, faction, handled: false, applicantId: interaction.user.id
+        apps[interaction.guildId][userId] = {
+          ign, faction, handled: false, applicantId: userId
         };
         saveJSON(APPS_FILE, apps);
 
         await interaction.reply({ content: '✅ Your application has been submitted!', ephemeral: true });
       }
 
-      // 3️⃣ Leader handling button
+      // 4️⃣ Leader handling button
       else if (interaction.isButton() && interaction.customId.startsWith('handle_app_')) {
         const applicantId = interaction.customId.split('_')[2];
         const apps = getJSON(APPS_FILE)[interaction.guildId];
@@ -102,13 +135,13 @@ export default (client = new Client()) => {
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         const member = interaction.member;
 
-        // Check if member is one of the faction leaders
+        // Check if member is one of the faction leaders or OWNER
         const leaderRoles = Object.values(cfg.factions);
-        if (!member.roles.cache.some(r => leaderRoles.includes(r.id))) {
+        if (!member.roles.cache.some(r => leaderRoles.includes(r.id)) && interaction.user.id !== OWNER_ID) {
           return interaction.reply({ content: '❌ You do not have permission to handle this application.', ephemeral: true });
         }
 
-        // Show modal with dropdown of guild roles
+        // Show select menu with available guild roles
         const guildRolesData = getJSON(ROLES_FILE)[interaction.guildId] || [];
         if (guildRolesData.length === 0) return interaction.reply({ content: '❌ No guild roles available to assign.', ephemeral: true });
 
@@ -122,7 +155,7 @@ export default (client = new Client()) => {
         await interaction.reply({ content: 'Select a guild role to assign:', components: [row], ephemeral: true });
       }
 
-      // 4️⃣ Guild selection
+      // 5️⃣ Guild selection
       else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('select_guild_')) {
         const applicantId = interaction.customId.split('_')[2];
         const selectedRoleId = interaction.values[0];
@@ -159,7 +192,7 @@ export default (client = new Client()) => {
         app.handled = true;
         saveJSON(APPS_FILE, getJSON(APPS_FILE));
 
-        await interaction.update({ content: `✅ ${applicant.user?.tag || applicantId} invited to ${role.name}`, components: [] });
+        await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });
       }
 
     } catch (err) {

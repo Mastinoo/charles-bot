@@ -7,9 +7,21 @@ const OWNER_ID = process.env.OWNER_ID;
 export const data = new SlashCommandBuilder()
   .setName('setfactionroles')
   .setDescription('Set leader roles for factions')
-  .addRoleOption(o => o.setName('kurzick').setDescription('Kurzick leader role').setRequired(true))
-  .addRoleOption(o => o.setName('luxon').setDescription('Luxon leader role').setRequired(true))
-  .addRoleOption(o => o.setName('neutral').setDescription('Guild leader role').setRequired(true))
+  .addRoleOption(option =>
+    option.setName('kurzick')
+      .setDescription('Kurzick leader role')
+      .setRequired(true)
+  )
+  .addRoleOption(option =>
+    option.setName('luxon')
+      .setDescription('Luxon leader role')
+      .setRequired(true)
+  )
+  .addRoleOption(option =>
+    option.setName('neutral')
+      .setDescription('Guild leader role')
+      .setRequired(true)
+  )
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
 export async function execute(interaction) {

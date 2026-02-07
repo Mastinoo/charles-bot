@@ -130,7 +130,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
   }).catch(() => null);
   if (!message) return;
 
-  // Update every 10 minutes (600_000 ms)
+  // Update every 30 minutes (1800_000 ms)
   const interval = setInterval(async () => {
     let currentTitle = title;
     let currentThumbnail = embedThumbnail;
@@ -152,7 +152,7 @@ export async function announce(client, streamer, url, title, thumbnail, platform
       embeds: [createEmbed(currentTitle, currentThumbnail)], 
       files: currentAttachment ? [currentAttachment] : [] 
     }).catch(() => {});
-  }, 600_000); // 10 minutes
+  }, 1800_000); // 30 minutes
 
   liveMessages.set(key, { message, interval });
 }

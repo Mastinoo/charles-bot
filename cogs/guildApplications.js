@@ -57,10 +57,10 @@ export default (client = new Client()) => {
 
         tempFactionMap.set(userId, faction);
 
-        // Show modal for in-game name
+        // Show modal for in-game name + optional description
         const modal = new ModalBuilder()
           .setCustomId('guild_apply_modal')
-          .setTitle('Guild Application');
+          .setTitle('Guild Invite Request');
 
         const ignInput = new TextInputBuilder()
           .setCustomId('apply_ign')
@@ -68,7 +68,18 @@ export default (client = new Client()) => {
           .setStyle(TextInputStyle.Short)
           .setRequired(true);
 
-        modal.addComponents(new ActionRowBuilder().addComponents(ignInput));
+        const descriptionInput = new TextInputBuilder()
+          .setCustomId('apply_description')
+          .setLabel('Anything you want to tell us? (optional)')
+          .setStyle(TextInputStyle.Paragraph)
+          .setRequired(false)
+          .setPlaceholder('What are you looking for? Goals, expectations, etc...');
+
+        modal.addComponents(
+          new ActionRowBuilder().addComponents(ignInput),
+          new ActionRowBuilder().addComponents(descriptionInput)
+        );
+
         await interaction.showModal(modal);
       }
 
@@ -79,6 +90,7 @@ export default (client = new Client()) => {
         tempFactionMap.delete(userId);
 
         const ign = interaction.fields.getTextInputValue('apply_ign');
+        const description = interaction.fields.getTextInputValue('apply_description'); // may be empty
 
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         if (!cfg || !cfg.reviewChannel || !cfg.factions) {
@@ -93,7 +105,7 @@ export default (client = new Client()) => {
 
         // Embed for review
         const embed = new EmbedBuilder()
-          .setTitle('New Guild Application')
+          .setTitle('New Guild Invite Request')
           .addFields(
             { name: 'Applicant', value: `<@${userId}>`, inline: true },
             { name: 'IGN', value: ign, inline: true },
@@ -101,6 +113,14 @@ export default (client = new Client()) => {
           )
           .setColor('Blue')
           .setTimestamp();
+
+        // Add optional description if provided
+        if (description && description.trim().length > 0) {
+          embed.addFields({
+            name: 'Additional Info',
+            value: description.slice(0, 1024)
+          });
+        }
 
         // Button for leaders
         const row = new ActionRowBuilder().addComponents(
@@ -112,25 +132,29 @@ export default (client = new Client()) => {
 
         // Ping correct leader role
         const leaderRoleId = cfg.factions[faction] || cfg.factions.neutral;
-        await reviewChannel.send({ content: `<@&${leaderRoleId}> New application!`, embeds: [embed], components: [row] });
+        await reviewChannel.send({ content: `## <@&${leaderRoleId}> New Invite Request!`, embeds: [embed], components: [row] });
 
         // Save application for locking
         apps[interaction.guildId][userId] = {
-          ign, faction, handled: false, applicantId: userId
+          ign,
+          faction,
+          description: description || '',
+          handled: false,
+          applicantId: userId
         };
         saveJSON(APPS_FILE, apps);
 
-        await interaction.reply({ content: '✅ Your application has been submitted!', ephemeral: true });
+        await interaction.reply({ content: '✅ Your request has been submitted!', ephemeral: true });
       }
 
       // 4️⃣ Leader handling button
       else if (interaction.isButton() && interaction.customId.startsWith('handle_app_')) {
         const applicantId = interaction.customId.split('_')[2];
         const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Application not found.', ephemeral: true });
+        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
-        if (app.handled) return interaction.reply({ content: '❌ This application has already been handled.', ephemeral: true });
+        if (app.handled) return interaction.reply({ content: '❌ This request has already been handled.', ephemeral: true });
 
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         const member = interaction.member;
@@ -138,7 +162,7 @@ export default (client = new Client()) => {
         // Check if member is one of the faction leaders or OWNER
         const leaderRoles = Object.values(cfg.factions);
         if (!member.roles.cache.some(r => leaderRoles.includes(r.id)) && interaction.user.id !== OWNER_ID) {
-          return interaction.reply({ content: '❌ You do not have permission to handle this application.', ephemeral: true });
+          return interaction.reply({ content: '❌ You do not have permission to handle this request.', ephemeral: true });
         }
 
         // Show select menus with available guild roles (split if >25)
@@ -164,12 +188,11 @@ export default (client = new Client()) => {
 
       // 5️⃣ Guild selection
       else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('select_guild_')) {
-        // Extract applicantId from customId (handles _idx suffix)
         const applicantId = interaction.customId.split('_')[2];
         const selectedRoleId = interaction.values[0];
 
         const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Application not found.', ephemeral: true });
+        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
         if (app.handled) return interaction.reply({ content: '❌ Already handled.', ephemeral: true });

@@ -5,7 +5,7 @@ const OWNER_ID = process.env.OWNER_ID;
 export const data = new SlashCommandBuilder()
   .setName('postguildapply')
   .setDescription('Post the guild application message')
-  .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
+  .setDefaultMemberPermissions(null);
 
 export async function execute(interaction) {
   if (interaction.user.id !== OWNER_ID && !interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {

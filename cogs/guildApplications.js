@@ -232,7 +232,9 @@ export default (client = new Client()) => {
 
         app.handled = true;
         if (lock) { clearTimeout(lock.timeout); appLocks.delete(applicantId); }
-        saveJSON(APPS_FILE, getJSON(APPS_FILE));
+        // Save the updated app data
+        apps[interaction.guildId][applicantId] = app;
+        saveJSON(APPS_FILE, apps);
 
         return await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });
       }

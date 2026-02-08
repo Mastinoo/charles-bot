@@ -84,8 +84,9 @@ export default (client = new Client()) => {
           return await interaction.reply({ content: '❌ Guild application not set up yet.', ephemeral: true });
         }
 
-        const apps = getJSON(APPS_FILE);
-        if (!apps[interaction.guildId]) apps[interaction.guildId] = {};
+        const appsAll = getJSON(APPS_FILE);
+        if (!appsAll[interaction.guildId]) appsAll[interaction.guildId] = {};
+        const apps = appsAll[interaction.guildId];
 
         const reviewChannel = interaction.guild.channels.cache.get(cfg.reviewChannel);
         if (!reviewChannel) return await interaction.reply({ content: '❌ Review channel not found.', ephemeral: true });
@@ -111,8 +112,8 @@ export default (client = new Client()) => {
         const leaderRoleId = cfg.factions[faction] || cfg.factions.neutral;
         await reviewChannel.send({ content: `## <@&${leaderRoleId}> New Invite Request!`, embeds: [embed], components: [row] });
 
-        apps[interaction.guildId][userId] = { ign, faction, description: description || '', handled: false, applicantId: userId };
-        saveJSON(APPS_FILE, apps);
+        apps[userId] = { ign, faction, description: description || '', handled: false, applicantId: userId };
+        saveJSON(APPS_FILE, appsAll);
 
         return await interaction.reply({ content: '✅ Your request has been submitted!', ephemeral: true });
       }
@@ -121,8 +122,10 @@ export default (client = new Client()) => {
       else if (interaction.isButton() && interaction.customId.startsWith('handle_app_')) {
         const applicantId = interaction.customId.split('_')[2];
         const appsAll = getJSON(APPS_FILE);
+        if (!appsAll[interaction.guildId]) appsAll[interaction.guildId] = {};
         const apps = appsAll[interaction.guildId];
-        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+
+        if (!apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
         if (app.handled) return await interaction.reply({ content: '❌ This request has already been handled.', ephemeral: true });
@@ -154,8 +157,11 @@ export default (client = new Client()) => {
           const lock = appLocks.get(applicantId);
           if (!lock) return;
 
-          const appsCheck = getJSON(APPS_FILE)[interaction.guildId];
-          if (appsCheck && appsCheck[applicantId] && !appsCheck[applicantId].handled) {
+          const appsCheckAll = getJSON(APPS_FILE);
+          if (!appsCheckAll[interaction.guildId]) appsCheckAll[interaction.guildId] = {};
+          const appsCheck = appsCheckAll[interaction.guildId];
+
+          if (appsCheck[applicantId] && !appsCheck[applicantId].handled) {
             try {
               const enabledRow = new ActionRowBuilder().addComponents(
                 new ButtonBuilder().setCustomId(`handle_app_${applicantId}`).setLabel('Handle Request').setStyle(ButtonStyle.Success)
@@ -192,8 +198,11 @@ export default (client = new Client()) => {
         const applicantId = interaction.customId.split('_')[2];
         const selectedRoleId = interaction.values[0];
 
-        const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+        const appsAll = getJSON(APPS_FILE);
+        if (!appsAll[interaction.guildId]) appsAll[interaction.guildId] = {};
+        const apps = appsAll[interaction.guildId];
+
+        if (!apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
         if (app.handled) return await interaction.reply({ content: '❌ Already handled.', ephemeral: true });
@@ -221,7 +230,6 @@ export default (client = new Client()) => {
               .addFields({ name: 'Handled By', value: `<@${interaction.user.id}>`, inline: true })
               .addFields({ name: 'Invited To', value: role.name, inline: true });
 
-            // 🔄 Add reset button for GL/officers
             const resetRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder().setCustomId(`reset_app_${applicantId}`).setLabel('Reset Request').setStyle(ButtonStyle.Danger)
             );
@@ -232,9 +240,8 @@ export default (client = new Client()) => {
 
         app.handled = true;
         if (lock) { clearTimeout(lock.timeout); appLocks.delete(applicantId); }
-        // Save the updated app data
-        apps[interaction.guildId][applicantId] = app;
-        saveJSON(APPS_FILE, apps);
+        apps[applicantId] = app;
+        saveJSON(APPS_FILE, appsAll);
 
         return await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });
       }
@@ -242,8 +249,11 @@ export default (client = new Client()) => {
       // 6️⃣ Reset Button
       else if (interaction.isButton() && interaction.customId.startsWith('reset_app_')) {
         const applicantId = interaction.customId.split('_')[2];
-        const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+        const appsAll = getJSON(APPS_FILE);
+        if (!appsAll[interaction.guildId]) appsAll[interaction.guildId] = {};
+        const apps = appsAll[interaction.guildId];
+
+        if (!apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
         if (!app.handled) return await interaction.reply({ content: '❌ Request not yet handled.', ephemeral: true });
@@ -275,8 +285,11 @@ export default (client = new Client()) => {
         const applicantId = interaction.customId.split('_')[2];
         const reason = interaction.fields.getTextInputValue('reset_reason');
 
-        const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+        const appsAll = getJSON(APPS_FILE);
+        if (!appsAll[interaction.guildId]) appsAll[interaction.guildId] = {};
+        const apps = appsAll[interaction.guildId];
+
+        if (!apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
         if (!app.handled) return await interaction.reply({ content: '❌ Request not yet handled.', ephemeral: true });
@@ -306,7 +319,9 @@ export default (client = new Client()) => {
         catch { await interaction.followUp({ content: `⚠️ Could not DM <@${applicantId}>.`, ephemeral: true }); }
 
         app.handled = false;
-        saveJSON(APPS_FILE, getJSON(APPS_FILE));
+        apps[applicantId] = app;
+        saveJSON(APPS_FILE, appsAll);
+
         return await interaction.reply({ content: `✅ Application for <@${applicantId}> has been reset.`, ephemeral: true });
       }
 

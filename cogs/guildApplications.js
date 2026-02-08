@@ -19,22 +19,16 @@ const OWNER_ID = process.env.OWNER_ID;
 
 export default (client = new Client()) => {
 
-  // Load or create JSONs
   const getJSON = (file) => fs.existsSync(file) ? JSON.parse(fs.readFileSync(file)) : {};
   const saveJSON = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
-  // Temporary map to store faction before modal submission
   const tempFactionMap = new Map(); // userId => faction
-  // Temporary lock map for handling applications
-  // applicantId => { by: userId, expires: timestamp, timeout: Timeout }
-  const appLocks = new Map();
+  const appLocks = new Map(); // applicantId => { by, expires, timeout }
 
   client.on('interactionCreate', async interaction => {
     try {
-      // 1️⃣ Button: Start application
+      // 1️⃣ Start Application
       if (interaction.isButton() && interaction.customId === 'guild_apply_start') {
-
-        // Send ephemeral select menu for faction
         const selectRow = new ActionRowBuilder().addComponents(
           new StringSelectMenuBuilder()
             .setCustomId(`apply_faction_select_${interaction.user.id}`)
@@ -46,21 +40,15 @@ export default (client = new Client()) => {
             ])
         );
 
-        await interaction.reply({
-          content: 'Choose your faction:',
-          components: [selectRow],
-          ephemeral: true
-        });
+        return await interaction.reply({ content: 'Choose your faction:', components: [selectRow], ephemeral: true });
       }
 
-      // 2️⃣ Faction selection
+      // 2️⃣ Faction Selection
       else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('apply_faction_select_')) {
         const userId = interaction.user.id;
         const faction = interaction.values[0];
-
         tempFactionMap.set(userId, faction);
 
-        // Show modal for in-game name + optional description
         const modal = new ModalBuilder()
           .setCustomId('guild_apply_modal')
           .setTitle('Guild Invite Request');
@@ -76,37 +64,32 @@ export default (client = new Client()) => {
           .setLabel('Anything you want to tell us? (optional)')
           .setStyle(TextInputStyle.Paragraph)
           .setRequired(false)
-          .setPlaceholder('What are you looking for? Goals, expectations, etc...');
+          .setPlaceholder('Goals, expectations, etc...');
 
-        modal.addComponents(
-          new ActionRowBuilder().addComponents(ignInput),
-          new ActionRowBuilder().addComponents(descriptionInput)
-        );
-
-        await interaction.showModal(modal);
+        modal.addComponents(new ActionRowBuilder().addComponents(ignInput), new ActionRowBuilder().addComponents(descriptionInput));
+        return await interaction.showModal(modal);
       }
 
-      // 3️⃣ Modal submission: User application
+      // 3️⃣ Modal Submission
       else if (interaction.type === InteractionType.ModalSubmit && interaction.customId === 'guild_apply_modal') {
         const userId = interaction.user.id;
-        const faction = tempFactionMap.get(userId) || 'neutral'; // fallback to neutral
+        const faction = tempFactionMap.get(userId) || 'neutral';
         tempFactionMap.delete(userId);
 
         const ign = interaction.fields.getTextInputValue('apply_ign');
-        const description = interaction.fields.getTextInputValue('apply_description'); // may be empty
+        const description = interaction.fields.getTextInputValue('apply_description');
 
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         if (!cfg || !cfg.reviewChannel || !cfg.factions) {
-          return interaction.reply({ content: '❌ Guild application not set up yet.', ephemeral: true });
+          return await interaction.reply({ content: '❌ Guild application not set up yet.', ephemeral: true });
         }
 
         const apps = getJSON(APPS_FILE);
         if (!apps[interaction.guildId]) apps[interaction.guildId] = {};
 
         const reviewChannel = interaction.guild.channels.cache.get(cfg.reviewChannel);
-        if (!reviewChannel) return interaction.reply({ content: '❌ Review channel not found.', ephemeral: true });
+        if (!reviewChannel) return await interaction.reply({ content: '❌ Review channel not found.', ephemeral: true });
 
-        // Embed for review
         const embed = new EmbedBuilder()
           .setTitle('New Guild Invite Request')
           .addFields(
@@ -117,160 +100,116 @@ export default (client = new Client()) => {
           .setColor('Blue')
           .setTimestamp();
 
-        // Add optional description if provided
         if (description && description.trim().length > 0) {
-          embed.addFields({
-            name: 'Additional Info',
-            value: description.slice(0, 1024)
-          });
+          embed.addFields({ name: 'Additional Info', value: description.slice(0, 1024) });
         }
 
-        // Button for leaders
         const row = new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-            .setCustomId(`handle_app_${userId}`)
-            .setLabel('Handle Request')
-            .setStyle(ButtonStyle.Success)
+          new ButtonBuilder().setCustomId(`handle_app_${userId}`).setLabel('Handle Request').setStyle(ButtonStyle.Success)
         );
 
-        // Ping correct leader role
         const leaderRoleId = cfg.factions[faction] || cfg.factions.neutral;
         await reviewChannel.send({ content: `## <@&${leaderRoleId}> New Invite Request!`, embeds: [embed], components: [row] });
 
-        // Save application for locking
-        apps[interaction.guildId][userId] = {
-          ign,
-          faction,
-          description: description || '',
-          handled: false,
-          applicantId: userId
-        };
+        apps[interaction.guildId][userId] = { ign, faction, description: description || '', handled: false, applicantId: userId };
         saveJSON(APPS_FILE, apps);
 
-        await interaction.reply({ content: '✅ Your request has been submitted!', ephemeral: true });
+        return await interaction.reply({ content: '✅ Your request has been submitted!', ephemeral: true });
       }
 
-      // 4️⃣ Leader handling button
+      // 4️⃣ Leader Handling
       else if (interaction.isButton() && interaction.customId.startsWith('handle_app_')) {
         const applicantId = interaction.customId.split('_')[2];
         const appsAll = getJSON(APPS_FILE);
         const apps = appsAll[interaction.guildId];
-        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
-        if (app.handled) return interaction.reply({ content: '❌ This request has already been handled.', ephemeral: true });
+        if (app.handled) return await interaction.reply({ content: '❌ This request has already been handled.', ephemeral: true });
 
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         const member = interaction.member;
-
-        // Check permissions
         const leaderRoles = Object.values(cfg.factions);
+
         if (!member.roles.cache.some(r => leaderRoles.includes(r.id)) && interaction.user.id !== OWNER_ID) {
-          return interaction.reply({ content: '❌ You do not have permission to handle this request.', ephemeral: true });
+          return await interaction.reply({ content: '❌ You do not have permission to handle this request.', ephemeral: true });
         }
 
-        // 🔒 Check lock
         const existingLock = appLocks.get(applicantId);
         const now = Date.now();
         if (existingLock && existingLock.expires > now) {
-          return interaction.reply({
-            content: `⏳ This request is currently being handled by <@${existingLock.by}>.`,
-            ephemeral: true
-          });
+          return await interaction.reply({ content: `⏳ This request is currently being handled by <@${existingLock.by}>.`, ephemeral: true });
         }
 
-        // 🔒 Set lock (2 minutes)
         const expires = now + 2 * 60 * 1000;
-
-        // Disable the button on the public message
         const msg = interaction.message;
         if (msg) {
           const disabledRow = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-              .setCustomId(`handle_app_${applicantId}`)
-              .setLabel('Being handled...')
-              .setStyle(ButtonStyle.Secondary)
-              .setDisabled(true)
+            new ButtonBuilder().setCustomId(`handle_app_${applicantId}`).setLabel('Being handled...').setStyle(ButtonStyle.Secondary).setDisabled(true)
           );
           await msg.edit({ components: [disabledRow] });
         }
 
-        // Set timeout to unlock if not handled
         const timeout = setTimeout(async () => {
           const lock = appLocks.get(applicantId);
           if (!lock) return;
 
           const appsCheck = getJSON(APPS_FILE)[interaction.guildId];
           if (appsCheck && appsCheck[applicantId] && !appsCheck[applicantId].handled) {
-            // Re-enable button
             try {
               const enabledRow = new ActionRowBuilder().addComponents(
-                new ButtonBuilder()
-                  .setCustomId(`handle_app_${applicantId}`)
-                  .setLabel('Handle Request')
-                  .setStyle(ButtonStyle.Success)
+                new ButtonBuilder().setCustomId(`handle_app_${applicantId}`).setLabel('Handle Request').setStyle(ButtonStyle.Success)
               );
               await msg.edit({ components: [enabledRow] });
             } catch (e) {
               console.warn('Could not re-enable button:', e);
             }
           }
-
           appLocks.delete(applicantId);
         }, 2 * 60 * 1000);
 
         appLocks.set(applicantId, { by: interaction.user.id, expires, timeout });
 
-        // Show select menus with available guild roles (split if >25)
         const guildRolesData = getJSON(ROLES_FILE)[interaction.guildId] || [];
-        if (guildRolesData.length === 0) return interaction.reply({ content: '❌ No guild roles available to assign.', ephemeral: true });
+        if (!guildRolesData.length) return await interaction.reply({ content: '❌ No guild roles available to assign.', ephemeral: true });
 
-        // Split into chunks of 25
         const chunks = [];
-        for (let i = 0; i < guildRolesData.length; i += 25) {
-          chunks.push(guildRolesData.slice(i, i + 25));
-        }
-
+        for (let i = 0; i < guildRolesData.length; i += 25) chunks.push(guildRolesData.slice(i, i + 25));
         const actionRows = chunks.map((chunk, idx) => {
-          const selectMenu = new StringSelectMenuBuilder()
-            .setCustomId(`select_guild_${applicantId}_${idx}`)
-            .setPlaceholder(`Select guild to invite (part ${idx + 1})`)
-            .addOptions(chunk.map(r => ({ label: r.name, value: r.id })));
-          return new ActionRowBuilder().addComponents(selectMenu);
+          return new ActionRowBuilder().addComponents(
+            new StringSelectMenuBuilder()
+              .setCustomId(`select_guild_${applicantId}_${idx}`)
+              .setPlaceholder(`Select guild to invite (part ${idx + 1})`)
+              .addOptions(chunk.map(r => ({ label: r.name, value: r.id })))
+          );
         });
 
-        await interaction.reply({ content: 'Select a guild role to assign:', components: actionRows, ephemeral: true });
+        return await interaction.reply({ content: 'Select a guild role to assign:', components: actionRows, ephemeral: true });
       }
 
-      // 5️⃣ Guild selection
+      // 5️⃣ Guild Selection
       else if (interaction.isStringSelectMenu() && interaction.customId.startsWith('select_guild_')) {
         const applicantId = interaction.customId.split('_')[2];
         const selectedRoleId = interaction.values[0];
 
         const apps = getJSON(APPS_FILE)[interaction.guildId];
-        if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
-        if (app.handled) return interaction.reply({ content: '❌ Already handled.', ephemeral: true });
+        if (app.handled) return await interaction.reply({ content: '❌ Already handled.', ephemeral: true });
 
-        // 🔒 Check if current user holds the lock
         const lock = appLocks.get(applicantId);
         const now = Date.now();
         if (lock && lock.by !== interaction.user.id && lock.expires > now) {
-          return interaction.reply({
-            content: `⏳ This request is currently being handled by <@${lock.by}>.`,
-            ephemeral: true
-          });
+          return await interaction.reply({ content: `⏳ This request is currently being handled by <@${lock.by}>.`, ephemeral: true });
         }
 
         const applicant = await interaction.guild.members.fetch(applicantId);
         const role = interaction.guild.roles.cache.get(selectedRoleId);
-        if (!role) return interaction.reply({ content: '❌ Role not found.', ephemeral: true });
+        if (!role) return await interaction.reply({ content: '❌ Role not found.', ephemeral: true });
 
-        // Give role to applicant
         await applicant.roles.add(role);
 
-        // Update embed in review channel
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         const reviewChannel = interaction.guild.channels.cache.get(cfg.reviewChannel);
         if (reviewChannel) {
@@ -281,20 +220,92 @@ export default (client = new Client()) => {
               .setColor('Green')
               .addFields({ name: 'Handled By', value: `<@${interaction.user.id}>`, inline: true })
               .addFields({ name: 'Invited To', value: role.name, inline: true });
+
+            // 🔄 Add reset button for GL/officers
+            const resetRow = new ActionRowBuilder().addComponents(
+              new ButtonBuilder().setCustomId(`reset_app_${applicantId}`).setLabel('Reset Request').setStyle(ButtonStyle.Danger)
+            );
+
+            await msg.edit({ embeds: [embed], components: [resetRow] });
+          }
+        }
+
+        app.handled = true;
+        if (lock) { clearTimeout(lock.timeout); appLocks.delete(applicantId); }
+        saveJSON(APPS_FILE, getJSON(APPS_FILE));
+
+        return await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });
+      }
+
+      // 6️⃣ Reset Button
+      else if (interaction.isButton() && interaction.customId.startsWith('reset_app_')) {
+        const applicantId = interaction.customId.split('_')[2];
+        const apps = getJSON(APPS_FILE)[interaction.guildId];
+        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+
+        const app = apps[applicantId];
+        if (!app.handled) return await interaction.reply({ content: '❌ Request not yet handled.', ephemeral: true });
+
+        const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
+        const member = interaction.member;
+        const leaderRoles = Object.values(cfg.factions);
+        if (!member.roles.cache.some(r => leaderRoles.includes(r.id)) && interaction.user.id !== OWNER_ID) {
+          return await interaction.reply({ content: '❌ You do not have permission to reset this request.', ephemeral: true });
+        }
+
+        const modal = new ModalBuilder()
+          .setCustomId(`reset_modal_${applicantId}`)
+          .setTitle('Reset Guild Request');
+
+        const reasonInput = new TextInputBuilder()
+          .setCustomId('reset_reason')
+          .setLabel('Reason for reset')
+          .setStyle(TextInputStyle.Paragraph)
+          .setRequired(true)
+          .setPlaceholder('Typo, missing info, etc...');
+
+        modal.addComponents(new ActionRowBuilder().addComponents(reasonInput));
+        return await interaction.showModal(modal);
+      }
+
+      // 7️⃣ Reset Modal Submission
+      else if (interaction.type === InteractionType.ModalSubmit && interaction.customId.startsWith('reset_modal_')) {
+        const applicantId = interaction.customId.split('_')[2];
+        const reason = interaction.fields.getTextInputValue('reset_reason');
+
+        const apps = getJSON(APPS_FILE)[interaction.guildId];
+        if (!apps || !apps[applicantId]) return await interaction.reply({ content: '❌ Request not found.', ephemeral: true });
+
+        const app = apps[applicantId];
+        if (!app.handled) return await interaction.reply({ content: '❌ Request not yet handled.', ephemeral: true });
+
+        const applicant = await interaction.guild.members.fetch(applicantId);
+        const reviewChannel = interaction.guild.channels.cache.get(getJSON(CONFIG_FILE)[interaction.guildId].reviewChannel);
+        if (reviewChannel) {
+          const messages = await reviewChannel.messages.fetch({ limit: 100 });
+          const msg = messages.find(m => m.embeds[0]?.fields?.some(f => f.value === `<@${applicantId}>`));
+          if (msg) {
+            const assignedRoleName = msg.embeds[0].fields.find(f => f.name === 'Invited To')?.value;
+            const role = interaction.guild.roles.cache.find(r => r.name === assignedRoleName);
+            if (role && applicant.roles.cache.has(role.id)) await applicant.roles.remove(role);
+
+            const embed = EmbedBuilder.from(msg.embeds[0])
+              .setColor('Orange')
+              .addFields(
+                { name: 'Reset By', value: `<@${interaction.user.id}>`, inline: true },
+                { name: 'Reason', value: reason }
+              );
+
             await msg.edit({ embeds: [embed], components: [] });
           }
         }
 
-        // Lock application
-        app.handled = true;
-        // Clear lock if present
-        if (lock) {
-          clearTimeout(lock.timeout);
-          appLocks.delete(applicantId);
-        }
-        saveJSON(APPS_FILE, getJSON(APPS_FILE));
+        try { await applicant.send(`Your guild invite request has been reset by <@${interaction.user.id}> due to: ${reason}. Please submit a new request if you wish to apply again.`); } 
+        catch { await interaction.followUp({ content: `⚠️ Could not DM <@${applicantId}>.`, ephemeral: true }); }
 
-        await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });
+        app.handled = false;
+        saveJSON(APPS_FILE, getJSON(APPS_FILE));
+        return await interaction.reply({ content: `✅ Application for <@${applicantId}> has been reset.`, ephemeral: true });
       }
 
     } catch (err) {

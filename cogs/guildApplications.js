@@ -253,6 +253,16 @@ export default (client = new Client()) => {
         const app = apps[applicantId];
         if (app.handled) return interaction.reply({ content: '❌ Already handled.', ephemeral: true });
 
+        // 🔒 Check if current user holds the lock
+        const lock = appLocks.get(applicantId);
+        const now = Date.now();
+        if (lock && lock.by !== interaction.user.id && lock.expires > now) {
+          return interaction.reply({
+            content: `⏳ This request is currently being handled by <@${lock.by}>.`,
+            ephemeral: true
+          });
+        }
+
         const applicant = await interaction.guild.members.fetch(applicantId);
         const role = interaction.guild.roles.cache.get(selectedRoleId);
         if (!role) return interaction.reply({ content: '❌ Role not found.', ephemeral: true });
@@ -278,7 +288,6 @@ export default (client = new Client()) => {
         // Lock application
         app.handled = true;
         // Clear lock if present
-        const lock = appLocks.get(applicantId);
         if (lock) {
           clearTimeout(lock.timeout);
           appLocks.delete(applicantId);

@@ -25,6 +25,9 @@ export default (client = new Client()) => {
 
   // Temporary map to store faction before modal submission
   const tempFactionMap = new Map(); // userId => faction
+  // Temporary lock map for handling applications
+  // applicantId => { by: userId, expires: timestamp, timeout: Timeout }
+  const appLocks = new Map();
 
   client.on('interactionCreate', async interaction => {
     try {
@@ -150,7 +153,8 @@ export default (client = new Client()) => {
       // 4️⃣ Leader handling button
       else if (interaction.isButton() && interaction.customId.startsWith('handle_app_')) {
         const applicantId = interaction.customId.split('_')[2];
-        const apps = getJSON(APPS_FILE)[interaction.guildId];
+        const appsAll = getJSON(APPS_FILE);
+        const apps = appsAll[interaction.guildId];
         if (!apps || !apps[applicantId]) return interaction.reply({ content: '❌ Request not found.', ephemeral: true });
 
         const app = apps[applicantId];
@@ -159,11 +163,63 @@ export default (client = new Client()) => {
         const cfg = getJSON(CONFIG_FILE)[interaction.guildId];
         const member = interaction.member;
 
-        // Check if member is one of the faction leaders or OWNER
+        // Check permissions
         const leaderRoles = Object.values(cfg.factions);
         if (!member.roles.cache.some(r => leaderRoles.includes(r.id)) && interaction.user.id !== OWNER_ID) {
           return interaction.reply({ content: '❌ You do not have permission to handle this request.', ephemeral: true });
         }
+
+        // 🔒 Check lock
+        const existingLock = appLocks.get(applicantId);
+        const now = Date.now();
+        if (existingLock && existingLock.expires > now) {
+          return interaction.reply({
+            content: `⏳ This request is currently being handled by <@${existingLock.by}>.`,
+            ephemeral: true
+          });
+        }
+
+        // 🔒 Set lock (2 minutes)
+        const expires = now + 2 * 60 * 1000;
+
+        // Disable the button on the public message
+        const msg = interaction.message;
+        if (msg) {
+          const disabledRow = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+              .setCustomId(`handle_app_${applicantId}`)
+              .setLabel('Being handled...')
+              .setStyle(ButtonStyle.Secondary)
+              .setDisabled(true)
+          );
+          await msg.edit({ components: [disabledRow] });
+        }
+
+        // Set timeout to unlock if not handled
+        const timeout = setTimeout(async () => {
+          const lock = appLocks.get(applicantId);
+          if (!lock) return;
+
+          const appsCheck = getJSON(APPS_FILE)[interaction.guildId];
+          if (appsCheck && appsCheck[applicantId] && !appsCheck[applicantId].handled) {
+            // Re-enable button
+            try {
+              const enabledRow = new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                  .setCustomId(`handle_app_${applicantId}`)
+                  .setLabel('Handle Request')
+                  .setStyle(ButtonStyle.Success)
+              );
+              await msg.edit({ components: [enabledRow] });
+            } catch (e) {
+              console.warn('Could not re-enable button:', e);
+            }
+          }
+
+          appLocks.delete(applicantId);
+        }, 2 * 60 * 1000);
+
+        appLocks.set(applicantId, { by: interaction.user.id, expires, timeout });
 
         // Show select menus with available guild roles (split if >25)
         const guildRolesData = getJSON(ROLES_FILE)[interaction.guildId] || [];
@@ -221,6 +277,12 @@ export default (client = new Client()) => {
 
         // Lock application
         app.handled = true;
+        // Clear lock if present
+        const lock = appLocks.get(applicantId);
+        if (lock) {
+          clearTimeout(lock.timeout);
+          appLocks.delete(applicantId);
+        }
         saveJSON(APPS_FILE, getJSON(APPS_FILE));
 
         await interaction.update({ content: `✅ <@${applicantId}> invited to ${role.name}`, components: [] });

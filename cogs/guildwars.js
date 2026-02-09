@@ -81,6 +81,11 @@ export default function guildWarsCog(client) {
     });
 
     console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
+    console.log('[GuildWars Cog] Updates found in float:');
+    updates.forEach((u, i) => {
+        console.log(`  ${i + 1}. ${u.title} -> ${u.link}`);
+    });
+
     return updates;
 }
 
@@ -183,6 +188,7 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 
 

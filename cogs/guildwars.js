@@ -38,12 +38,10 @@ export default function guildWarsCog(client) {
     let lastPosted = null; // { title, link }
     let isChecking = false;
 
-    // Load channels
     if (fs.existsSync(CHANNELS_FILE)) {
         updateChannels = JSON.parse(fs.readFileSync(CHANNELS_FILE, 'utf8'));
     }
 
-    // Load last update
     if (fs.existsSync(LAST_UPDATE_FILE)) {
         lastPosted = JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, 'utf8'));
     }
@@ -56,8 +54,8 @@ export default function guildWarsCog(client) {
 
         const updates = [];
 
-        // This targets the actual update list on the page
-        $('.mw-parser-output > ul li').each((_, el) => {
+        // Only grab the first <ul> that contains the update links
+        $('.mw-parser-output > ul').first().find('li').each((_, el) => {
             const linkEl = $(el).find('a').first();
             if (!linkEl.length) return;
 
@@ -144,7 +142,7 @@ export default function guildWarsCog(client) {
 
             const newest = updates[0];
 
-            // First run: store only, don't spam
+            // First run → store only, don't spam
             if (!lastPosted) {
                 console.log('[GuildWars Cog] Initial run detected, storing latest update only.');
                 lastPosted = newest;

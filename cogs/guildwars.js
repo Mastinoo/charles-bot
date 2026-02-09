@@ -53,9 +53,7 @@ export default function guildWarsCog(client) {
         const $ = cheerio.load(html);
 
         const updates = [];
-
-        // Select all <li> inside <div style="float:right"> which contains the update list
-        $('div[style*="float:right"] ul li').each((_, el) => {
+        $('.mw-parser-output > div[style*="float: right"] ul').first().find('li').each((_, el) => {
             const linkEl = $(el).find('a').first();
             if (!linkEl.length) return;
 
@@ -69,6 +67,7 @@ export default function guildWarsCog(client) {
 
             updates.push({ title, link });
         });
+
 
         console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
         return updates;
@@ -173,4 +172,5 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 

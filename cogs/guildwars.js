@@ -80,9 +80,6 @@ export default function guildWarsCog(client) {
         }
     });
 
-    // Reverse so newest updates come first
-    updates.reverse();
-
     console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
     return updates;
 }
@@ -186,6 +183,7 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 
 

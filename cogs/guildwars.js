@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 import fs from 'fs';
 import { EmbedBuilder } from 'discord.js';
 
-const WIKI_URL = 'https://wiki.guildwars.com/wiki/Game_updates';
+const WIKI_URL = 'https://wiki.guildwars.com/wiki/Feedback:Game_updates';
 const CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutes
 const LAST_UPDATE_FILE = './data/lastUpdate.json';
 const CHANNELS_FILE = './data/channels.json';
@@ -35,7 +35,7 @@ function splitTextIntoChunks(text, maxLength = 4000) {
 
 export default function guildWarsCog(client) {
     let updateChannels = {};
-    let lastPostedLink = null;
+    let lastPosted = null; // { title, link }
     let isChecking = false;
 
     // Load channels
@@ -43,39 +43,38 @@ export default function guildWarsCog(client) {
         updateChannels = JSON.parse(fs.readFileSync(CHANNELS_FILE, 'utf8'));
     }
 
-    // Load last update (LINK ONLY)
+    // Load last update
     if (fs.existsSync(LAST_UPDATE_FILE)) {
-        const data = JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, 'utf8'));
-        lastPostedLink = data.link ?? null;
+        lastPosted = JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, 'utf8'));
     }
 
-async function fetchUpdates() {
-    console.log('[GuildWars Cog] Fetching updates from wiki...');
-    const res = await fetch('https://wiki.guildwars.com/wiki/Feedback:Game_updates');
-    const html = await res.text();
-    const $ = cheerio.load(html);
+    async function fetchUpdates() {
+        console.log('[GuildWars Cog] Fetching updates from wiki...');
+        const res = await fetch(WIKI_URL);
+        const html = await res.text();
+        const $ = cheerio.load(html);
 
-    const updates = [];
+        const updates = [];
 
-    // Grab update links from the page
-    $('.mw-parser-output ul li').each((i, el) => {
-        const linkEl = $(el).find('a').first();
-        if (!linkEl.length) return;
+        // This targets the actual update list on the page
+        $('.mw-parser-output > ul li').each((_, el) => {
+            const linkEl = $(el).find('a').first();
+            if (!linkEl.length) return;
 
-        const title = linkEl.text().trim();
-        const href = linkEl.attr('href');
-        if (!title || !href) return;
+            const title = linkEl.text().trim();
+            const href = linkEl.attr('href');
+            if (!title || !href) return;
 
-        const link = href.startsWith('http')
-            ? href
-            : 'https://wiki.guildwars.com' + href;
+            const link = href.startsWith('http')
+                ? href
+                : 'https://wiki.guildwars.com' + href;
 
-        updates.push({ title, link });
-    });
+            updates.push({ title, link });
+        });
 
-    console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
-    return updates;
-}
+        console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
+        return updates;
+    }
 
     async function fetchUpdateDetails(url) {
         const res = await fetch(url);
@@ -92,7 +91,7 @@ async function fetchUpdates() {
                 if (text) content.push(text);
             } else if (el.is('ul')) {
                 el.find('li').each((_, li) => {
-                    content.push(`â€¢ ${$(li).text().trim()}`);
+                    content.push(`• ${$(li).text().trim()}`);
                 });
             } else if (el.is('h3, h4')) {
                 content.push(`\n**${el.text().replace('[edit]', '').trim()}**\n`);
@@ -145,15 +144,15 @@ async function fetchUpdates() {
 
             const newest = updates[0];
 
-            // First run â†’ store only, do NOT spam history
-            if (!lastPostedLink) {
+            // First run: store only, don't spam
+            if (!lastPosted) {
                 console.log('[GuildWars Cog] Initial run detected, storing latest update only.');
-                lastPostedLink = newest.link;
-                fs.writeFileSync(LAST_UPDATE_FILE, JSON.stringify({ link: lastPostedLink }, null, 2));
+                lastPosted = newest;
+                fs.writeFileSync(LAST_UPDATE_FILE, JSON.stringify(lastPosted, null, 2));
                 return;
             }
 
-            if (newest.link === lastPostedLink) {
+            if (newest.link === lastPosted.link && newest.title === lastPosted.title) {
                 console.log('[GuildWars Cog] No new updates.');
                 return;
             }
@@ -161,8 +160,8 @@ async function fetchUpdates() {
             console.log('[GuildWars Cog] New update detected!');
             await postUpdate(newest);
 
-            lastPostedLink = newest.link;
-            fs.writeFileSync(LAST_UPDATE_FILE, JSON.stringify({ link: lastPostedLink }, null, 2));
+            lastPosted = newest;
+            fs.writeFileSync(LAST_UPDATE_FILE, JSON.stringify(lastPosted, null, 2));
         } catch (err) {
             console.error('[GuildWars Cog] Update check failed:', err);
         } finally {

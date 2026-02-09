@@ -47,53 +47,53 @@ export default function guildWarsCog(client) {
     }
 
     async function fetchUpdates() {
-    console.log('[GuildWars Cog] Fetching updates from wiki...');
-    const res = await fetch(WIKI_URL);
-    const html = await res.text();
-    const $ = cheerio.load(html);
+        console.log('[GuildWars Cog] Fetching updates from wiki API...');
 
-    const updates = [];
+        const url = 'https://wiki.guildwars.com/api.php?action=parse&page=Feedback:Game_updates&prop=text&format=json';
+        const res = await fetch(url);
+        const data = await res.json();
 
-    // Find the float-right box containing "Recent updates"
-    $('div[style*="float: right"] > div').each((_, el) => {
-        const header = $(el).find('div').first();
-        if (header.text().trim() === 'Recent updates') {
-            // Grab the first <ul> after the header, skipping any text nodes
-            const list = header.nextAll('ul').first();
-            if (!list.length) return;
+        const html = data.parse?.text?.['*'];
+        if (!html) return [];
 
-            // Iterate over each <li> inside the list
-            list.find('li').each((_, li) => {
+        const $ = cheerio.load(html);
+        const updates = [];
+
+        $('div[style*="float: right"] > div').each((_, el) => {
+            const header = $(el).find('div').first();
+            if (header.text().trim() === 'Recent updates') {
+                const list = header.nextAll('ul').first();
+                if (!list.length) return;
+
+                list.find('li').each((_, li) => {
                 const linkEl = $(li).find('a').first();
                 if (!linkEl.length) return;
 
-                // Normalize the text to collapse whitespace/newlines from <sup> tags
                 const title = linkEl.text().replace(/\s+/g, ' ').trim();
                 const href = linkEl.attr('href');
                 if (!title || !href) return;
 
-                const link = href.startsWith('http')
-                    ? href
-                    : 'https://wiki.guildwars.com' + href;
+                    const link = href.startsWith('http')
+                        ? href
+                        : 'https://wiki.guildwars.com' + href;
 
-                updates.push({ title, link });
-            });
-        }
-    });
+                    updates.push({ title, link });
+                });
+            }
+        });
 
-    console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
-    console.log('[GuildWars Cog] Updates found in float:');
-    updates.forEach((u, i) => {
-        console.log(`  ${i + 1}. ${u.title} -> ${u.link}`);
-    });
-
-    return updates;
-}
+        console.log(`[GuildWars Cog] Found ${updates.length} updates via API.`);
+        return updates;
+    }
 
 
     async function fetchUpdateDetails(url) {
-        const res = await fetch(url);
-        const html = await res.text();
+        const pageName = url.split('/wiki/')[1];
+        const apiUrl = `https://wiki.guildwars.com/api.php?action=parse&page=${encodeURIComponent(pageName)}&prop=text&format=json`;
+
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        const html = data.parse?.text?.['*'];
         const $ = cheerio.load(html);
 
         const content = [];
@@ -105,9 +105,7 @@ export default function guildWarsCog(client) {
                 const text = el.text().trim();
                 if (text) content.push(text);
             } else if (el.is('ul')) {
-                el.find('li').each((_, li) => {
-                    content.push(`• ${$(li).text().trim()}`);
-                });
+                el.find('li').each((_, li) => content.push(`• ${$(li).text().trim()}`));
             } else if (el.is('h3, h4')) {
                 content.push(`\n**${el.text().replace('[edit]', '').trim()}**\n`);
             }
@@ -120,6 +118,7 @@ export default function guildWarsCog(client) {
             imageUrl: sanitizeImageUrl(imageEl?.attr('src'))
         };
     }
+
 
     async function postUpdate(update) {
         console.log(`[GuildWars Cog] Posting update: ${update.title}`);
@@ -190,6 +189,7 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 
 

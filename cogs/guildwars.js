@@ -54,8 +54,8 @@ export default function guildWarsCog(client) {
 
         const updates = [];
 
-        // Only grab the first <ul> that contains the update links
-        $('.mw-parser-output > ul').first().find('li').each((_, el) => {
+        // Select all <li> inside <div style="float:right"> which contains the update list
+        $('div[style*="float:right"] ul li').each((_, el) => {
             const linkEl = $(el).find('a').first();
             if (!linkEl.length) return;
 
@@ -173,3 +173,4 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+

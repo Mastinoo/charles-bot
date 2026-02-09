@@ -58,8 +58,8 @@ export default function guildWarsCog(client) {
     $('div[style*="float: right"] > div').each((_, el) => {
         const header = $(el).find('div').first();
         if (header.text().trim() === 'Recent updates') {
-            // Grab the <ul> immediately after the header (skip whitespace/text nodes)
-            const list = header.nextAll('ul').first(); // <-- FIXED
+            // Grab the first <ul> after the header, skipping any text nodes
+            const list = header.nextAll('ul').first();
             if (!list.length) return;
 
             // Iterate over each <li> inside the list
@@ -67,7 +67,8 @@ export default function guildWarsCog(client) {
                 const linkEl = $(li).find('a').first();
                 if (!linkEl.length) return;
 
-                const title = linkEl.text().trim();
+                // Normalize the text to collapse whitespace/newlines from <sup> tags
+                const title = linkEl.text().replace(/\s+/g, ' ').trim();
                 const href = linkEl.attr('href');
                 if (!title || !href) return;
 
@@ -88,6 +89,7 @@ export default function guildWarsCog(client) {
 
     return updates;
 }
+
 
     async function fetchUpdateDetails(url) {
         const res = await fetch(url);
@@ -188,6 +190,7 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 
 

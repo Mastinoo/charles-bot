@@ -54,11 +54,15 @@ export default function guildWarsCog(client) {
 
     const updates = [];
 
-    // Grab the <ul> immediately after the "Recent updates" header inside float-right box
+    // Find the float-right box containing "Recent updates"
     $('div[style*="float: right"] > div').each((_, el) => {
         const header = $(el).find('div').first();
         if (header.text().trim() === 'Recent updates') {
+            // Grab the <ul> immediately after the header
             const list = header.next('ul');
+            if (!list.length) return;
+
+            // Iterate over each <li> inside the list
             list.find('li').each((_, li) => {
                 const linkEl = $(li).find('a').first();
                 if (!linkEl.length) return;
@@ -76,10 +80,12 @@ export default function guildWarsCog(client) {
         }
     });
 
+    // Reverse so newest updates come first
+    updates.reverse();
+
     console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
     return updates;
 }
-
 
     async function fetchUpdateDetails(url) {
         const res = await fetch(url);
@@ -180,6 +186,7 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 
 

@@ -47,31 +47,39 @@ export default function guildWarsCog(client) {
     }
 
     async function fetchUpdates() {
-        console.log('[GuildWars Cog] Fetching updates from wiki...');
-        const res = await fetch(WIKI_URL);
-        const html = await res.text();
-        const $ = cheerio.load(html);
+    console.log('[GuildWars Cog] Fetching updates from wiki...');
+    const res = await fetch(WIKI_URL);
+    const html = await res.text();
+    const $ = cheerio.load(html);
 
-        const updates = [];
-        $('.mw-parser-output > div[style*="float: right"] ul').first().find('li').each((_, el) => {
-            const linkEl = $(el).find('a').first();
-            if (!linkEl.length) return;
+    const updates = [];
 
-            const title = linkEl.text().trim();
-            const href = linkEl.attr('href');
-            if (!title || !href) return;
+    // Grab the <ul> immediately after the "Recent updates" header inside float-right box
+    $('div[style*="float: right"] > div').each((_, el) => {
+        const header = $(el).find('div').first();
+        if (header.text().trim() === 'Recent updates') {
+            const list = header.next('ul');
+            list.find('li').each((_, li) => {
+                const linkEl = $(li).find('a').first();
+                if (!linkEl.length) return;
 
-            const link = href.startsWith('http')
-                ? href
-                : 'https://wiki.guildwars.com' + href;
+                const title = linkEl.text().trim();
+                const href = linkEl.attr('href');
+                if (!title || !href) return;
 
-            updates.push({ title, link });
-        });
+                const link = href.startsWith('http')
+                    ? href
+                    : 'https://wiki.guildwars.com' + href;
 
+                updates.push({ title, link });
+            });
+        }
+    });
 
-        console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
-        return updates;
-    }
+    console.log(`[GuildWars Cog] Found ${updates.length} updates.`);
+    return updates;
+}
+
 
     async function fetchUpdateDetails(url) {
         const res = await fetch(url);
@@ -172,5 +180,6 @@ export default function guildWarsCog(client) {
         setInterval(checkForNewUpdates, CHECK_INTERVAL);
     });
 }
+
 
 

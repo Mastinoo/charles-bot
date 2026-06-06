@@ -382,41 +382,182 @@ function extractWeeklyBonusFromBonusesPage(html) {
   return candidates[0] || null;
 }
 
-export async function buildWeeklyActivitiesEmbed() {
-  const [weeklyHtml, bonusesHtml] = await Promise.all([
-    fetchWikiHtml(WEEKLY_PAGE),
-    fetchWikiHtml(WEEKLY_BONUSES_PAGE).catch(() => null)
-  ]);
-
-  const rows = extractActivityRows(weeklyHtml);
-  const bonus = bonusesHtml ? extractWeeklyBonusFromBonusesPage(bonusesHtml) : null;
-  if (bonus && !rows.some(r => r.label === 'Weekly Bonus')) rows.push(bonus);
-
-  const preferred = ['Nicholas the Traveler', 'Weekly Bonus'];
-  const picked = [];
-  for (const label of preferred) {
-    const found = rows.find(r => r.label === label);
-    if (found) picked.push(found);
+const PVE_WEEKLY_BONUSES = [
+  {
+    name: 'Extra Luck Bonus',
+    description: 'Keys and lockpicks drop at four times the usual rate. Double Lucky and Unlucky title points.'
+  },
+  {
+    name: 'Elonian Support Bonus',
+    description: 'Double Sunspear and Lightbringer points.'
+  },
+  {
+    name: 'Zaishen Bounty Bonus',
+    description: 'Double copper Zaishen Coin rewards for Zaishen bounties.'
+  },
+  {
+    name: 'Factions Elite Bonus',
+    description: "The Deep and Urgoz's Warren can be entered from Kaineng Center."
+  },
+  {
+    name: 'Northern Support Bonus',
+    description: 'Double Asura, Deldrimor, Ebon Vanguard, or Norn reputation points.'
+  },
+  {
+    name: 'Zaishen Mission Bonus',
+    description: 'Double copper Zaishen Coin rewards for Zaishen missions.'
+  },
+  {
+    name: 'Pantheon Bonus',
+    description: 'Free passage to the Underworld and the Fissure of Woe.'
+  },
+  {
+    name: 'Faction Support Bonus',
+    description: 'Double Kurzick and Luxon title track points for exchanging faction.'
+  },
+  {
+    name: 'Zaishen Vanquishing Bonus',
+    description: 'Double copper Zaishen Coin rewards for Zaishen vanquishes.'
   }
-  for (const row of rows) if (!picked.some(p => p.label === row.label && p.url === row.url)) picked.push(row);
+];
 
-  const enriched = [];
-  for (const item of picked.slice(0, 8)) enriched.push(await enrichWeeklyItem(item));
+const PVP_WEEKLY_BONUSES = [
+  {
+    name: 'Random Arenas Bonus',
+    description: 'Double Balthazar faction and Gladiator title points in Random Arenas.'
+  },
+  {
+    name: 'Guild Versus Guild Bonus',
+    description: 'Double Balthazar faction and Champion title points in GvG.'
+  },
+  {
+    name: 'Competitive Mission Bonus',
+    description: 'Double Balthazar and Imperial faction in the Jade Quarry and Fort Aspenwood.'
+  },
+  {
+    name: "Heroes' Ascent Bonus",
+    description: "Double Balthazar faction and Hero title points in Heroes' Ascent."
+  },
+  {
+    name: 'Codex Arena Bonus',
+    description: 'Double Balthazar faction and Codex title points in Codex Arena.'
+  },
+  {
+    name: 'Alliance Battle Bonus',
+    description: 'Double Balthazar and Imperial faction in Alliance Battles.'
+  }
+];
+
+function getCurrentWeeklyBonus(rotation, anchorIndex, from = new Date()) {
+  // Anchor: 1 June 2026 15:00 UTC
+  // PvE = Pantheon Bonus
+  // PvP = Heroes' Ascent Bonus
+  const anchor = Date.UTC(2026, 5, 1, 15, 0, 0, 0);
+  const now = from.getTime();
+
+  const weekMs = 7 * 24 * 60 * 60 * 1000;
+  const diffWeeks = Math.floor((now - anchor) / weekMs);
+
+  const index = ((anchorIndex + diffWeeks) % rotation.length + rotation.length) % rotation.length;
+  return rotation[index];
+}
+
+function extractNicholasTraveler(html) {
+  const $ = cheerio.load(html);
+
+  let item = null;
+  let itemUrl = null;
+  let location = null;
+  let locationUrl = null;
+
+  $('tr').each((_, tr) => {
+    const rowText = cleanText($(tr).text());
+
+    if (!/Nicholas the Traveler/i.test(rowText)) return;
+
+    const links = [];
+    $(tr).find('a[href^="/wiki/"]').each((__, a) => {
+      const title = cleanText($(a).text());
+      const href = $(a).attr('href');
+
+      if (!title || !href) return;
+      if (/Nicholas the Traveler/i.test(title)) return;
+
+      links.push({
+        title,
+        url: wikiUrlFromHref(href)
+      });
+    });
+
+    if (links[0]) {
+      item = links[0].title;
+      itemUrl = links[0].url;
+    }
+
+    if (links[1]) {
+      location = links[1].title;
+      locationUrl = links[1].url;
+    }
+  });
+
+  return { item, itemUrl, location, locationUrl };
+}
+
+export async function buildWeeklyActivitiesEmbed() {
+  const weeklyHtml = await fetchWikiHtml(WEEKLY_PAGE);
+
+  const nicholas = extractNicholasTraveler(weeklyHtml);
+
+  const pveBonus = getCurrentWeeklyBonus(PVE_WEEKLY_BONUSES, 6);
+  const pvpBonus = getCurrentWeeklyBonus(PVP_WEEKLY_BONUSES, 3);
 
   const weeklyReset = getNextWeeklyReset();
+
   const embed = new EmbedBuilder()
     .setTitle('Guild Wars Weekly Activities')
     .setURL(`${WIKI_BASE}/wiki/${WEEKLY_PAGE}`)
     .setColor(0xf2c94c)
-    .setDescription(`Weekly bonuses and Nicholas the Traveler reset <t:${unix(weeklyReset)}:R> at <t:${unix(weeklyReset)}:t>.`)
+    .setDescription(`⏰ Weekly reset <t:${unix(weeklyReset)}:R>`)
     .setTimestamp()
-    .setFooter({ text: 'Source: Guild Wars Wiki' });
+    .setFooter({ text: 'Source: Guild Wars Wiki + static weekly rotation' });
 
-  if (!enriched.length) {
-    embed.addFields({ name: 'No activities found', value: 'Charles could not parse the weekly activities page. Check the wiki link above.' });
+  if (nicholas?.item || nicholas?.location) {
+    const itemText = nicholas.itemUrl
+      ? `[${nicholas.item}](${nicholas.itemUrl})`
+      : nicholas.item || 'Unknown item';
+
+    const locationText = nicholas.locationUrl
+      ? `[${nicholas.location}](${nicholas.locationUrl})`
+      : nicholas.location || 'Unknown location';
+
+    embed.addFields({
+      name: '🎁 Nicholas the Traveler',
+      value: [
+        `**Item:** ${itemText}`,
+        `**Location:** ${locationText}`
+      ].join('\n'),
+      inline: false
+    });
   } else {
-    for (const item of enriched) embed.addFields({ name: item.label, value: fieldValueForItem(item) });
+    embed.addFields({
+      name: '🎁 Nicholas the Traveler',
+      value: 'Could not parse Nicholas data from the weekly activities page.',
+      inline: false
+    });
   }
+
+  embed.addFields(
+    {
+      name: '🌍 PvE Weekly Bonus',
+      value: `**${pveBonus.name}**\n${pveBonus.description}`,
+      inline: false
+    },
+    {
+      name: '⚔️ PvP Weekly Bonus',
+      value: `**${pvpBonus.name}**\n${pvpBonus.description}`,
+      inline: false
+    }
+  );
 
   return embed;
 }

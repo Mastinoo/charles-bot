@@ -471,7 +471,20 @@ function extractNicholasTraveler(html) {
     location: null,
     locationUrl: null
   };
+$('table.wikitable tr').each((_, tr) => {
+    const cells = $(tr).find('td');
 
+    if (cells.length >= 6) {
+        console.log(
+            'ROW:',
+            cleanText($(cells[0]).text()),
+            '|',
+            cleanText($(cells[3]).text()),
+            '|',
+            cleanText($(cells[4]).text())
+        );
+    }
+});
   $('table.wikitable tr').each((_, tr) => {
     if (result.item) return;
 
@@ -497,20 +510,6 @@ function extractNicholasTraveler(html) {
       locationUrl: wikiUrlFromHref(locationLink.attr('href'))
     };
   });
-$('table.wikitable tr').each((_, tr) => {
-    const cells = $(tr).find('td');
-
-    if (cells.length >= 6) {
-        console.log(
-            'ROW:',
-            cleanText($(cells[0]).text()),
-            '|',
-            cleanText($(cells[3]).text()),
-            '|',
-            cleanText($(cells[4]).text())
-        );
-    }
-});
   return result;
 }
 export async function buildWeeklyActivitiesEmbed() {

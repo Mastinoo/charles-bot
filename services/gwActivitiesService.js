@@ -465,56 +465,51 @@ function getCurrentWeeklyBonus(rotation, anchorIndex, from = new Date()) {
 function extractNicholasTraveler(html) {
   const $ = cheerio.load(html);
 
-  const result = {
+  const now = new Date();
+
+  const currentMonday = new Date(Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+    0, 0, 0, 0
+  ));
+
+  const day = currentMonday.getUTCDay(); // Sunday 0, Monday 1
+  const diffToMonday = (day + 6) % 7;
+  currentMonday.setUTCDate(currentMonday.getUTCDate() - diffToMonday);
+
+  const datePattern = `${currentMonday.getUTCDate()} ${currentMonday.toLocaleString('en-US', {
+    month: 'long',
+    timeZone: 'UTC'
+  })} ${currentMonday.getUTCFullYear()}`;
+
+  let result = {
     item: null,
     itemUrl: null,
     location: null,
     locationUrl: null
   };
 
-  const candidates = [];
+  $('table.wikitable tr').each((_, tr) => {
+    const cells = $(tr).find('td, th');
+    if (cells.length < 6) return;
 
-  $('tr, li, p').each((_, el) => {
-    const text = cleanText($(el).text());
-    if (!/Nicholas the Traveler/i.test(text)) return;
+    const dateText = cleanText($(cells[0]).text());
+    if (!dateText.includes(datePattern)) return;
 
-    const links = [];
+    const itemCell = $(cells[3]);
+    const locationCell = $(cells[4]);
 
-    $(el).find('a[href^="/wiki/"]').each((__, a) => {
-      const title = cleanText($(a).text());
-      const href = $(a).attr('href');
+    const itemLink = itemCell.find('a[href^="/wiki/"]').first();
+    const locationLink = locationCell.find('a[href^="/wiki/"]').first();
 
-      if (!title || !href) return;
-      if (/Nicholas the Traveler/i.test(title)) return;
-      if (/Weekly activities|Weekly bonuses/i.test(title)) return;
-
-      links.push({
-        title,
-        url: wikiUrlFromHref(href)
-      });
-    });
-
-    candidates.push({ text, links });
+    result = {
+      item: cleanText(itemCell.text()),
+      itemUrl: wikiUrlFromHref(itemLink.attr('href')),
+      location: cleanText(locationCell.text()),
+      locationUrl: wikiUrlFromHref(locationLink.attr('href'))
+    };
   });
-
-  for (const candidate of candidates) {
-    if (candidate.links.length >= 2) {
-      result.item = candidate.links[0].title;
-      result.itemUrl = candidate.links[0].url;
-      result.location = candidate.links[1].title;
-      result.locationUrl = candidate.links[1].url;
-      return result;
-    }
-  }
-
-  // Fallback: search the whole page near the word "Nicholas"
-  const pageText = cleanText($.text());
-  const nicholasIndex = pageText.search(/Nicholas the Traveler/i);
-
-  if (nicholasIndex !== -1) {
-    const nearby = pageText.slice(nicholasIndex, nicholasIndex + 500);
-    result.item = nearby || null;
-  }
 
   return result;
 }

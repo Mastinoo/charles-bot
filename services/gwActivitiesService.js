@@ -465,23 +465,28 @@ function getCurrentWeeklyBonus(rotation, anchorIndex, from = new Date()) {
 function extractNicholasTraveler(html) {
   const $ = cheerio.load(html);
 
-  let item = null;
-  let itemUrl = null;
-  let location = null;
-  let locationUrl = null;
+  const result = {
+    item: null,
+    itemUrl: null,
+    location: null,
+    locationUrl: null
+  };
 
-  $('tr').each((_, tr) => {
-    const rowText = cleanText($(tr).text());
+  const candidates = [];
 
-    if (!/Nicholas the Traveler/i.test(rowText)) return;
+  $('tr, li, p').each((_, el) => {
+    const text = cleanText($(el).text());
+    if (!/Nicholas the Traveler/i.test(text)) return;
 
     const links = [];
-    $(tr).find('a[href^="/wiki/"]').each((__, a) => {
+
+    $(el).find('a[href^="/wiki/"]').each((__, a) => {
       const title = cleanText($(a).text());
       const href = $(a).attr('href');
 
       if (!title || !href) return;
       if (/Nicholas the Traveler/i.test(title)) return;
+      if (/Weekly activities|Weekly bonuses/i.test(title)) return;
 
       links.push({
         title,
@@ -489,18 +494,29 @@ function extractNicholasTraveler(html) {
       });
     });
 
-    if (links[0]) {
-      item = links[0].title;
-      itemUrl = links[0].url;
-    }
-
-    if (links[1]) {
-      location = links[1].title;
-      locationUrl = links[1].url;
-    }
+    candidates.push({ text, links });
   });
 
-  return { item, itemUrl, location, locationUrl };
+  for (const candidate of candidates) {
+    if (candidate.links.length >= 2) {
+      result.item = candidate.links[0].title;
+      result.itemUrl = candidate.links[0].url;
+      result.location = candidate.links[1].title;
+      result.locationUrl = candidate.links[1].url;
+      return result;
+    }
+  }
+
+  // Fallback: search the whole page near the word "Nicholas"
+  const pageText = cleanText($.text());
+  const nicholasIndex = pageText.search(/Nicholas the Traveler/i);
+
+  if (nicholasIndex !== -1) {
+    const nearby = pageText.slice(nicholasIndex, nicholasIndex + 500);
+    result.item = nearby || null;
+  }
+
+  return result;
 }
 
 export async function buildWeeklyActivitiesEmbed() {

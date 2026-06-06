@@ -465,24 +465,6 @@ function getCurrentWeeklyBonus(rotation, anchorIndex, from = new Date()) {
 function extractNicholasTraveler(html) {
   const $ = cheerio.load(html);
 
-  const now = new Date();
-
-  const currentMonday = new Date(Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate(),
-    0, 0, 0, 0
-  ));
-
-  const day = currentMonday.getUTCDay(); // Sunday 0, Monday 1
-  const diffToMonday = (day + 6) % 7;
-  currentMonday.setUTCDate(currentMonday.getUTCDate() - diffToMonday);
-
-  const datePattern = `${currentMonday.getUTCDate()} ${currentMonday.toLocaleString('en-US', {
-    month: 'long',
-    timeZone: 'UTC'
-  })} ${currentMonday.getUTCFullYear()}`;
-
   let result = {
     item: null,
     itemUrl: null,
@@ -491,29 +473,46 @@ function extractNicholasTraveler(html) {
   };
 
   $('table.wikitable tr').each((_, tr) => {
-    const cells = $(tr).find('td, th');
-    if (cells.length < 6) return;
+    if (result.item) return;
 
-    const dateText = cleanText($(cells[0]).text());
-    if (!dateText.includes(datePattern)) return;
+    const cells = $(tr).find('td');
+    if (cells.length < 6) return;
 
     const itemCell = $(cells[3]);
     const locationCell = $(cells[4]);
+
+    const itemText = cleanText(itemCell.text());
+    const locationText = cleanText(locationCell.text());
+
+    if (!itemText || !locationText) return;
+    if (/nicholas item/i.test(itemText)) return;
 
     const itemLink = itemCell.find('a[href^="/wiki/"]').first();
     const locationLink = locationCell.find('a[href^="/wiki/"]').first();
 
     result = {
-      item: cleanText(itemCell.text()),
+      item: itemText,
       itemUrl: wikiUrlFromHref(itemLink.attr('href')),
-      location: cleanText(locationCell.text()),
+      location: locationText,
       locationUrl: wikiUrlFromHref(locationLink.attr('href'))
     };
   });
+$('table.wikitable tr').each((_, tr) => {
+    const cells = $(tr).find('td');
 
+    if (cells.length >= 6) {
+        console.log(
+            'ROW:',
+            cleanText($(cells[0]).text()),
+            '|',
+            cleanText($(cells[3]).text()),
+            '|',
+            cleanText($(cells[4]).text())
+        );
+    }
+});
   return result;
 }
-
 export async function buildWeeklyActivitiesEmbed() {
   const weeklyHtml = await fetchWikiHtml(WEEKLY_PAGE);
 

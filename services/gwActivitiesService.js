@@ -266,42 +266,99 @@ function fieldValueForItem(item) {
   return value.length > 1024 ? `${value.slice(0, 1021).trim()}…` : value;
 }
 
+function compactValue(item) {
+  return item.url
+    ? `**[${item.title || 'Unknown'}](${item.url})**`
+    : `**${item.title || 'Unknown'}**`;
+}
+
+function buildDetailEmbed(item, color) {
+  const embed = new EmbedBuilder()
+    .setTitle(`${item.label}: ${item.title}`)
+    .setURL(item.url || null)
+    .setColor(color)
+    .setFooter({ text: 'Source: Guild Wars Wiki' });
+
+  if (item.details?.objectives) {
+    embed.addFields({
+      name: 'Objectives',
+      value: item.details.objectives.slice(0, 1024)
+    });
+  }
+
+  if (item.details?.rewards) {
+    embed.addFields({
+      name: 'Rewards',
+      value: item.details.rewards.slice(0, 1024)
+    });
+  }
+
+  return embed;
+}
+
 export async function buildDailyActivitiesEmbed() {
   const html = await fetchWikiHtml(DAILY_PAGE);
   const rows = extractActivityRows(html);
-  const preferred = ['Zaishen Mission', 'Zaishen Bounty', 'Zaishen Vanquish', 'Zaishen Combat', 'Wanted', 'Nicholas Sandford'];
 
-  const picked = [];
-  for (const label of preferred) {
-    const found = rows.find(r => r.label === label);
-    if (found) picked.push(found);
-  }
-  for (const row of rows) if (!picked.some(p => p.label === row.label && p.url === row.url)) picked.push(row);
+  const preferred = [
+    'Zaishen Mission',
+    'Zaishen Bounty',
+    'Zaishen Vanquish',
+    'Zaishen Combat',
+    'Shining Blade',
+    'Vanguard Quest',
+    'Nicholas Sandford'
+  ];
+
+  const picked = preferred
+    .map(label => rows.find(r => r.label === label))
+    .filter(Boolean);
 
   const enriched = [];
-  for (const item of picked.slice(0, 8)) enriched.push(await enrichDailyItem(item));
+  for (const item of picked) {
+    if (
+      ['Zaishen Mission', 'Zaishen Bounty', 'Zaishen Vanquish', 'Zaishen Combat'].includes(item.label)
+    ) {
+      enriched.push(await enrichDailyItem(item));
+    } else {
+      enriched.push(item);
+    }
+  }
 
   const questReset = getNextDailyQuestReset();
   const sandfordReset = getNextSandfordReset();
 
-  const embed = new EmbedBuilder()
+  const overview = new EmbedBuilder()
     .setTitle('Guild Wars Daily Activities')
     .setURL(`${WIKI_BASE}/wiki/${DAILY_PAGE}`)
-    .setColor(0x2f80ed)
+    .setColor(0xf2c94c)
     .setDescription([
-      `Zaishen quests reset <t:${unix(questReset)}:R> at <t:${unix(questReset)}:t>.`,
-      `Nicholas Sandford resets <t:${unix(sandfordReset)}:R> at <t:${unix(sandfordReset)}:t>.`
+      `⏰ Zaishen quests reset <t:${unix(questReset)}:R>`,
+      `🎁 Nicholas Sandford resets <t:${unix(sandfordReset)}:R>`
     ].join('\n'))
     .setTimestamp()
     .setFooter({ text: 'Source: Guild Wars Wiki' });
 
-  if (!enriched.length) {
-    embed.addFields({ name: 'No activities found', value: 'Charles could not parse the daily activities page. Check the wiki link above.' });
-  } else {
-    for (const item of enriched) embed.addFields({ name: item.label, value: fieldValueForItem(item) });
+  for (const item of enriched) {
+    overview.addFields({
+      name: item.label,
+      value: compactValue(item),
+      inline: true
+    });
   }
 
-  return embed;
+  const detailColors = {
+    'Zaishen Mission': 0x2f80ed,
+    'Zaishen Bounty': 0x9b51e0,
+    'Zaishen Vanquish': 0x27ae60,
+    'Zaishen Combat': 0xeb5757
+  };
+
+  const detailEmbeds = enriched
+    .filter(item => detailColors[item.label] && item.details)
+    .map(item => buildDetailEmbed(item, detailColors[item.label]));
+
+  return [overview, ...detailEmbeds];
 }
 
 function extractWeeklyBonusFromBonusesPage(html) {
@@ -386,11 +443,12 @@ async function sendActivityPost(client, guildId, type, buildEmbed) {
   const oldMessageId = type === 'daily' ? guildConfig.lastDailyMessageId : guildConfig.lastWeeklyMessageId;
   await safeDeleteMessage(client, channelId, oldMessageId);
 
-  const embed = await buildEmbed();
+  const built = await buildEmbed();
+  const embeds = Array.isArray(built) ? built : [built];
   const rolePing = guildConfig.pingRoleId ? `<@&${guildConfig.pingRoleId}>` : null;
   const message = await channel.send({
     content: rolePing || undefined,
-    embeds: [embed],
+    embeds,
     allowedMentions: guildConfig.pingRoleId ? { roles: [guildConfig.pingRoleId] } : { parse: [] }
   });
 

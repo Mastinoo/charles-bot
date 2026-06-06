@@ -94,13 +94,13 @@ export async function execute(interaction, client) {
   if (sub === 'preview-daily') {
     await interaction.deferReply({ ephemeral: true });
     const embed = await buildDailyActivitiesEmbed();
-    return interaction.editReply({ embeds: [embed] });
+    return interaction.editReply({ embeds: Array.isArray(embed) ? embed : [embed] });
   }
 
   if (sub === 'preview-weekly') {
     await interaction.deferReply({ ephemeral: true });
     const embed = await buildWeeklyActivitiesEmbed();
-    return interaction.editReply({ embeds: [embed] });
+    return interaction.editReply({ embeds: Array.isArray(embed) ? embed : [embed] });
   }
 
   if (sub === 'post-daily-now') {

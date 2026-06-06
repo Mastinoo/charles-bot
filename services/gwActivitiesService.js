@@ -60,21 +60,31 @@ function pageNameFromUrl(urlOrPage) {
 }
 
 async function fetchWikiHtml(page) {
-  const url = `${API_URL}?action=parse&page=${encodeURIComponent(page)}&prop=text&format=json&origin=*`;
+  const url = `${API_URL}?action=parse&page=${encodeURIComponent(page)}&prop=text&format=json`;
+
   const res = await fetch(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    'Accept': 'application/json',
-    'Accept-Language': 'en-US,en;q=0.9'
-	}
-	});
-	if (!res.ok) {
-		const body = await res.text();
-		console.error('Wiki response:', res.status, body.substring(0, 500));
-		throw new Error(`Wiki API failed for ${page}: ${res.status}`);
-	}
+    headers: {
+      'User-Agent': 'CharlesBot/1.0 (Guild Wars Discord bot)',
+      'Accept': 'application/json'
+    }
+  });
+
+  const contentType = res.headers.get('content-type') || '';
+
+  if (!res.ok || !contentType.includes('application/json')) {
+    const body = await res.text();
+    console.warn('[GW Activities] Wiki API returned non-JSON response:', {
+      page,
+      status: res.status,
+      contentType,
+      preview: body.slice(0, 300)
+    });
+    throw new Error(`Wiki API failed for ${page}: ${res.status}`);
+  }
+
   const json = await res.json();
   const html = json?.parse?.text?.['*'];
+
   if (!html) throw new Error(`No parse HTML returned for ${page}`);
   return html;
 }

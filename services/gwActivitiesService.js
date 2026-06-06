@@ -113,13 +113,14 @@ function extractActivityRows(html) {
   const today = new Date();
 
   const day = today.getUTCDate();
-  const month = today.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+  const month = today.toLocaleString('en-US', {
+    month: 'long',
+    timeZone: 'UTC'
+  });
   const year = today.getUTCFullYear();
 
-  const todayPatterns = [
-    `${day} ${month} ${year}`,
-    `${day} ${month}`,
-  ];
+  const todayFull = `${day} ${month} ${year}`;
+  const todayShort = `${day} ${month}`;
 
   const sectionLabels = [
     'Zaishen Mission',
@@ -135,11 +136,15 @@ function extractActivityRows(html) {
 
   $('table.wikitable tr').each((_, tr) => {
     const cells = $(tr).find('td, th');
+
     if (cells.length < 7) return;
 
     const dateText = cleanText($(cells[0]).text());
 
-    const isToday = todayPatterns.some(p => dateText.includes(p));
+    const isToday =
+      new RegExp(`^${todayFull}(\\b|$)`).test(dateText) ||
+      new RegExp(`^${todayShort}(\\b|$)`).test(dateText);
+
     if (!isToday) return;
 
     result = sectionLabels.map((label, index) => {
@@ -151,9 +156,15 @@ function extractActivityRows(html) {
 
       let url = wikiUrlFromHref(href);
 
-      // Zaishen Mission pages usually need "(Zaishen quest)"
-      if (label === 'Zaishen Mission' && title && !url?.includes('(Zaishen_quest)')) {
-        url = `${WIKI_BASE}/wiki/${encodeURIComponent(title.replaceAll(' ', '_'))}_(Zaishen_quest)`;
+      // Zaishen Mission pages use a special page name
+      if (
+        label === 'Zaishen Mission' &&
+        title &&
+        !url?.includes('(Zaishen_quest)')
+      ) {
+        url = `${WIKI_BASE}/wiki/${encodeURIComponent(
+          title.replaceAll(' ', '_')
+        )}_(Zaishen_quest)`;
       }
 
       return {

@@ -100,49 +100,62 @@ function findKnownLabel(text) {
 
 function extractActivityRows(html) {
   const $ = cheerio.load(html);
-  const items = [];
-  const seen = new Set();
+  const today = new Date();
 
-  $('tr').each((_, tr) => {
-    const rowText = cleanText($(tr).text());
-    const label = findKnownLabel(rowText);
-    if (!label) return;
+  const day = today.getUTCDate();
+  const month = today.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+  const year = today.getUTCFullYear();
 
-    const links = [];
-    $(tr).find('a[href^="/wiki/"]').each((__, a) => {
-      const title = cleanText($(a).text());
-      const href = $(a).attr('href');
-      if (!title || !href) return;
-      if (/^(edit|view|talk)$/i.test(title)) return;
-      links.push({ title, url: wikiUrlFromHref(href) });
+  const todayPatterns = [
+    `${day} ${month} ${year}`,
+    `${day} ${month}`,
+  ];
+
+  const sectionLabels = [
+    'Zaishen Mission',
+    'Zaishen Bounty',
+    'Zaishen Combat',
+    'Zaishen Vanquish',
+    'Shining Blade',
+    'Vanguard Quest',
+    'Nicholas Sandford'
+  ];
+
+  let result = [];
+
+  $('table.wikitable tr').each((_, tr) => {
+    const cells = $(tr).find('td, th');
+    if (cells.length < 7) return;
+
+    const dateText = cleanText($(cells[0]).text());
+
+    const isToday = todayPatterns.some(p => dateText.includes(p));
+    if (!isToday) return;
+
+    result = sectionLabels.map((label, index) => {
+      const cell = $(cells[index + 1]);
+      const link = cell.find('a[href^="/wiki/"]').first();
+
+      const title = cleanText(link.text()) || cleanText(cell.text());
+      const href = link.attr('href');
+
+      let url = wikiUrlFromHref(href);
+
+      // Zaishen Mission pages usually need "(Zaishen quest)"
+      if (label === 'Zaishen Mission' && title && !url?.includes('(Zaishen_quest)')) {
+        url = `${WIKI_BASE}/wiki/${encodeURIComponent(title.replaceAll(' ', '_'))}_(Zaishen_quest)`;
+      }
+
+      return {
+        label,
+        title,
+        url,
+        raw: cleanText(cell.text())
+      };
     });
-
-    const usefulLinks = links.filter(l => !/Daily activities|Weekly activities|Zaishen Challenge|Nicholas/i.test(l.title));
-    const primary = usefulLinks[0] || links[0] || null;
-    const key = `${label}:${primary?.url || rowText}`;
-    if (seen.has(key)) return;
-    seen.add(key);
-
-    items.push({ label, title: primary?.title || rowText.replace(label, '').trim(), url: primary?.url || null, raw: rowText });
   });
 
-  // Fallback: some wiki pages render as lists instead of normal tables.
-  if (!items.length) {
-    $('li, p').each((_, el) => {
-      const text = cleanText($(el).text());
-      const label = findKnownLabel(text);
-      if (!label) return;
-      const a = $(el).find('a[href^="/wiki/"]').first();
-      const title = cleanText(a.text()) || text.replace(label, '').trim();
-      const url = wikiUrlFromHref(a.attr('href'));
-      const key = `${label}:${url || title}`;
-      if (seen.has(key)) return;
-      seen.add(key);
-      items.push({ label, title, url, raw: text });
-    });
-  }
-
-  return items;
+  return result;
 }
 
 function extractSectionText($, sectionNames, maxLength = 950) {

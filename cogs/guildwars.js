@@ -46,26 +46,45 @@ export default function guildWarsCog(client) {
         lastPosted = JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, 'utf8'));
     }
 
-    async function fetchUpdates() {
-        console.log('[GuildWars Cog] Fetching updates from wiki API...');
+async function fetchUpdates() {
+    console.log('[GuildWars Cog] Fetching updates from wiki API...');
 
-        const url = 'https://wiki.guildwars.com/api.php?action=parse&page=Feedback:Game_updates&prop=text&format=json';
-        const res = await fetch(url);
-        const data = await res.json();
+    const url = 'https://wiki.guildwars.com/api.php?action=parse&page=Feedback:Game_updates&prop=text&format=json';
 
-        const html = data.parse?.text?.['*'];
-        if (!html) return [];
+    const res = await fetch(url, {
+        headers: {
+            'User-Agent': 'CharlesBot/1.0 (Guild Wars Discord bot)',
+            'Accept': 'application/json'
+        }
+    });
 
-        const $ = cheerio.load(html);
-        const updates = [];
+    const contentType = res.headers.get('content-type') || '';
 
-        $('div[style*="float: right"] > div').each((_, el) => {
-            const header = $(el).find('div').first();
-            if (header.text().trim() === 'Recent updates') {
-                const list = header.nextAll('ul').first();
-                if (!list.length) return;
+    if (!res.ok || !contentType.includes('application/json')) {
+        const body = await res.text();
+        console.warn('[GuildWars Cog] Wiki API returned non-JSON response:', {
+            status: res.status,
+            contentType,
+            preview: body.slice(0, 200)
+        });
+        return [];
+    }
 
-                list.find('li').each((_, li) => {
+    const data = await res.json();
+
+    const html = data.parse?.text?.['*'];
+    if (!html) return [];
+
+    const $ = cheerio.load(html);
+    const updates = [];
+
+    $('div[style*="float: right"] > div').each((_, el) => {
+        const header = $(el).find('div').first();
+        if (header.text().trim() === 'Recent updates') {
+            const list = header.nextAll('ul').first();
+            if (!list.length) return;
+
+            list.find('li').each((_, li) => {
                 const linkEl = $(li).find('a').first();
                 if (!linkEl.length) return;
 
@@ -73,18 +92,18 @@ export default function guildWarsCog(client) {
                 const href = linkEl.attr('href');
                 if (!title || !href) return;
 
-                    const link = href.startsWith('http')
-                        ? href
-                        : 'https://wiki.guildwars.com' + href;
+                const link = href.startsWith('http')
+                    ? href
+                    : 'https://wiki.guildwars.com' + href;
 
-                    updates.push({ title, link });
-                });
-            }
-        });
+                updates.push({ title, link });
+            });
+        }
+    });
 
-        console.log(`[GuildWars Cog] Found ${updates.length} updates via API.`);
-        return updates;
-    }
+    console.log(`[GuildWars Cog] Found ${updates.length} updates via API.`);
+    return updates;
+}
 
 
     async function fetchUpdateDetails(url) {

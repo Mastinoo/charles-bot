@@ -6,7 +6,7 @@ import fs from 'fs';
 const WIKI_BASE = 'https://wiki.guildwars.com';
 const API_URL = `${WIKI_BASE}/api.php`;
 const CONFIG_FILE = './data/gwActivitiesConfig.json';
-const USER_AGENT = 'Charles Discord Bot / Guild Wars activities';
+const USER_AGENT = 'CharlesBot/1.0 (https://github.com/Mastinoo/charles-bot; Discord bot for Guild Wars communities)';
 
 const DAILY_PAGE = 'Daily_activities';
 const WEEKLY_PAGE = 'Weekly_activities';
@@ -61,8 +61,18 @@ function pageNameFromUrl(urlOrPage) {
 
 async function fetchWikiHtml(page) {
   const url = `${API_URL}?action=parse&page=${encodeURIComponent(page)}&prop=text&format=json&origin=*`;
-  const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
-  if (!res.ok) throw new Error(`Wiki API failed for ${page}: ${res.status}`);
+  const res = await fetch(url, {
+  headers: {
+    'User-Agent': USER_AGENT,
+    'Accept': 'application/json',
+    'Accept-Language': 'en-US,en;q=0.9'
+	}
+	});
+	if (!res.ok) {
+		const body = await res.text();
+		console.error('Wiki response:', res.status, body.substring(0, 500));
+		throw new Error(`Wiki API failed for ${page}: ${res.status}`);
+	}
   const json = await res.json();
   const html = json?.parse?.text?.['*'];
   if (!html) throw new Error(`No parse HTML returned for ${page}`);

@@ -465,53 +465,65 @@ function getCurrentWeeklyBonus(rotation, anchorIndex, from = new Date()) {
 function extractNicholasTraveler(html) {
   const $ = cheerio.load(html);
 
+  const now = new Date();
+  const monday = new Date(Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate()
+  ));
+
+  monday.setUTCDate(monday.getUTCDate() - ((monday.getUTCDay() + 6) % 7));
+
+  const currentWeek = `${monday.getUTCDate()} ${monday.toLocaleString('en-US', {
+    month: 'long',
+    timeZone: 'UTC'
+  })} ${monday.getUTCFullYear()}`;
+
   let result = {
     item: null,
     itemUrl: null,
     location: null,
     locationUrl: null
   };
-$('table.wikitable tr').each((_, tr) => {
-    const cells = $(tr).find('td');
 
-    if (cells.length >= 6) {
-        console.log(
-            'ROW:',
-            cleanText($(cells[0]).text()),
-            '|',
-            cleanText($(cells[3]).text()),
-            '|',
-            cleanText($(cells[4]).text())
-        );
-    }
-});
-  $('table.wikitable tr').each((_, tr) => {
-    if (result.item) return;
+  $('table').each((_, table) => {
+    const headers = [];
 
-    const cells = $(tr).find('td');
-    if (cells.length < 6) return;
+    $(table).find('tr').first().find('th').each((__, th) => {
+      headers.push(cleanText($(th).text()).toLowerCase());
+    });
 
-    const itemCell = $(cells[3]);
-    const locationCell = $(cells[4]);
+    const weekIndex = headers.findIndex(h => h.includes('week starting'));
+    const itemIndex = headers.findIndex(h => h.includes('nicholas item'));
+    const locationIndex = headers.findIndex(h => h.includes('nicholas location'));
 
-    const itemText = cleanText(itemCell.text());
-    const locationText = cleanText(locationCell.text());
+    if (weekIndex === -1 || itemIndex === -1 || locationIndex === -1) return;
 
-    if (!itemText || !locationText) return;
-    if (/nicholas item/i.test(itemText)) return;
+    $(table).find('tr').each((__, tr) => {
+      const cells = $(tr).find('td, th');
+      if (cells.length <= Math.max(weekIndex, itemIndex, locationIndex)) return;
 
-    const itemLink = itemCell.find('a[href^="/wiki/"]').first();
-    const locationLink = locationCell.find('a[href^="/wiki/"]').first();
+      const weekText = cleanText($(cells[weekIndex]).text());
+      if (weekText !== currentWeek) return;
 
-    result = {
-      item: itemText,
-      itemUrl: wikiUrlFromHref(itemLink.attr('href')),
-      location: locationText,
-      locationUrl: wikiUrlFromHref(locationLink.attr('href'))
-    };
+      const itemCell = $(cells[itemIndex]);
+      const locationCell = $(cells[locationIndex]);
+
+      const itemLink = itemCell.find('a[href^="/wiki/"]').first();
+      const locationLink = locationCell.find('a[href^="/wiki/"]').first();
+
+      result = {
+        item: cleanText(itemCell.text()),
+        itemUrl: wikiUrlFromHref(itemLink.attr('href')),
+        location: cleanText(locationCell.text()),
+        locationUrl: wikiUrlFromHref(locationLink.attr('href'))
+      };
+    });
   });
+
   return result;
 }
+
 export async function buildWeeklyActivitiesEmbed() {
   const weeklyHtml = await fetchWikiHtml(WEEKLY_PAGE);
 

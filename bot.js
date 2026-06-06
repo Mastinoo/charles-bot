@@ -91,7 +91,8 @@ client.on('interactionCreate', async interaction => {
 
             const restrictedCommands = [
                 'listallupdates', 'latestupdate', 'set-update-channel', 'allowrole',
-                'stream-add', 'stream-remove', 'stream-setchannel', 'stream-setrole', 'stream-setgame'
+                'stream-add', 'stream-remove', 'stream-setchannel', 'stream-setrole', 'stream-setgame',
+                'set-gw-activities'
             ];
 
             if (restrictedCommands.includes(command.data.name)) {

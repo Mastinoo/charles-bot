@@ -60,33 +60,32 @@ function pageNameFromUrl(urlOrPage) {
 }
 
 async function fetchWikiHtml(page) {
-  const url = `${API_URL}?action=parse&page=${encodeURIComponent(page)}&prop=text&format=json`;
+  const pagePath = encodeURIComponent(page).replace(/%20/g, '_');
+  const url = `${WIKI_BASE}/wiki/${pagePath}`;
 
   const res = await fetch(url, {
     headers: {
-      'User-Agent': 'CharlesBot/1.0 (Guild Wars Discord bot)',
-      'Accept': 'application/json'
+      'User-Agent': USER_AGENT,
+      'Accept': 'text/html,application/xhtml+xml'
     }
   });
 
   const contentType = res.headers.get('content-type') || '';
 
-  if (!res.ok || !contentType.includes('application/json')) {
+  if (!res.ok || !contentType.includes('text/html')) {
     const body = await res.text();
-    console.warn('[GW Activities] Wiki API returned non-JSON response:', {
+
+    console.warn('[GW Activities] Wiki page returned an invalid response:', {
       page,
       status: res.status,
       contentType,
       preview: body.slice(0, 300)
     });
-    throw new Error(`Wiki API failed for ${page}: ${res.status}`);
+
+    throw new Error(`Wiki page failed for ${page}: ${res.status}`);
   }
 
-  const json = await res.json();
-  const html = json?.parse?.text?.['*'];
-
-  if (!html) throw new Error(`No parse HTML returned for ${page}`);
-  return html;
+  return await res.text();
 }
 
 function findKnownLabel(text) {

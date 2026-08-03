@@ -1,0 +1,49 @@
+name: Test Guild Wars Wiki access
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-wiki:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test official Guild Wars Wiki pages
+        shell: bash
+        run: |
+          set -u
+
+          failed=0
+
+          urls=(
+            "https://wiki.guildwars.com/wiki/Daily_activities"
+            "https://wiki.guildwars.com/wiki/Tihark_Orchard_(Zaishen_quest)"
+            "https://wiki.guildwars.com/wiki/Zaishen_Challenge_Quest/Mission"
+          )
+
+          for url in "${urls[@]}"; do
+            code="$(
+              curl -L -sS \
+                --max-time 60 \
+                -o /tmp/gw-page.html \
+                -w '%{http_code}' \
+                -A "CharlesBot data verifier/1.0" \
+                "$url"
+            )"
+
+            bytes="$(wc -c < /tmp/gw-page.html)"
+
+            echo "status=$code bytes=$bytes url=$url"
+
+            if [ "$code" != "200" ]; then
+              echo "Response preview:"
+              head -c 300 /tmp/gw-page.html || true
+              echo
+              failed=1
+            fi
+          done
+
+          exit "$failed"

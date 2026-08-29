@@ -2,6 +2,9 @@ import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { EmbedBuilder } from 'discord.js';
 import fs from 'fs';
+import { getLocalDailyActivities } from './gwDailyRotationService.js';
+import { getDailyRewardDetails } from './gwDailyRewardsService.js';
+import { getLocalWeeklyNicholas } from './gwWeeklyRotationService.js';
 
 const WIKI_BASE = 'https://wiki.guildwars.com';
 const API_URL = `${WIKI_BASE}/api.php`;
@@ -226,8 +229,29 @@ async function fetchQuestDetails(url) {
 }
 
 async function enrichDailyItem(item) {
-  const details = await fetchQuestDetails(item.url);
-  return { ...item, details };
+  const details = getDailyRewardDetails(item);
+
+  if (!details) {
+    console.warn(
+      `[GW Activities] Missing reward data for ` +
+      `${item.label}: ${item.title}`
+    );
+
+    return {
+      ...item,
+      details: {
+        source: 'missing-reward-data',
+        objectives: `Complete **${item.title}**.`,
+        rewards: 'Exact reward data is unavailable.'
+      }
+    };
+  }
+
+  return {
+    ...item,
+    url: details.url || item.url,
+    details
+  };
 }
 
 async function enrichWeeklyItem(item) {
@@ -287,7 +311,24 @@ function buildDetailEmbed(item, color) {
     .setTitle(`${item.label}: ${item.title}`)
     .setURL(item.url || null)
     .setColor(color)
-    .setFooter({ text: 'Source: Guild Wars Wiki' });
+    .setFooter({
+      text:
+        item.details?.source === 'local-reward-catalog'
+          ? 'GWToolbox++ rotation · Local exact reward catalogue'
+          : 'Guild Wars activity data'
+    });
+
+  const location = [
+    item.details?.campaign,
+    item.details?.region
+  ].filter(Boolean);
+
+  if (location.length) {
+    embed.addFields({
+      name: 'Campaign · Region',
+      value: location.join(' · ')
+    });
+  }
 
   if (item.details?.objectives) {
     embed.addFields({
@@ -307,27 +348,18 @@ function buildDetailEmbed(item, color) {
 }
 
 export async function buildDailyActivitiesEmbed() {
-  const html = await fetchWikiHtml(DAILY_PAGE);
-  const rows = extractActivityRows(html);
-
-  const preferred = [
-    'Zaishen Mission',
-    'Zaishen Bounty',
-    'Zaishen Vanquish',
-    'Zaishen Combat',
-    'Shining Blade',
-    'Vanguard Quest',
-    'Nicholas Sandford'
-  ];
-
-  const picked = preferred
-    .map(label => rows.find(r => r.label === label))
-    .filter(Boolean);
+  const activities = getLocalDailyActivities(new Date());
 
   const enriched = [];
-  for (const item of picked) {
+
+  for (const item of activities) {
     if (
-      ['Zaishen Mission', 'Zaishen Bounty', 'Zaishen Vanquish', 'Zaishen Combat'].includes(item.label)
+      [
+        'Zaishen Mission',
+        'Zaishen Bounty',
+        'Zaishen Vanquish',
+        'Zaishen Combat'
+      ].includes(item.label)
     ) {
       enriched.push(await enrichDailyItem(item));
     } else {
@@ -347,7 +379,9 @@ export async function buildDailyActivitiesEmbed() {
       `🎁 Nicholas Sandford resets <t:${unix(sandfordReset)}:R>`
     ].join('\n'))
     .setTimestamp()
-    .setFooter({ text: 'Source: Guild Wars Wiki' });
+    .setFooter({
+      text: 'Rotation data: GWToolbox++'
+    });
 
   for (const item of enriched) {
     overview.addFields({
@@ -365,10 +399,23 @@ export async function buildDailyActivitiesEmbed() {
   };
 
   const detailEmbeds = enriched
-    .filter(item => detailColors[item.label] && item.details)
-    .map(item => buildDetailEmbed(item, detailColors[item.label]));
+    .filter(
+      item =>
+        detailColors[item.label] &&
+        item.details
+    )
+    .map(
+      item =>
+        buildDetailEmbed(
+          item,
+          detailColors[item.label]
+        )
+    );
 
-  return [overview, ...detailEmbeds];
+  return [
+    overview,
+    ...detailEmbeds
+  ];
 }
 
 function extractWeeklyBonusFromBonusesPage(html) {
@@ -535,9 +582,7 @@ function extractNicholasTraveler(html) {
 }
 
 export async function buildWeeklyActivitiesEmbed() {
-  const weeklyHtml = await fetchWikiHtml(WEEKLY_PAGE);
-
-  const nicholas = extractNicholasTraveler(weeklyHtml);
+  const nicholas = getLocalWeeklyNicholas();
 
   const pveBonus = getCurrentWeeklyBonus(PVE_WEEKLY_BONUSES, 6);
   const pvpBonus = getCurrentWeeklyBonus(PVP_WEEKLY_BONUSES, 3);
@@ -550,7 +595,7 @@ export async function buildWeeklyActivitiesEmbed() {
     .setColor(0xf2c94c)
     .setDescription(`⏰ Weekly reset <t:${unix(weeklyReset)}:R>`)
     .setTimestamp()
-    .setFooter({ text: 'Source: Guild Wars Wiki + static weekly rotation' });
+    .setFooter({ text: 'Source: deterministic local Guild Wars rotations' });
 
   if (nicholas?.item || nicholas?.location) {
     const itemText = nicholas.itemUrl

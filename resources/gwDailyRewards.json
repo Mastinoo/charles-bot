@@ -1,0 +1,4732 @@
+{
+  "generatedAt": "2026-08-03T15:46:41.494112+00:00",
+  "source": "Guild Wars Cycle Zaishen Data spreadsheet",
+  "items": {
+    "Bounty|Lord Khobay": {
+      "name": "Lord Khobay",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Lord_Khobay_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Fissure of Woe",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Priest of Menzies": {
+      "name": "Priest of Menzies",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Priest_of_Menzies_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Fissure of Woe",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Dragon Lich": {
+      "name": "Dragon Lich",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Dragon_Lich_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Fissure of Woe",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|The Four Horsemen": {
+      "name": "The Four Horsemen",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Four_Horsemen_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Underworld",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|Vengeful Aatxe": {
+      "name": "Vengeful Aatxe",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Vengeful_Aatxe_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Underworld",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Charged Blackness": {
+      "name": "Charged Blackness",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Charged_Blackness_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "Underworld",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Rragar Maneater": {
+      "name": "Rragar Maneater",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Rragar_Maneater_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Ilsundur, Lord of Fire": {
+      "name": "Ilsundur, Lord of Fire",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Ilsundur,_Lord_of_Fire_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Murakai, Lady of the Night": {
+      "name": "Murakai, Lady of the Night",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Murakai,_Lady_of_the_Night_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Borrguus Blisterbark": {
+      "name": "Borrguus Blisterbark",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Borrguus_Blisterbark_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 1250,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Fozzy Yeoryios": {
+      "name": "Fozzy Yeoryios",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Fozzy_Yeoryios_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 1250,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Prismatic Ooze": {
+      "name": "Prismatic Ooze",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Prismatic_Ooze_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Molotov Rocktail": {
+      "name": "Molotov Rocktail",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Molotov_Rocktail_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 1250,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Duncan the Black": {
+      "name": "Duncan the Black",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Duncan_the_Black_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 3750,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|Selvetarm": {
+      "name": "Selvetarm",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Selvetarm_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Forgewight": {
+      "name": "Forgewight",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Forgewight_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Magmus": {
+      "name": "Magmus",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Magmus_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Justiciar Thommis": {
+      "name": "Justiciar Thommis",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Justiciar_Thommis_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Rand Stormweaver": {
+      "name": "Rand Stormweaver",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Rand_Stormweaver_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Frostmaw the Kinslayer": {
+      "name": "Frostmaw the Kinslayer",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Frostmaw_the_Kinslayer_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Plague of Destruction": {
+      "name": "Plague of Destruction",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Plague_of_Destruction_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Remnant of Antiquities": {
+      "name": "Remnant of Antiquities",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Remnant_of_Antiquities_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Havok Soulwail": {
+      "name": "Havok Soulwail",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Havok_Soulwail_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Nulfastu, Earthbound": {
+      "name": "Nulfastu, Earthbound",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Nulfastu,_Earthbound_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 1250,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Fronis Irontoe": {
+      "name": "Fronis Irontoe",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Fronis_Irontoe_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Fenrir": {
+      "name": "Fenrir",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Fenrir_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Myish, Lady of the Lake": {
+      "name": "Myish, Lady of the Lake",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Myish,_Lady_of_the_Lake_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Eldritch Ettin": {
+      "name": "Eldritch Ettin",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Eldritch_Ettin_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Zoldark the Unholy": {
+      "name": "Zoldark the Unholy",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Zoldark_the_Unholy_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Z'him Monns": {
+      "name": "Z'him Monns",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Z%27him_Monns_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|TPS Regulator Golem": {
+      "name": "TPS Regulator Golem",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/TPS_Regulator_Golem_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Arachni": {
+      "name": "Arachni",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Arachni_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Fendi Nin": {
+      "name": "Fendi Nin",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Fendi_Nin_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Khabuus": {
+      "name": "Khabuus",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Khabuus_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|Mobrin, Lord of the Marsh": {
+      "name": "Mobrin, Lord of the Marsh",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Mobrin,_Lord_of_the_Marsh_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 1250,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Joffs the Mitigator": {
+      "name": "Joffs the Mitigator",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Joffs_the_Mitigator_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Pywatt the Swift": {
+      "name": "Pywatt the Swift",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Pywatt_the_Swift_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Urgoz": {
+      "name": "Urgoz",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Urgoz_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 7500,
+      "factionType": "Kurzick faction",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|Arbor Earthcall": {
+      "name": "Arbor Earthcall",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Arbor_Earthcall_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Mungri Magicbox": {
+      "name": "Mungri Magicbox",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Mungri_Magicbox_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Royen Beastkeeper": {
+      "name": "Royen Beastkeeper",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Royen_Beastkeeper_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Baubao Wavewrath": {
+      "name": "Baubao Wavewrath",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Baubao_Wavewrath_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Chung, the Attuned": {
+      "name": "Chung, the Attuned",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Chung,_the_Attuned_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Quansong Spiritspeak": {
+      "name": "Quansong Spiritspeak",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Quansong_Spiritspeak_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Ghial the Bone Dancer": {
+      "name": "Ghial the Bone Dancer",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Ghial_the_Bone_Dancer_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Kanaxai": {
+      "name": "Kanaxai",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Kanaxai_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 7500,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|Mohby Windbeak": {
+      "name": "Mohby Windbeak",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Mohby_Windbeak_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Kunvie Firewing": {
+      "name": "Kunvie Firewing",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Kunvie_Firewing_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Both Kurzick Faction and Luxon Faction",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Ssuns, Blessed of Dwayna": {
+      "name": "Ssuns, Blessed of Dwayna",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Ssuns,_Blessed_of_Dwayna_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 500,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Droajam, Mage of the Sands": {
+      "name": "Droajam, Mage of the Sands",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Droajam,_Mage_of_the_Sands_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Jedeh the Mighty": {
+      "name": "Jedeh the Mighty",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Jedeh_the_Mighty_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|The Greater Darkness": {
+      "name": "The Greater Darkness",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Greater_Darkness_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Domain of Anguish",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 750,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|Lord Jadoth": {
+      "name": "Lord Jadoth",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Lord_Jadoth_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Domain of Anguish",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 750,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|The Black Beast of Arrgh": {
+      "name": "The Black Beast of Arrgh",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Black_Beast_of_Arrgh_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Domain of Anguish",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 750,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 60,
+        "firstBonus": 0,
+        "hardModeBonus": 150,
+        "total": 210
+      }
+    },
+    "Bounty|The Stygian Lords": {
+      "name": "The Stygian Lords",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Stygian_Lords_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Domain of Anguish",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Bounty|The Stygian Underlords": {
+      "name": "The Stygian Underlords",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Stygian_Underlords_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Domain of Anguish",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 300,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Admiral Kantoh": {
+      "name": "Admiral Kantoh",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Admiral_Kantoh_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Commander Wahli": {
+      "name": "Commander Wahli",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Commander_Wahli_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Korshek the Immolated": {
+      "name": "Korshek the Immolated",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Korshek_the_Immolated_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Jarimiya the Unmerciful": {
+      "name": "Jarimiya the Unmerciful",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Jarimiya_the_Unmerciful_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Kepkhet Marrowfeast": {
+      "name": "Kepkhet Marrowfeast",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Kepkhet_Marrowfeast_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Rotscale": {
+      "name": "Rotscale",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Rotscale_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|Verata": {
+      "name": "Verata",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Verata_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|Harn and Maxine Coldstone": {
+      "name": "Harn and Maxine Coldstone",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/Harn_and_Maxine_Coldstone_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ring of Fire Islands",
+      "experience": 1000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 0,
+        "hardModeBonus": 50,
+        "total": 70
+      }
+    },
+    "Bounty|The Iron Forgeman": {
+      "name": "The Iron Forgeman",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Iron_Forgeman_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Bounty|The Darknesses": {
+      "name": "The Darknesses",
+      "type": "Bounty",
+      "url": "https://wiki.guildwars.com/wiki/The_Darknesses_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "The Mists",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Combat|Heroes' Ascent": {
+      "name": "Heroes' Ascent",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Heroes%27_Ascent_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 1500,
+      "faction": 9000,
+      "factionType": "Balthazar Faction",
+      "coins": {
+        "base": 50,
+        "firstBonus": 100,
+        "hardModeBonus": 200,
+        "total": 350
+      }
+    },
+    "Combat|Guild Versus Guild": {
+      "name": "Guild Versus Guild",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Guild_Versus_Guild_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 1500,
+      "faction": 9000,
+      "factionType": "Balthazar Faction",
+      "coins": {
+        "base": 50,
+        "firstBonus": 100,
+        "hardModeBonus": 200,
+        "total": 350
+      }
+    },
+    "Combat|Codex Arena": {
+      "name": "Codex Arena",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Codex_Arena_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 1000,
+      "faction": 6000,
+      "factionType": "Balthazar Faction",
+      "coins": {
+        "base": 25,
+        "firstBonus": 50,
+        "hardModeBonus": 100,
+        "total": 175
+      }
+    },
+    "Combat|Random Arena": {
+      "name": "Random Arena",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Random_Arena_(Zaishen_quest)",
+      "campaign": "Core",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 500,
+      "faction": 3000,
+      "factionType": "Balthazar Faction",
+      "coins": {
+        "base": 15,
+        "firstBonus": 30,
+        "hardModeBonus": 60,
+        "total": 105
+      }
+    },
+    "Combat|Alliance Battles": {
+      "name": "Alliance Battles",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Alliance_Battles_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 1000,
+      "faction": 7500,
+      "factionType": "Imperial Faction",
+      "coins": {
+        "base": 25,
+        "firstBonus": 50,
+        "hardModeBonus": 100,
+        "total": 175
+      }
+    },
+    "Combat|Jade Quarry": {
+      "name": "Jade Quarry",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Jade_Quarry_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 500,
+      "faction": 5000,
+      "factionType": "Imperial Faction",
+      "coins": {
+        "base": 15,
+        "firstBonus": 30,
+        "hardModeBonus": 60,
+        "total": 105
+      }
+    },
+    "Combat|Fort Aspenwood": {
+      "name": "Fort Aspenwood",
+      "type": "Combat",
+      "url": "https://wiki.guildwars.com/wiki/Fort_Aspenwood_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "PvP",
+      "experience": 0,
+      "gold": 500,
+      "faction": 5000,
+      "factionType": "Imperial Faction",
+      "coins": {
+        "base": 15,
+        "firstBonus": 30,
+        "hardModeBonus": 60,
+        "total": 105
+      }
+    },
+    "Mission|Assault on the Stronghold": {
+      "name": "Assault on the Stronghold",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Assault_on_the_Stronghold_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Mission|Against the Charr": {
+      "name": "Against the Charr",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Against_the_Charr_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|Warband of Brothers": {
+      "name": "Warband of Brothers",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Warband_of_Brothers_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|A Time for Heroes": {
+      "name": "A Time for Heroes",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/A_Time_for_Heroes_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Mission|Destruction's Depths": {
+      "name": "Destruction's Depths",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Destruction%27s_Depths_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Depths of Tyria",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Dwarf reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Mission|A Gate Too Far": {
+      "name": "A Gate Too Far",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/A_Gate_Too_Far_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Mission|Curse of the Nornbear": {
+      "name": "Curse of the Nornbear",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Curse_of_the_Nornbear_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|Blood Washes Blood": {
+      "name": "Blood Washes Blood",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Blood_Washes_Blood_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|G.O.L.E.M.": {
+      "name": "G.O.L.E.M.",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/G.O.L.E.M._(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 40,
+        "firstBonus": 0,
+        "hardModeBonus": 100,
+        "total": 140
+      }
+    },
+    "Mission|Finding the Bloodstone": {
+      "name": "Finding the Bloodstone",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Finding_the_Bloodstone_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|The Elusive Golemancer": {
+      "name": "The Elusive Golemancer",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Elusive_Golemancer_(Zaishen_quest)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 1500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 0,
+        "hardModeBonus": 75,
+        "total": 105
+      }
+    },
+    "Mission|The Eternal Grove": {
+      "name": "The Eternal Grove",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Eternal_Grove_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Arborstone": {
+      "name": "Arborstone",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Arborstone_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Raisu Palace": {
+      "name": "Raisu Palace",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Raisu_Palace_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Imperial Sanctum": {
+      "name": "Imperial Sanctum",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Imperial_Sanctum_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Sunjiang District": {
+      "name": "Sunjiang District",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Sunjiang_District_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Tahnnakai Temple": {
+      "name": "Tahnnakai Temple",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Tahnnakai_Temple_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Nahpui Quarter": {
+      "name": "Nahpui Quarter",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Nahpui_Quarter_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Vizunah Square": {
+      "name": "Vizunah Square",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Vizunah_Square_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Zen Daijun": {
+      "name": "Zen Daijun",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Zen_Daijun_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Minister Cho's Estate": {
+      "name": "Minister Cho's Estate",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Minister_Cho%27s_Estate_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Unwaking Waters": {
+      "name": "Unwaking Waters",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Unwaking_Waters_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Both Kurzick Faction and Luxon Faction",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Boreas Seabed": {
+      "name": "Boreas Seabed",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Boreas_Seabed_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Gyala Hatchery": {
+      "name": "Gyala Hatchery",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Gyala_Hatchery_(Zaishen_quest)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 2500,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Gate of Desolation": {
+      "name": "Gate of Desolation",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Gate_of_Desolation_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Ruins of Morah": {
+      "name": "Ruins of Morah",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Ruins_of_Morah_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Blacktide Den": {
+      "name": "Blacktide Den",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Blacktide_Den_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Chahbek Village": {
+      "name": "Chahbek Village",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Chahbek_Village_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Jokanur Diggings": {
+      "name": "Jokanur Diggings",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Jokanur_Diggings_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Nundu Bay": {
+      "name": "Nundu Bay",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Nundu_Bay_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Pogahn Passage": {
+      "name": "Pogahn Passage",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Pogahn_Passage_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Rilohn Refuge": {
+      "name": "Rilohn Refuge",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Rilohn_Refuge_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 300,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Moddok Crevice": {
+      "name": "Moddok Crevice",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Moddok_Crevice_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 300,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Venta Cemetery": {
+      "name": "Venta Cemetery",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Venta_Cemetery_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 300,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Kodonur Crossroads": {
+      "name": "Kodonur Crossroads",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Kodonur_Crossroads_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 300,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Consulate Docks": {
+      "name": "Consulate Docks",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Consulate_Docks_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 100,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Gate of Madness": {
+      "name": "Gate of Madness",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Gate_of_Madness_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Realm of Torment",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Gate of Pain": {
+      "name": "Gate of Pain",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Gate_of_Pain_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Realm of Torment",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Abaddon's Gate": {
+      "name": "Abaddon's Gate",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Abaddon%27s_Gate_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Realm of Torment",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Grand Court of Sebelkeh": {
+      "name": "Grand Court of Sebelkeh",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Grand_Court_of_Sebelkeh_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Dasha Vestibule": {
+      "name": "Dasha Vestibule",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Dasha_Vestibule_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Dzagonur Bastion": {
+      "name": "Dzagonur Bastion",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Dzagonur_Bastion_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Jennur's Horde": {
+      "name": "Jennur's Horde",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Jennur%27s_Horde_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Tihark Orchard": {
+      "name": "Tihark Orchard",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Tihark_Orchard_(Zaishen_quest)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 300,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|The Great Northern Wall": {
+      "name": "The Great Northern Wall",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Great_Northern_Wall_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Nolani Academy": {
+      "name": "Nolani Academy",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Nolani_Academy_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Fort Ranik": {
+      "name": "Fort Ranik",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Fort_Ranik_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Ruins of Surmia": {
+      "name": "Ruins of Surmia",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Ruins_of_Surmia_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Augury Rock": {
+      "name": "Augury Rock",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Augury_Rock_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Thirsty River": {
+      "name": "Thirsty River",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Thirsty_River_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|The Dragon's Lair": {
+      "name": "The Dragon's Lair",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Dragon%27s_Lair_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Dunes of Despair": {
+      "name": "Dunes of Despair",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Dunes_of_Despair_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Elona Reach": {
+      "name": "Elona Reach",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Elona_Reach_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Divinity Coast": {
+      "name": "Divinity Coast",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Divinity_Coast_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|D'Alessio Seaboard": {
+      "name": "D'Alessio Seaboard",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/D%27Alessio_Seaboard_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Sanctum Cay": {
+      "name": "Sanctum Cay",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Sanctum_Cay_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Riverside Province": {
+      "name": "Riverside Province",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Riverside_Province_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Gates of Kryta": {
+      "name": "Gates of Kryta",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Gates_of_Kryta_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|The Wilds": {
+      "name": "The Wilds",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Wilds_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Aurora Glade": {
+      "name": "Aurora Glade",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Aurora_Glade_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Bloodstone Fen": {
+      "name": "Bloodstone Fen",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Bloodstone_Fen_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 3000,
+      "gold": 500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 20,
+        "firstBonus": 30,
+        "hardModeBonus": 50,
+        "total": 100
+      }
+    },
+    "Mission|Borlis Pass": {
+      "name": "Borlis Pass",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Borlis_Pass_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|The Frost Gate": {
+      "name": "The Frost Gate",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/The_Frost_Gate_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 1000,
+      "gold": 250,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 15,
+        "firstBonus": 22,
+        "hardModeBonus": 37,
+        "total": 74
+      }
+    },
+    "Mission|Abaddon's Mouth": {
+      "name": "Abaddon's Mouth",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Abaddon%27s_Mouth_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ring of Fire Islands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Ring of Fire": {
+      "name": "Ring of Fire",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Ring_of_Fire_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ring of Fire Islands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Hell's Precipice": {
+      "name": "Hell's Precipice",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Hell%27s_Precipice_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Ring of Fire Islands",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Ice Caves of Sorrow": {
+      "name": "Ice Caves of Sorrow",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Ice_Caves_of_Sorrow_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Thunderhead Keep": {
+      "name": "Thunderhead Keep",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Thunderhead_Keep_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Mission|Iron Mines of Moladune": {
+      "name": "Iron Mines of Moladune",
+      "type": "Mission",
+      "url": "https://wiki.guildwars.com/wiki/Iron_Mines_of_Moladune_(Zaishen_quest)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 30,
+        "firstBonus": 45,
+        "hardModeBonus": 75,
+        "total": 150
+      }
+    },
+    "Vanquish|Sacnoth Valley": {
+      "name": "Sacnoth Valley",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sacnoth_Valley_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Dalada Uplands": {
+      "name": "Dalada Uplands",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Dalada_Uplands_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Grothmar Wardowns": {
+      "name": "Grothmar Wardowns",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Grothmar_Wardowns_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Charr Homelands",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Vanguard reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Jaga Moraine": {
+      "name": "Jaga Moraine",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Jaga_Moraine_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Varajar Fells": {
+      "name": "Varajar Fells",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Varajar_Fells_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Drakkar Lake": {
+      "name": "Drakkar Lake",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Drakkar_Lake_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Ice Cliff Chasms": {
+      "name": "Ice Cliff Chasms",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Ice_Cliff_Chasms_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Norrhart Domains": {
+      "name": "Norrhart Domains",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Norrhart_Domains_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Bjora Marches": {
+      "name": "Bjora Marches",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Bjora_Marches_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Far Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Norn reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Riven Earth": {
+      "name": "Riven Earth",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Riven_Earth_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Sparkfly Swamp": {
+      "name": "Sparkfly Swamp",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sparkfly_Swamp_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Magus Stones": {
+      "name": "Magus Stones",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Magus_Stones_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Arbor Bay": {
+      "name": "Arbor Bay",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Arbor_Bay_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 5000,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Verdant Cascades": {
+      "name": "Verdant Cascades",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Verdant_Cascades_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Alcazia Tangle": {
+      "name": "Alcazia Tangle",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Alcazia_Tangle_(Zaishen_vanquish)",
+      "campaign": "Eye of the North",
+      "region": "Tarnished Coast",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 5000,
+      "factionType": "Asura reputation points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Morostav Trail": {
+      "name": "Morostav Trail",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Morostav_Trail_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 10000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Ferndale": {
+      "name": "Ferndale",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Ferndale_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 10000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Mourning Veil Falls": {
+      "name": "Mourning Veil Falls",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Mourning_Veil_Falls_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Eternal Grove": {
+      "name": "The Eternal Grove",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Eternal_Grove_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Melandru's Hope": {
+      "name": "Melandru's Hope",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Melandru%27s_Hope_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Arborstone": {
+      "name": "Arborstone",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Arborstone_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Drazach Thicket": {
+      "name": "Drazach Thicket",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Drazach_Thicket_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Echovald Forest",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Kurzick Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Pongmei Valley": {
+      "name": "Pongmei Valley",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Pongmei_Valley_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Raisu Palace": {
+      "name": "Raisu Palace",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Raisu_Palace_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Shenzun Tunnels": {
+      "name": "Shenzun Tunnels",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Shenzun_Tunnels_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Sunjiang District": {
+      "name": "Sunjiang District",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sunjiang_District_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Tahnnakai Temple": {
+      "name": "Tahnnakai Temple",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Tahnnakai_Temple_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Wajjun Bazaar": {
+      "name": "Wajjun Bazaar",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Wajjun_Bazaar_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Xaquang Skyway": {
+      "name": "Xaquang Skyway",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Xaquang_Skyway_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Nahpui Quarter": {
+      "name": "Nahpui Quarter",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Nahpui_Quarter_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Bukdek Byway": {
+      "name": "Bukdek Byway",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Bukdek_Byway_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Shadow's Passage": {
+      "name": "Shadow's Passage",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Shadow%27s_Passage_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Kaineng City",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Jaya Bluffs": {
+      "name": "Jaya Bluffs",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Jaya_Bluffs_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Zen Daijun": {
+      "name": "Zen Daijun",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Zen_Daijun_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Panjiang Peninsula": {
+      "name": "Panjiang Peninsula",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Panjiang_Peninsula_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Haiju Lagoon": {
+      "name": "Haiju Lagoon",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Haiju_Lagoon_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Kinya Province": {
+      "name": "Kinya Province",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Kinya_Province_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Minister Cho's Estate": {
+      "name": "Minister Cho's Estate",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Minister_Cho%27s_Estate_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Saoshang Trail": {
+      "name": "Saoshang Trail",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Saoshang_Trail_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Sunqua Vale": {
+      "name": "Sunqua Vale",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sunqua_Vale_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "Shing Jea Island",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Maishang Hills": {
+      "name": "Maishang Hills",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Maishang_Hills_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Rhea's Crater": {
+      "name": "Rhea's Crater",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Rhea%27s_Crater_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Silent Surf": {
+      "name": "Silent Surf",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Silent_Surf_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Unwaking Waters": {
+      "name": "Unwaking Waters",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Unwaking_Waters_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Mount Qinkai": {
+      "name": "Mount Qinkai",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Mount_Qinkai_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Archipelagos": {
+      "name": "Archipelagos",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Archipelagos_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Boreas Seabed": {
+      "name": "Boreas Seabed",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Boreas_Seabed_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Gyala Hatchery": {
+      "name": "Gyala Hatchery",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Gyala_Hatchery_(Zaishen_vanquish)",
+      "campaign": "Factions",
+      "region": "The Jade Sea",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 7000,
+      "factionType": "Luxon Faction",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Alkali Pan": {
+      "name": "The Alkali Pan",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Alkali_Pan_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|The Shattered Ravines": {
+      "name": "The Shattered Ravines",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Shattered_Ravines_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|The Sulfurous Wastes": {
+      "name": "The Sulfurous Wastes",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Sulfurous_Wastes_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Poisoned Outcrops": {
+      "name": "Poisoned Outcrops",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Poisoned_Outcrops_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Joko's Domain": {
+      "name": "Joko's Domain",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Joko%27s_Domain_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|The Ruptured Heart": {
+      "name": "The Ruptured Heart",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Ruptured_Heart_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Crystal Overlook": {
+      "name": "Crystal Overlook",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Crystal_Overlook_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Desolation",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 1000,
+      "factionType": "Lightbringer Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Lahtenda Bog": {
+      "name": "Lahtenda Bog",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Lahtenda_Bog_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Issnur Isles": {
+      "name": "Issnur Isles",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Issnur_Isles_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Mehtani Keys": {
+      "name": "Mehtani Keys",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Mehtani_Keys_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Plains of Jarin": {
+      "name": "Plains of Jarin",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Plains_of_Jarin_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Zehlon Reach": {
+      "name": "Zehlon Reach",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Zehlon_Reach_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Cliffs of Dohjok": {
+      "name": "Cliffs of Dohjok",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Cliffs_of_Dohjok_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Fahranur, the First City": {
+      "name": "Fahranur, the First City",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Fahranur,_the_First_City_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Istan",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Jahai Bluffs": {
+      "name": "Jahai Bluffs",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Jahai_Bluffs_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Turai's Procession": {
+      "name": "Turai's Procession",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Turai%27s_Procession_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Marga Coast": {
+      "name": "Marga Coast",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Marga_Coast_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 1000,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|The Floodplain of Mahnkelon": {
+      "name": "The Floodplain of Mahnkelon",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Floodplain_of_Mahnkelon_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Sunward Marches": {
+      "name": "Sunward Marches",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sunward_Marches_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Arkjok Ward": {
+      "name": "Arkjok Ward",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Arkjok_Ward_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Bahdok Caverns": {
+      "name": "Bahdok Caverns",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Bahdok_Caverns_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Dejarin Estate": {
+      "name": "Dejarin Estate",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Dejarin_Estate_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Barbarous Shore": {
+      "name": "Barbarous Shore",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Barbarous_Shore_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Gandara, the Moon Fortress": {
+      "name": "Gandara, the Moon Fortress",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Gandara,_the_Moon_Fortress_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Kourna",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Holdings of Chokhin": {
+      "name": "Holdings of Chokhin",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Holdings_of_Chokhin_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Hidden City of Ahdashim": {
+      "name": "The Hidden City of Ahdashim",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Hidden_City_of_Ahdashim_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Mirror of Lyss": {
+      "name": "The Mirror of Lyss",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Mirror_of_Lyss_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Vehjin Mines": {
+      "name": "Vehjin Mines",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Vehjin_Mines_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Resplendent Makuun": {
+      "name": "Resplendent Makuun",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Resplendent_Makuun_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Yatendi Canyons": {
+      "name": "Yatendi Canyons",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Yatendi_Canyons_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Wilderness of Bahdza": {
+      "name": "Wilderness of Bahdza",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Wilderness_of_Bahdza_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Vehtendi Valley": {
+      "name": "Vehtendi Valley",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Vehtendi_Valley_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Forum Highlands": {
+      "name": "Forum Highlands",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Forum_Highlands_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 3500,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Garden of Seborhin": {
+      "name": "Garden of Seborhin",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Garden_of_Seborhin_(Zaishen_vanquish)",
+      "campaign": "Nightfall",
+      "region": "Vabbi",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 750,
+      "factionType": "Sunspear Promotion Points",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Dragon's Gullet": {
+      "name": "Dragon's Gullet",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Dragon%27s_Gullet_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Old Ascalon": {
+      "name": "Old Ascalon",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Old_Ascalon_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Breach": {
+      "name": "The Breach",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Breach_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Eastern Frontier": {
+      "name": "Eastern Frontier",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Eastern_Frontier_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 10000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Diessa Lowlands": {
+      "name": "Diessa Lowlands",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Diessa_Lowlands_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Pockmark Flats": {
+      "name": "Pockmark Flats",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Pockmark_Flats_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Regent Valley": {
+      "name": "Regent Valley",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Regent_Valley_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Ascalon Foothills": {
+      "name": "Ascalon Foothills",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Ascalon_Foothills_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Flame Temple Corridor": {
+      "name": "Flame Temple Corridor",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Flame_Temple_Corridor_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ascalon",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Prophet's Path": {
+      "name": "Prophet's Path",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Prophet%27s_Path_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|The Scar": {
+      "name": "The Scar",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Scar_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Salt Flats": {
+      "name": "Salt Flats",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Salt_Flats_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Arid Sea": {
+      "name": "The Arid Sea",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Arid_Sea_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Skyward Reach": {
+      "name": "Skyward Reach",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Skyward_Reach_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Vulture Drifts": {
+      "name": "Vulture Drifts",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Vulture_Drifts_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Diviner's Ascent": {
+      "name": "Diviner's Ascent",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Diviner%27s_Ascent_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Crystal Desert",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Kessex Peak": {
+      "name": "Kessex Peak",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Kessex_Peak_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Majesty's Rest": {
+      "name": "Majesty's Rest",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Majesty%27s_Rest_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Nebo Terrace": {
+      "name": "Nebo Terrace",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Nebo_Terrace_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|North Kryta Province": {
+      "name": "North Kryta Province",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/North_Kryta_Province_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Stingray Strand": {
+      "name": "Stingray Strand",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Stingray_Strand_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Twin Serpent Lakes": {
+      "name": "Twin Serpent Lakes",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Twin_Serpent_Lakes_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|The Black Curtain": {
+      "name": "The Black Curtain",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Black_Curtain_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Talmark Wilderness": {
+      "name": "Talmark Wilderness",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Talmark_Wilderness_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Scoundrel's Rise": {
+      "name": "Scoundrel's Rise",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Scoundrel%27s_Rise_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Cursed Lands": {
+      "name": "Cursed Lands",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Cursed_Lands_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Watchtower Coast": {
+      "name": "Watchtower Coast",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Watchtower_Coast_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Tears of the Fallen": {
+      "name": "Tears of the Fallen",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Tears_of_the_Fallen_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Kryta",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|The Falls": {
+      "name": "The Falls",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/The_Falls_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Sage Lands": {
+      "name": "Sage Lands",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Sage_Lands_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Tangle Root": {
+      "name": "Tangle Root",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Tangle_Root_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Silverwood": {
+      "name": "Silverwood",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Silverwood_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Mamnoon Lagoon": {
+      "name": "Mamnoon Lagoon",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Mamnoon_Lagoon_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Reed Bog": {
+      "name": "Reed Bog",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Reed_Bog_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Dry Top": {
+      "name": "Dry Top",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Dry_Top_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Ettin's Back": {
+      "name": "Ettin's Back",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Ettin%27s_Back_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Maguuma Jungle",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Iron Horse Mine": {
+      "name": "Iron Horse Mine",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Iron_Horse_Mine_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Traveler's Vale": {
+      "name": "Traveler's Vale",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Traveler%27s_Vale_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Anvil Rock": {
+      "name": "Anvil Rock",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Anvil_Rock_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Deldrimor Bowl": {
+      "name": "Deldrimor Bowl",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Deldrimor_Bowl_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Griffon's Mouth": {
+      "name": "Griffon's Mouth",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Griffon%27s_Mouth_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Northern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Perdition Rock": {
+      "name": "Perdition Rock",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Perdition_Rock_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Ring of Fire Islands",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Icedome": {
+      "name": "Icedome",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Icedome_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Lornar's Pass": {
+      "name": "Lornar's Pass",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Lornar%27s_Pass_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Snake Dance": {
+      "name": "Snake Dance",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Snake_Dance_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Talus Chute": {
+      "name": "Talus Chute",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Talus_Chute_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Mineral Springs": {
+      "name": "Mineral Springs",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Mineral_Springs_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Dreadnought's Drift": {
+      "name": "Dreadnought's Drift",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Dreadnought%27s_Drift_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 15000,
+      "gold": 2000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 250,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 250
+      }
+    },
+    "Vanquish|Ice Floe": {
+      "name": "Ice Floe",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Ice_Floe_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Spearhead Peak": {
+      "name": "Spearhead Peak",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Spearhead_Peak_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Frozen Forest": {
+      "name": "Frozen Forest",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Frozen_Forest_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Grenth's Footprint": {
+      "name": "Grenth's Footprint",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Grenth%27s_Footprint_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 150,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 150
+      }
+    },
+    "Vanquish|Tasca's Demise": {
+      "name": "Tasca's Demise",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Tasca%27s_Demise_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 5000,
+      "gold": 1000,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    },
+    "Vanquish|Witman's Folly": {
+      "name": "Witman's Folly",
+      "type": "Vanquish",
+      "url": "https://wiki.guildwars.com/wiki/Witman%27s_Folly_(Zaishen_vanquish)",
+      "campaign": "Prophecies",
+      "region": "Southern Shiverpeaks",
+      "experience": 10000,
+      "gold": 1500,
+      "faction": 0,
+      "factionType": "",
+      "coins": {
+        "base": 50,
+        "firstBonus": 0,
+        "hardModeBonus": 0,
+        "total": 50
+      }
+    }
+  }
+}

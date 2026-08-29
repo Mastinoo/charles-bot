@@ -11,6 +11,7 @@ import { handleTwitchEvent } from './services/twitchEventSub.js';
 import { subscribeTwitchStreamer } from './services/twitchSubscribe.js';
 import { checkStreams } from './services/streamManager.js';
 import db from './database.js';
+import { createInteractionRouter } from './utils/interactionRouter.js';
 
 // ==========================
 // Create Discord client
@@ -23,6 +24,7 @@ const client = new Client({
     ]
 });
 client.commands = new Collection();
+createInteractionRouter(client);
 
 // ==========================
 // Load commands recursively
@@ -116,10 +118,6 @@ client.on('interactionCreate', async interaction => {
             if (!command || !command.autocomplete) return;
             await command.autocomplete(interaction);
         }
-        else if (interaction.isButton() || interaction.isStringSelectMenu()) {
-            const command = client.commands.get('set-update-channel'); // example handler
-            if (command?.handleSelect) await command.handleSelect(interaction);
-        }
     } catch (err) {
         console.error(err);
         if (interaction.replied || interaction.deferred) {
@@ -128,6 +126,13 @@ client.on('interactionCreate', async interaction => {
             await interaction.reply({ content: '❌ There was an error processing your interaction.', ephemeral: true });
         }
     }
+});
+
+// ==========================
+// Routed component/modal interactions
+// ==========================
+client.on('interactionCreate', async interaction => {
+    await client.interactionRouter.dispatch(interaction);
 });
 
 // ==========================

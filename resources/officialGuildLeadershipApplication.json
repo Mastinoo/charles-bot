@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "title": "Official GWR Guild Leadership Application",
+  "tagline": "Different guilds. Different leaders. One GWR.",
+  "positions": [
+    { "label": "Guild Leader", "value": "guild_leader", "emoji": "👑" },
+    { "label": "Founding Officer", "value": "founding_officer", "emoji": "⚔️" },
+    { "label": "Either", "value": "either", "emoji": "🔄" }
+  ],
+  "interests": [
+    "Casual PvE",
+    "Elite areas",
+    "Teaching",
+    "Titles",
+    "Collections",
+    "Campaign progression",
+    "Speedclears",
+    "PvP",
+    "Social gameplay",
+    "Community events"
+  ],
+  "sections": [
+    {
+      "id": "profile",
+      "title": "Your Profile",
+      "emoji": "🪪",
+      "questions": [
+        { "id": "characterName", "number": 0, "label": "Main Guild Wars character name", "shortLabel": "Main GW character name", "style": "short", "required": true },
+        { "id": "timezoneCountry", "number": 0, "label": "Timezone / country", "shortLabel": "Timezone / country", "style": "short", "required": true },
+        { "id": "gwrTenure", "number": 0, "label": "How long have you been part of GWR?", "shortLabel": "How long have you been in GWR?", "style": "short", "required": true }
+      ]
+    },
+    {
+      "id": "about",
+      "title": "About You",
+      "emoji": "💬",
+      "questions": [
+        { "id": "q1", "number": 1, "label": "Why are you interested in helping lead an Official GWR Guild?", "shortLabel": "Why do you want to help lead?", "style": "paragraph", "required": true },
+        { "id": "q2", "number": 2, "label": "What does GWR mean to you as a community?", "shortLabel": "What does GWR mean to you?", "style": "paragraph", "required": true },
+        { "id": "q3", "number": 3, "label": "Tell us about any previous leadership experience you have.", "shortLabel": "Previous leadership experience", "style": "paragraph", "required": true },
+        { "id": "q4", "number": 4, "label": "How active are you currently? Please give a realistic indication of your normal weekly availability.", "shortLabel": "Normal weekly availability", "style": "paragraph", "required": true }
+      ],
+      "requiresInterests": true
+    },
+    {
+      "id": "vision",
+      "title": "Guild Vision",
+      "emoji": "🏰",
+      "questions": [
+        { "id": "q6", "number": 6, "label": "What kind of guild would you want to build within the GWR network?", "shortLabel": "What kind of guild would you build?", "style": "paragraph", "required": true },
+        { "id": "q7", "number": 7, "label": "How would you make members feel connected to both their own guild and GWR as a whole?", "shortLabel": "Connecting guild members with GWR", "style": "paragraph", "required": true },
+        { "id": "q8", "number": 8, "label": "GWR organises a major community event. What would you do as Guild Leader to help make that event successful?", "shortLabel": "Supporting a major GWR event", "style": "paragraph", "required": true },
+        { "id": "q9", "number": 9, "label": "How would you balance your own guild's activities with wider GWR activities?", "shortLabel": "Balancing guild and GWR activity", "style": "paragraph", "required": true },
+        { "id": "q10", "number": 10, "label": "What would you do if your guild members rarely participated in wider GWR events?", "shortLabel": "Low participation in GWR events", "style": "paragraph", "required": true }
+      ]
+    },
+    {
+      "id": "recruitment",
+      "title": "Recruitment & Activity",
+      "emoji": "📣",
+      "questions": [
+        { "id": "q11", "number": 11, "label": "How would you recruit the first members of a new guild?", "shortLabel": "Recruiting the first members", "style": "paragraph", "required": true },
+        { "id": "q12", "number": 12, "label": "How would you keep those members active after they join?", "shortLabel": "Keeping members active", "style": "paragraph", "required": true },
+        { "id": "q13", "number": 13, "label": "What kind of events would you want your guild to organise?", "shortLabel": "Events your guild would organise", "style": "paragraph", "required": true },
+        { "id": "q14", "number": 14, "label": "How would you encourage your Officers to take responsibility rather than relying entirely on you?", "shortLabel": "Developing responsible Officers", "style": "paragraph", "required": true }
+      ]
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership & Collaboration",
+      "emoji": "🤝",
+      "questions": [
+        { "id": "q15", "number": 15, "label": "What do you believe makes a good Guild Leader?", "shortLabel": "What makes a good Guild Leader?", "style": "paragraph", "required": true },
+        { "id": "q16", "number": 16, "label": "Two members are arguing and it is starting to affect the rest of the guild. How would you handle it?", "shortLabel": "Handling a member conflict", "style": "paragraph", "required": true },
+        { "id": "q17", "number": 17, "label": "One of your Officers becomes inactive without warning. What would you do?", "shortLabel": "An Officer becomes inactive", "style": "paragraph", "required": true },
+        { "id": "q18", "number": 18, "label": "Another GWR Guild Leader disagrees with you about a wider community decision. How would you approach it?", "shortLabel": "Disagreement with another GWR GL", "style": "paragraph", "required": true }
+      ],
+      "choiceQuestions": [
+        {
+          "id": "q19",
+          "number": 19,
+          "label": "How comfortable are you operating independently without needing approval for normal guild decisions?",
+          "placeholder": "Operating independently",
+          "options": ["Very comfortable", "Comfortable", "Depends on the situation", "I would prefer significant guidance"]
+        },
+        {
+          "id": "q20",
+          "number": 20,
+          "label": "How comfortable are you working within an overall direction determined by GWR Leadership?",
+          "placeholder": "Working within GWR direction",
+          "options": ["Very comfortable", "Comfortable", "Depends on the situation", "Not very comfortable"]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": "First Month & Final",
+      "emoji": "🚀",
+      "questions": [
+        { "id": "q21", "number": 21, "label": "If selected as Guild Leader, what would your first 30 days look like?", "shortLabel": "Your first 30 days", "style": "paragraph", "required": true },
+        { "id": "q22", "number": 22, "label": "Are there people within GWR you would consider asking to become Founding Officers?", "shortLabel": "Potential Founding Officers", "style": "paragraph", "required": true },
+        { "id": "q23", "number": 23, "label": "What would you need from GWR Leadership to give your guild the best possible start?", "shortLabel": "What you need from GWR Leadership", "style": "paragraph", "required": true },
+        { "id": "q24", "number": 24, "label": "Why should GWR Leadership trust you to lead one of its guilds?", "shortLabel": "Why should GWR trust you?", "style": "paragraph", "required": true }
+      ],
+      "requiresAgreement": true
+    }
+  ],
+  "agreement": [
+    "This is the first pilot of a new GWR-operated guild model.",
+    "The guild is a permanent part of the Guild Wars Revival network.",
+    "The Guild Leader receives significant operational freedom.",
+    "The Guild Leader position is a leadership mandate and does not constitute personal ownership of the guild.",
+    "GWR-wide activities and events are part of the responsibility of leading an Official GWR Guild.",
+    "Guild Leaders are expected to collaborate rather than operate as completely independent entities.",
+    "Guild leadership must follow GWR rules, standards and overall direction.",
+    "The Guild Leader and Officers are expected to remain reasonably active.",
+    "Leadership must communicate if circumstances change.",
+    "Leadership positions may be reviewed if someone becomes inactive or is no longer suitable for the position.",
+    "If a Guild Leader steps down or is replaced, in-game leadership is expected to be transferred to the successor appointed through the GWR leadership process."
+  ]
+}

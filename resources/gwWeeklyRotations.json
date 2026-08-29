@@ -1,0 +1,968 @@
+{
+  "version": "1.0",
+  "source": "GWToolbox++ DailyQuestsWindow.cpp fixed Nicholas post-Searing cycle",
+  "epochUtc": "2014-07-21T15:00:00.000Z",
+  "reset": "Monday 15:00 UTC",
+  "cycleLength": 137,
+  "nicholas": [
+    {
+      "item": "Red Iris Flowers",
+      "quantity": 3,
+      "location": "Regent Valley",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Red_Iris_Flowers",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Regent_Valley"
+    },
+    {
+      "item": "Feathered Avicara Scalps",
+      "quantity": 3,
+      "location": "Mineral Springs",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Feathered_Avicara_Scalps",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Mineral_Springs"
+    },
+    {
+      "item": "Margonite Masks",
+      "quantity": 2,
+      "location": "Poisoned Outcrops",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Margonite_Masks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Poisoned_Outcrops"
+    },
+    {
+      "item": "Quetzal Crests",
+      "quantity": 2,
+      "location": "Alcazia Tangle",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Quetzal_Crests",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Alcazia_Tangle"
+    },
+    {
+      "item": "Plague Idols",
+      "quantity": 3,
+      "location": "Wajjun Bazaar",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Plague_Idols",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Wajjun_Bazaar"
+    },
+    {
+      "item": "Azure Remains",
+      "quantity": 2,
+      "location": "Dreadnought's Drift",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Azure_Remains",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Dreadnought's_Drift"
+    },
+    {
+      "item": "Mandragor Root Cake",
+      "quantity": 1,
+      "location": "Arkjok Ward",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mandragor_Root_Cake",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Arkjok_Ward"
+    },
+    {
+      "item": "Mahgo Claw",
+      "quantity": 1,
+      "location": "Perdition Rock",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mahgo_Claw",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Perdition_Rock"
+    },
+    {
+      "item": "Mantid Pincers",
+      "quantity": 5,
+      "location": "Saoshang Trail",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mantid_Pincers",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Saoshang_Trail"
+    },
+    {
+      "item": "Sentient Seeds",
+      "quantity": 3,
+      "location": "Fahranur, The First City",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Sentient_Seeds",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Fahranur,_The_First_City"
+    },
+    {
+      "item": "Stone Grawl Necklaces",
+      "quantity": 2,
+      "location": "Sacnoth Valley",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Stone_Grawl_Necklaces",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sacnoth_Valley"
+    },
+    {
+      "item": "Herring",
+      "quantity": 1,
+      "location": "Twin Serpent Lakes",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Herring",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Twin_Serpent_Lakes"
+    },
+    {
+      "item": "Naga Skins",
+      "quantity": 3,
+      "location": "Mount Qinkai",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Naga_Skins",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Mount_Qinkai"
+    },
+    {
+      "item": "Gloom Seed",
+      "quantity": 1,
+      "location": "The Falls",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Gloom_Seed",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Falls"
+    },
+    {
+      "item": "Charr Hide",
+      "quantity": 1,
+      "location": "The Breach",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Charr_Hide",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Breach"
+    },
+    {
+      "item": "Ruby Djinn Essence",
+      "quantity": 1,
+      "location": "The Alkali Pan",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Ruby_Djinn_Essence",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Alkali_Pan"
+    },
+    {
+      "item": "Thorny Carapaces",
+      "quantity": 2,
+      "location": "Majesty's Rest",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Thorny_Carapaces",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Majesty's_Rest"
+    },
+    {
+      "item": "Bone Charms",
+      "quantity": 3,
+      "location": "Rhea's Crater",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Bone_Charms",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Rhea's_Crater"
+    },
+    {
+      "item": "Modniir Manes",
+      "quantity": 3,
+      "location": "Varajar Fells",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Modniir_Manes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Varajar_Fells"
+    },
+    {
+      "item": "Superb Charr Carvings",
+      "quantity": 3,
+      "location": "Dalada Uplands",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Superb_Charr_Carvings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Dalada_Uplands"
+    },
+    {
+      "item": "Rolls of Parchment",
+      "quantity": 5,
+      "location": "Zen Daijun",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Rolls_of_Parchment",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Zen_Daijun"
+    },
+    {
+      "item": "Roaring Ether Claws",
+      "quantity": 2,
+      "location": "Garden of Seborhin",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Roaring_Ether_Claws",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Garden_of_Seborhin"
+    },
+    {
+      "item": "Branches of Juni Berries",
+      "quantity": 3,
+      "location": "Bukdek Byway",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Branches_of_Juni_Berries",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Bukdek_Byway"
+    },
+    {
+      "item": "Shiverpeak Manes",
+      "quantity": 3,
+      "location": "Deldrimor Bowl",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Shiverpeak_Manes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Deldrimor_Bowl"
+    },
+    {
+      "item": "Fetid Carapaces",
+      "quantity": 3,
+      "location": "Eastern Frontier",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Fetid_Carapaces",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Eastern_Frontier"
+    },
+    {
+      "item": "Moon Shells",
+      "quantity": 2,
+      "location": "Gyala Hatchery",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Moon_Shells",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Gyala_Hatchery"
+    },
+    {
+      "item": "Massive Jawbone",
+      "quantity": 1,
+      "location": "The Arid Sea",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Massive_Jawbone",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Arid_Sea"
+    },
+    {
+      "item": "Chromatic Scale",
+      "quantity": 1,
+      "location": "Ice Cliff Chasms",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Chromatic_Scale",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Ice_Cliff_Chasms"
+    },
+    {
+      "item": "Mursaat Tokens",
+      "quantity": 3,
+      "location": "Ice Floe",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mursaat_Tokens",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Ice_Floe"
+    },
+    {
+      "item": "Sentient Lodestone",
+      "quantity": 1,
+      "location": "Bahdok Caverns",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Sentient_Lodestone",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Bahdok_Caverns"
+    },
+    {
+      "item": "Jungle Troll Tusks",
+      "quantity": 3,
+      "location": "Tangle Root",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Jungle_Troll_Tusks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Tangle_Root"
+    },
+    {
+      "item": "Sapphire Djinn Essence",
+      "quantity": 1,
+      "location": "Resplendent Makuun",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Sapphire_Djinn_Essence",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Resplendent_Makuun"
+    },
+    {
+      "item": "Stone Carving",
+      "quantity": 1,
+      "location": "Arborstone",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Stone_Carving",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Arborstone"
+    },
+    {
+      "item": "Feathered Caromi Scalps",
+      "quantity": 3,
+      "location": "North Kryta Province",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Feathered_Caromi_Scalps",
+      "locationUrl": "https://wiki.guildwars.com/wiki/North_Kryta_Province"
+    },
+    {
+      "item": "Pillaged Goods",
+      "quantity": 1,
+      "location": "Holdings of Chokhin",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Pillaged_Goods",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Holdings_of_Chokhin"
+    },
+    {
+      "item": "Gold Crimson Skull Coin",
+      "quantity": 1,
+      "location": "Haiju Lagoon",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Gold_Crimson_Skull_Coin",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Haiju_Lagoon"
+    },
+    {
+      "item": "Jade Bracelets",
+      "quantity": 3,
+      "location": "Tahnnakai Temple",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Jade_Bracelets",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Tahnnakai_Temple"
+    },
+    {
+      "item": "Minotaur Horns",
+      "quantity": 2,
+      "location": "Prophet's Path",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Minotaur_Horns",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Prophet's_Path"
+    },
+    {
+      "item": "Frosted Griffon Wings",
+      "quantity": 2,
+      "location": "Snake Dance",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Frosted_Griffon_Wings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Snake_Dance"
+    },
+    {
+      "item": "Silver Bullion Coins",
+      "quantity": 2,
+      "location": "Mehtani Keys",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Silver_Bullion_Coins",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Mehtani_Keys"
+    },
+    {
+      "item": "Truffle",
+      "quantity": 1,
+      "location": "Morostav Trail",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Truffle",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Morostav_Trail"
+    },
+    {
+      "item": "Skelk Claws",
+      "quantity": 3,
+      "location": "Verdant Cascades",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Skelk_Claws",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Verdant_Cascades"
+    },
+    {
+      "item": "Dessicated Hydra Claws",
+      "quantity": 2,
+      "location": "The Scar",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Dessicated_Hydra_Claws",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Scar"
+    },
+    {
+      "item": "Frigid Hearts",
+      "quantity": 3,
+      "location": "Spearhead Peak",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Frigid_Hearts",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Spearhead_Peak"
+    },
+    {
+      "item": "Celestial Essences",
+      "quantity": 3,
+      "location": "Nahpui Quarter",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Celestial_Essences",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Nahpui_Quarter"
+    },
+    {
+      "item": "Phantom Residue",
+      "quantity": 1,
+      "location": "Lornar's Pass",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Phantom_Residue",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Lornar's_Pass"
+    },
+    {
+      "item": "Drake Kabob",
+      "quantity": 1,
+      "location": "Issnur Isles",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Drake_Kabob",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Issnur_Isles"
+    },
+    {
+      "item": "Amber Chunks",
+      "quantity": 3,
+      "location": "Ferndale",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Amber_Chunks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Ferndale"
+    },
+    {
+      "item": "Glowing Hearts",
+      "quantity": 2,
+      "location": "Stingray Strand",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Glowing_Hearts",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Stingray_Strand"
+    },
+    {
+      "item": "Saurian Bones",
+      "quantity": 5,
+      "location": "Riven Earth",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Saurian_Bones",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Riven_Earth"
+    },
+    {
+      "item": "Behemoth Hides",
+      "quantity": 2,
+      "location": "Wilderness of Bahdza",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Behemoth_Hides",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Wilderness_of_Bahdza"
+    },
+    {
+      "item": "Luminous Stone",
+      "quantity": 1,
+      "location": "Crystal Overlook",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Luminous_Stone",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Crystal_Overlook"
+    },
+    {
+      "item": "Intricate Grawl Necklaces",
+      "quantity": 3,
+      "location": "Witman's Folly",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Intricate_Grawl_Necklaces",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Witman's_Folly"
+    },
+    {
+      "item": "Jadeite Shards",
+      "quantity": 3,
+      "location": "Shadows Passage",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Jadeite_Shards",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Shadows_Passage"
+    },
+    {
+      "item": "Gold Doubloon",
+      "quantity": 1,
+      "location": "Barbarous Shore",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Gold_Doubloon",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Barbarous_Shore"
+    },
+    {
+      "item": "Shriveled Eyes",
+      "quantity": 2,
+      "location": "Skyward Reach",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Shriveled_Eyes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Skyward_Reach"
+    },
+    {
+      "item": "Icy Lodestones",
+      "quantity": 2,
+      "location": "Icedome",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Icy_Lodestones",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Icedome"
+    },
+    {
+      "item": "Keen Oni Talon",
+      "quantity": 1,
+      "location": "Silent Surf",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Keen_Oni_Talon",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Silent_Surf"
+    },
+    {
+      "item": "Hardened Humps",
+      "quantity": 2,
+      "location": "Nebo Terrace",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Hardened_Humps",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Nebo_Terrace"
+    },
+    {
+      "item": "Piles of Elemental Dust",
+      "quantity": 2,
+      "location": "Drakkar Lake",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Piles_of_Elemental_Dust",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Drakkar_Lake"
+    },
+    {
+      "item": "Naga Hides",
+      "quantity": 3,
+      "location": "Panjiang Peninsula",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Naga_Hides",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Panjiang_Peninsula"
+    },
+    {
+      "item": "Spiritwood Planks",
+      "quantity": 3,
+      "location": "Griffon's Mouth",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Spiritwood_Planks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Griffon's_Mouth"
+    },
+    {
+      "item": "Stormy Eye",
+      "quantity": 1,
+      "location": "Pockmark Flats",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Stormy_Eye",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Pockmark_Flats"
+    },
+    {
+      "item": "Skree Wings",
+      "quantity": 3,
+      "location": "Forum Highlands",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Skree_Wings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Forum_Highlands"
+    },
+    {
+      "item": "Soul Stones",
+      "quantity": 3,
+      "location": "Raisu Palace",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Soul_Stones",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Raisu_Palace"
+    },
+    {
+      "item": "Spiked Crest",
+      "quantity": 1,
+      "location": "Tears of the Fallen",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Spiked_Crest",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Tears_of_the_Fallen"
+    },
+    {
+      "item": "Dragon Root",
+      "quantity": 1,
+      "location": "Drazach Thicket",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Dragon_Root",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Drazach_Thicket"
+    },
+    {
+      "item": "Berserker Horns",
+      "quantity": 3,
+      "location": "Jaga Moraine",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Berserker_Horns",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Jaga_Moraine"
+    },
+    {
+      "item": "Behemoth Jaw",
+      "quantity": 1,
+      "location": "Mamnoon Lagoon",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Behemoth_Jaw",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Mamnoon_Lagoon"
+    },
+    {
+      "item": "Bowl of Skalefin Soup",
+      "quantity": 1,
+      "location": "Zehlon Reach",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Bowl_of_Skalefin_Soup",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Zehlon_Reach"
+    },
+    {
+      "item": "Forest Minotaur Horns",
+      "quantity": 2,
+      "location": "Kessex Peak",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Forest_Minotaur_Horns",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Kessex_Peak"
+    },
+    {
+      "item": "Putrid Cysts",
+      "quantity": 3,
+      "location": "Sunjiang District",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Putrid_Cysts",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sunjiang_District"
+    },
+    {
+      "item": "Jade Mandibles",
+      "quantity": 2,
+      "location": "Salt Flats",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Jade_Mandibles",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Salt_Flats"
+    },
+    {
+      "item": "Maguuma Manes",
+      "quantity": 2,
+      "location": "Silverwood",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Maguuma_Manes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Silverwood"
+    },
+    {
+      "item": "Skull Juju",
+      "quantity": 1,
+      "location": "The Eternal Grove",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Skull_Juju",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Eternal_Grove"
+    },
+    {
+      "item": "Mandragor Swamproots",
+      "quantity": 3,
+      "location": "Lahtenda Bog",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mandragor_Swamproots",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Lahtenda_Bog"
+    },
+    {
+      "item": "Bottle of Vabbian Wine",
+      "quantity": 1,
+      "location": "Vehtendi Valley",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Bottle_of_Vabbian_Wine",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Vehtendi_Valley"
+    },
+    {
+      "item": "Weaver Legs",
+      "quantity": 2,
+      "location": "Magus Stones",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Weaver_Legs",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Magus_Stones"
+    },
+    {
+      "item": "Topaz Crest",
+      "quantity": 1,
+      "location": "Diviner's Ascent",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Topaz_Crest",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Diviner's_Ascent"
+    },
+    {
+      "item": "Rot Wallow Tusks",
+      "quantity": 2,
+      "location": "Pongmei Valley",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Rot_Wallow_Tusks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Pongmei_Valley"
+    },
+    {
+      "item": "Frostfire Fangs",
+      "quantity": 2,
+      "location": "Anvil Rock",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Frostfire_Fangs",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Anvil_Rock"
+    },
+    {
+      "item": "Demonic Relic",
+      "quantity": 1,
+      "location": "The Ruptured Heart",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Demonic_Relic",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Ruptured_Heart"
+    },
+    {
+      "item": "Abnormal Seeds",
+      "quantity": 2,
+      "location": "Talmark Wilderness",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Abnormal_Seeds",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Talmark_Wilderness"
+    },
+    {
+      "item": "Diamond Djinn Essence",
+      "quantity": 1,
+      "location": "The Hidden City of Ahdashim",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Diamond_Djinn_Essence",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Hidden_City_of_Ahdashim"
+    },
+    {
+      "item": "Forgotten Seals",
+      "quantity": 2,
+      "location": "Vulture Drifts",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Forgotten_Seals",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Vulture_Drifts"
+    },
+    {
+      "item": "Copper Crimson Skull Coins",
+      "quantity": 5,
+      "location": "Kinya Province",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Copper_Crimson_Skull_Coins",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Kinya_Province"
+    },
+    {
+      "item": "Mossy Mandibles",
+      "quantity": 3,
+      "location": "Ettin's Back",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mossy_Mandibles",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Ettin's_Back"
+    },
+    {
+      "item": "Enslavement Stones",
+      "quantity": 2,
+      "location": "Grenth's Footprint",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Enslavement_Stones",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Grenth's_Footprint"
+    },
+    {
+      "item": "Elonian Leather Squares",
+      "quantity": 5,
+      "location": "Jahai Bluffs",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Elonian_Leather_Squares",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Jahai_Bluffs"
+    },
+    {
+      "item": "Cobalt Talons",
+      "quantity": 2,
+      "location": "Vehjin Mines",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Cobalt_Talons",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Vehjin_Mines"
+    },
+    {
+      "item": "Maguuma Spider Web",
+      "quantity": 1,
+      "location": "Reed Bog",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Maguuma_Spider_Web",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Reed_Bog"
+    },
+    {
+      "item": "Forgotten Trinket Boxes",
+      "quantity": 5,
+      "location": "Minister Cho's Estate",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Forgotten_Trinket_Boxes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Minister_Cho's_Estate"
+    },
+    {
+      "item": "Icy Humps",
+      "quantity": 3,
+      "location": "Iron Horse Mine",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Icy_Humps",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Iron_Horse_Mine"
+    },
+    {
+      "item": "Sandblasted Lodestone",
+      "quantity": 1,
+      "location": "The Shattered Ravines",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Sandblasted_Lodestone",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Shattered_Ravines"
+    },
+    {
+      "item": "Black Pearls",
+      "quantity": 3,
+      "location": "Archipelagos",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Black_Pearls",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Archipelagos"
+    },
+    {
+      "item": "Insect Carapaces",
+      "quantity": 3,
+      "location": "Marga Coast",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Insect_Carapaces",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Marga_Coast"
+    },
+    {
+      "item": "Mergoyle Skulls",
+      "quantity": 3,
+      "location": "Watchtower Coast",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mergoyle_Skulls",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Watchtower_Coast"
+    },
+    {
+      "item": "Decayed Orr Emblems",
+      "quantity": 3,
+      "location": "Cursed Lands",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Decayed_Orr_Emblems",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Cursed_Lands"
+    },
+    {
+      "item": "Tempered Glass Vials",
+      "quantity": 5,
+      "location": "Mourning Veil Falls",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Tempered_Glass_Vials",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Mourning_Veil_Falls"
+    },
+    {
+      "item": "Scorched Lodestones",
+      "quantity": 3,
+      "location": "Old Ascalon",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Scorched_Lodestones",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Old_Ascalon"
+    },
+    {
+      "item": "Water Djinn Essence",
+      "quantity": 1,
+      "location": "Turai's Procession",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Water_Djinn_Essence",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Turai's_Procession"
+    },
+    {
+      "item": "Guardian Moss",
+      "quantity": 1,
+      "location": "Maishang Hills",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Guardian_Moss",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Maishang_Hills"
+    },
+    {
+      "item": "Dwarven Ales",
+      "quantity": 6,
+      "location": "The Floodplain of Mahnkelon",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Dwarven_Ales",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Floodplain_of_Mahnkelon"
+    },
+    {
+      "item": "Amphibian Tongues",
+      "quantity": 2,
+      "location": "Sparkfly Swamp",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Amphibian_Tongues",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sparkfly_Swamp"
+    },
+    {
+      "item": "Alpine Seeds",
+      "quantity": 2,
+      "location": "Frozen Forest",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Alpine_Seeds",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Frozen_Forest"
+    },
+    {
+      "item": "Tangled Seeds",
+      "quantity": 2,
+      "location": "Dry Top",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Tangled_Seeds",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Dry_Top"
+    },
+    {
+      "item": "Stolen Supplies",
+      "quantity": 3,
+      "location": "Jaya Bluffs",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Stolen_Supplies",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Jaya_Bluffs"
+    },
+    {
+      "item": "Pahnai Salad",
+      "quantity": 1,
+      "location": "Plains of Jarin",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Pahnai_Salad",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Plains_of_Jarin"
+    },
+    {
+      "item": "Vermin Hides",
+      "quantity": 3,
+      "location": "Xaquang Skyway",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Vermin_Hides",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Xaquang_Skyway"
+    },
+    {
+      "item": "Roaring Ether Heart",
+      "quantity": 1,
+      "location": "The Mirror of Lyss",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Roaring_Ether_Heart",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Mirror_of_Lyss"
+    },
+    {
+      "item": "Leathery Claws",
+      "quantity": 3,
+      "location": "Ascalon Foothills",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Leathery_Claws",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Ascalon_Foothills"
+    },
+    {
+      "item": "Azure Crest",
+      "quantity": 1,
+      "location": "Unwaking Waters",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Azure_Crest",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Unwaking_Waters"
+    },
+    {
+      "item": "Jotun Pelt",
+      "quantity": 1,
+      "location": "Bjora Marches",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Jotun_Pelt",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Bjora_Marches"
+    },
+    {
+      "item": "Heket Tongues",
+      "quantity": 2,
+      "location": "Dejarin Estate",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Heket_Tongues",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Dejarin_Estate"
+    },
+    {
+      "item": "Mountain Troll Tusks",
+      "quantity": 5,
+      "location": "Talus Chute",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mountain_Troll_Tusks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Talus_Chute"
+    },
+    {
+      "item": "Vials of Ink",
+      "quantity": 3,
+      "location": "Shenzun Tunnels",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Vials_of_Ink",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Shenzun_Tunnels"
+    },
+    {
+      "item": "Kournan Pendants",
+      "quantity": 3,
+      "location": "Gandara the Moon Fortress",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Kournan_Pendants",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Gandara_the_Moon_Fortress"
+    },
+    {
+      "item": "Singed Gargoyle Skulls",
+      "quantity": 3,
+      "location": "Diessa Lowlands",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Singed_Gargoyle_Skulls",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Diessa_Lowlands"
+    },
+    {
+      "item": "Dredge Incisors",
+      "quantity": 3,
+      "location": "Melandru's Hope",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Dredge_Incisors",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Melandru's_Hope"
+    },
+    {
+      "item": "Stone Summit Badges",
+      "quantity": 3,
+      "location": "Tasca's Demise",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Stone_Summit_Badges",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Tasca's_Demise"
+    },
+    {
+      "item": "Krait Skins",
+      "quantity": 3,
+      "location": "Arbor Bay",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Krait_Skins",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Arbor_Bay"
+    },
+    {
+      "item": "Inscribed Shards",
+      "quantity": 2,
+      "location": "Joko's Domain",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Inscribed_Shards",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Joko's_Domain"
+    },
+    {
+      "item": "Feathered Scalps",
+      "quantity": 3,
+      "location": "Sunqua Vale",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Feathered_Scalps",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sunqua_Vale"
+    },
+    {
+      "item": "Mummy Wrappings",
+      "quantity": 3,
+      "location": "The Sulfurous Wastes",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Mummy_Wrappings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Sulfurous_Wastes"
+    },
+    {
+      "item": "Shadowy Remnants",
+      "quantity": 2,
+      "location": "The Black Curtain",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Shadowy_Remnants",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Black_Curtain"
+    },
+    {
+      "item": "Ancient Kappa Shells",
+      "quantity": 3,
+      "location": "The Undercity",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Ancient_Kappa_Shells",
+      "locationUrl": "https://wiki.guildwars.com/wiki/The_Undercity"
+    },
+    {
+      "item": "Geode",
+      "quantity": 1,
+      "location": "Yatendi Canyons",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Geode",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Yatendi_Canyons"
+    },
+    {
+      "item": "Fibrous Mandragor Roots",
+      "quantity": 2,
+      "location": "Grothmar Wardowns",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Fibrous_Mandragor_Roots",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Grothmar_Wardowns"
+    },
+    {
+      "item": "Gruesome Ribcages",
+      "quantity": 3,
+      "location": "Dragon's Gullet",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Gruesome_Ribcages",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Dragon's_Gullet"
+    },
+    {
+      "item": "Kraken Eyes",
+      "quantity": 2,
+      "location": "Boreas Seabed",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Kraken_Eyes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Boreas_Seabed"
+    },
+    {
+      "item": "Bog Skale Fins",
+      "quantity": 3,
+      "location": "Scoundrel's Rise",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Bog_Skale_Fins",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Scoundrel's_Rise"
+    },
+    {
+      "item": "Sentient Spores",
+      "quantity": 2,
+      "location": "Sunward Marches",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Sentient_Spores",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sunward_Marches"
+    },
+    {
+      "item": "Ancient Eyes",
+      "quantity": 2,
+      "location": "Sage Lands",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Ancient_Eyes",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Sage_Lands"
+    },
+    {
+      "item": "Copper Shillings",
+      "quantity": 3,
+      "location": "Cliffs of Dohjok",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Copper_Shillings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Cliffs_of_Dohjok"
+    },
+    {
+      "item": "Frigid Mandragor Husks",
+      "quantity": 3,
+      "location": "Norrhart Domains",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Frigid_Mandragor_Husks",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Norrhart_Domains"
+    },
+    {
+      "item": "Bolts of Linen",
+      "quantity": 3,
+      "location": "Traveler's Vale",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Bolts_of_Linen",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Traveler's_Vale"
+    },
+    {
+      "item": "Charr Carvings",
+      "quantity": 3,
+      "location": "Flame Temple Corridor",
+      "itemUrl": "https://wiki.guildwars.com/wiki/Charr_Carvings",
+      "locationUrl": "https://wiki.guildwars.com/wiki/Flame_Temple_Corridor"
+    }
+  ]
+}
